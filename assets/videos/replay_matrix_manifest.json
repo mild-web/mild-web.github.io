@@ -1,6 +1,6 @@
 {
-  "version": "20260912-compact-gt-frame-aprilvins-v1",
-  "description": "Event-zoom replay matrix. Main 3D frame is tightly set by GT only; estimator drift is cropped rather than used to expand the view.",
+  "version": "20260913-orion-final-gt-tight-v1",
+  "description": "Event-zoom replay matrix. Main 3D frame is tightly set by GT only; estimator drift is cropped rather than used to expand the view. AprilVINS(Ours) uses the 20260908 Orion final guarded IMU all15 trajectories.",
   "task_order": [
     {
       "slug": "analemma",
@@ -850,13 +850,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "analemma_2_t__apriltag_4__insta360_x5",
-      "metric": "0.008/0.94",
+      "metric": "0.0049/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/analemma__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/analemma__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "0",
       "event_planes": "",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Circular",
@@ -864,13 +864,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "circular_2_t__apriltag_4__insta360_x5",
-      "metric": "0.007/0.93",
+      "metric": "0.0053/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/circular__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/circular__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "0",
       "event_planes": "",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Zigzag",
@@ -878,13 +878,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "zigzag_2_t__apriltag_4__insta360_x5",
-      "metric": "0.007/0.98",
+      "metric": "0.0059/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/zigzag__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/zigzag__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "0",
       "event_planes": "",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Bookshelf 01",
@@ -892,13 +892,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "bookshelf01_2__apriltag_4__insta360_x5",
-      "metric": "0.004/0.97",
+      "metric": "0.0031/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/bookshelf01__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/bookshelf01__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Bookshelf 02",
@@ -906,13 +906,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "bookshelf02_2__apriltag_4__insta360_x5",
-      "metric": "0.009/0.95",
+      "metric": "0.0076/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/bookshelf02__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/bookshelf02__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "4",
-      "event_planes": "Pick 1:XZ;Place 1:YZ;Place 2:XZ;Pick 2:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "event_planes": "Pick 1:XY;Place 1:XY;Place 2:XZ;Pick 2:XZ",
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Box 01",
@@ -920,13 +920,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "box01__apriltag_4__insta360_x5",
-      "metric": "0.006/0.97",
+      "metric": "0.0051/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/box01__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/box01__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "2",
       "event_planes": "Pick 1:YZ;Place 1:XZ",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Pick-and-place 04",
@@ -934,13 +934,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "grab_place04__apriltag_4__insta360_x5",
-      "metric": "0.005/0.99",
+      "metric": "0.0044/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/pick_and_place04__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/pick_and_place04__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "4",
-      "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XZ;Place 2:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XY;Place 2:YZ",
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Pick-and-place 05",
@@ -948,13 +948,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "grab_place05__apriltag_4__insta360_x5",
-      "metric": "0.005/0.99",
+      "metric": "0.0036/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/pick_and_place05__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/pick_and_place05__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "4",
-      "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XY;Place 2:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "event_planes": "Pick 1:XY;Place 1:XY;Pick 2:XY;Place 2:XY",
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Pick-and-place 06",
@@ -962,13 +962,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "grab_place06_t__apriltag_4__insta360_x5",
-      "metric": "0.003/0.98",
+      "metric": "0.0028/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/pick_and_place06__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/pick_and_place06__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "4",
-      "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:YZ;Place 2:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:YZ;Place 2:XZ",
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Wiping 01",
@@ -976,13 +976,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "wiping01__apriltag_4__insta360_x5",
-      "metric": "0.002/0.99",
+      "metric": "0.0021/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/wiping01__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/wiping01__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:YZ",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     },
     {
       "task": "Wiping 02",
@@ -990,13 +990,13 @@
       "method": "AprilVINS(Ours)",
       "method_slug": "aprilvins_ours",
       "sequence": "wiping02_1__apriltag_4__insta360_x5",
-      "metric": "0.003/0.98",
+      "metric": "0.0033/1.00",
       "status": "rendered",
       "video": "assets/videos/replay_matrix/wiping02__aprilvins_ours_event_zoom_replay.mp4",
       "poster": "assets/images/replay_matrix/wiping02__aprilvins_ours_event_zoom_replay_poster.png",
       "event_count": "2",
       "event_planes": "Pick 1:YZ;Place 1:XY",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
     }
   ]
 }
