@@ -98,7 +98,7 @@ video {
   max-width: 1180px;
   margin: 58px auto 0;
   display: grid;
-  grid-template-columns: minmax(0, 880px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 22px;
   align-items: center;
 }
@@ -121,10 +121,10 @@ p {
 
 h1 {
   margin-bottom: 18px;
-  max-width: 980px;
-  font-size: clamp(30px, 4.2vw, 50px);
+  max-width: 1180px;
+  font-size: clamp(30px, 4vw, 52px);
   line-height: 1.07;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.042em;
 }
 
 h2 {
