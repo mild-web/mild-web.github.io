@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="MILD is a manipulation-interface localization dataset with synchronized real-world teaching videos and localization benchmark assets.">
+  <title>MILD | Video Gallery</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/video-gallery.js"></script>
+</head>
+<body>
+  <header id="top" class="hero">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="MILD home">MILD</a>
+      <div class="nav-links">
+        <a href="#videos">Videos</a>
+        <a href="#figures">Figures</a>
+        <a href="#release">Release</a>
+      </div>
+    </nav>
+
+    <section class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Manipulation-interface localization dataset</p>
+        <h1>MILD video gallery</h1>
+        <p class="lead">
+          Synchronized real-world teaching clips for tabletop robot manipulation,
+          including front/back fisheye views from Insta360 X5 and left/right
+          views from Insight9.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#videos">Browse clips</a>
+          <a class="button secondary" href="#figures">View paper figures</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="videos" class="section video-section">
+      <div class="section-heading">
+        <p class="eyebrow">Dataset videos</p>
+        <h2>Task clips across scenes and sensors</h2>
+        <p>
+          Each card shows an approximately 10 s segment cropped from the
+          rosbag-synchronized preview video. X5 clips are front/back fisheye
+          pairs; Insight9 clips are left/right grayscale pairs.
+        </p>
+      </div>
+
+      <div class="toolbar" aria-label="Video filters">
+        <label class="select-wrap">
+          <span>Sensor</span>
+          <select id="sensorFilter">
+            <option value="all">All sensors</option>
+          </select>
+        </label>
+        <label class="select-wrap">
+          <span>Scene</span>
+          <select id="sceneFilter">
+            <option value="all">All scenes</option>
+          </select>
+        </label>
+        <label class="select-wrap">
+          <span>Task</span>
+          <select id="taskFilter">
+            <option value="all">All tasks</option>
+          </select>
+        </label>
+        <button class="button compact" id="resetFilters" type="button">Reset</button>
+      </div>
+
+      <div class="gallery-status" id="galleryStatus">Loading video clips…</div>
+      <div class="video-grid" id="videoGallery" aria-live="polite"></div>
+    </section>
+
+    <section id="figures" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Paper figures</p>
+        <h2>Benchmark and method snapshots</h2>
+        <p>
+          The manuscript also includes trajectory-level comparisons, task
+          difficulty analysis, the AprilVINS data flow, and the real-world
+          collection pipeline.
+        </p>
+      </div>
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <img src="assets/images/figures/task_difficulty.jpg" alt="Task difficulty map">
+          <figcaption>Task difficulty map from localization error and time completion.</figcaption>
+        </figure>
+        <figure class="figure-card">
+          <img src="assets/images/figures/trajectory_comparison.jpg" alt="Trajectory comparison">
+          <figcaption>Trajectory comparison between practical routes and AprilVINS.</figcaption>
+        </figure>
+        <figure class="figure-card">
+          <img src="assets/images/figures/aprilvins_pipeline.jpg" alt="AprilVINS pipeline">
+          <figcaption>AprilVINS pipeline with tag geometry, prior admission, and output promotion.</figcaption>
+        </figure>
+        <figure class="figure-card">
+          <img src="assets/images/figures/dataset_pipeline.jpg" alt="MILD data collection pipeline">
+          <figcaption>Record/replay-oriented real-world data collection pipeline.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="release" class="section release">
+      <p class="eyebrow">Release</p>
+      <h2>Anonymous review page</h2>
+      <p>
+        This is an anonymous project-page draft for review. Dataset, paper, and
+        code links will be activated when the release package is finalized.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>MILD project page</span>
+    <a href="#top">Back to top</a>
+  </footer>
+</body>
+</html>
