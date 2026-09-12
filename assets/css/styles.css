@@ -121,9 +121,10 @@ p {
 
 h1 {
   margin-bottom: 18px;
-  font-size: clamp(38px, 5.2vw, 66px);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  max-width: 980px;
+  font-size: clamp(30px, 4.2vw, 50px);
+  line-height: 1.07;
+  letter-spacing: -0.045em;
 }
 
 h2 {
