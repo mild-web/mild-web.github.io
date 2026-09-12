@@ -8,6 +8,7 @@
   <title>MILD: Benchmarking Manipulation-Interface Localization with AprilTag-Assisted Visual-Inertial Estimation</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script defer src="assets/js/video-gallery.js"></script>
+  <script defer src="assets/js/replay-matrix.js"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -79,51 +80,20 @@
     <section id="event-zooms" class="section event-video-section">
       <div class="section-heading">
         <p class="eyebrow">Replay event localization</p>
-        <h2>Trajectory zooms at pick/place events</h2>
+        <h2>Task-by-method trajectory replay matrix</h2>
         <p>
-          These videos show AprilVINS trajectories against the recorded TCP
-          reference and zoom in on logged gripper-event neighborhoods. They
-          visualize event-time localization error only; object motion and
-          physical replay success are not simulated.
+          Rows are manipulation tasks and columns are localization methods.
+          Each clip shows the estimated trajectory against the recorded TCP
+          reference and zooms in on logged pick/place neighborhoods. A black
+          <span class="inline-code">Fail</span> clip follows a table-cross
+          result; <span class="inline-code">Unavailable</span> means a numeric
+          row exists but the current local visualization pass could not align a
+          compatible route-specific reference.
         </p>
       </div>
-      <div class="event-video-grid">
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place01_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place01_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 01</h3>
-        </article>
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place02_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place02_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 02</h3>
-        </article>
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place03_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place03_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 03</h3>
-        </article>
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place04_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place04_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 04</h3>
-        </article>
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place05_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place05_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 05</h3>
-        </article>
-        <article class="event-video-card">
-          <video controls muted loop playsinline preload="metadata" poster="assets/images/event_zoom/pick_and_place06_event_zoom_replay_poster.png">
-            <source src="assets/videos/event_zoom/pick_and_place06_event_zoom_replay.mp4" type="video/mp4">
-          </video>
-          <h3>Pick-and-place 06</h3>
-        </article>
+      <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
+      <div class="replay-matrix-shell" aria-live="polite">
+        <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method event replay video matrix"></div>
       </div>
     </section>
 

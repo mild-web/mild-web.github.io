@@ -1,0 +1,732 @@
+{
+  "task_order": [
+    {
+      "slug": "analemma",
+      "label": "Analemma"
+    },
+    {
+      "slug": "circular",
+      "label": "Circular"
+    },
+    {
+      "slug": "zigzag",
+      "label": "Zigzag"
+    },
+    {
+      "slug": "bookshelf01",
+      "label": "Bookshelf 01"
+    },
+    {
+      "slug": "bookshelf02",
+      "label": "Bookshelf 02"
+    },
+    {
+      "slug": "box01",
+      "label": "Box 01"
+    },
+    {
+      "slug": "pick_and_place04",
+      "label": "Pick-and-place 04"
+    },
+    {
+      "slug": "pick_and_place05",
+      "label": "Pick-and-place 05"
+    },
+    {
+      "slug": "pick_and_place06",
+      "label": "Pick-and-place 06"
+    },
+    {
+      "slug": "wiping01",
+      "label": "Wiping 01"
+    },
+    {
+      "slug": "wiping02",
+      "label": "Wiping 02"
+    }
+  ],
+  "method_order": [
+    {
+      "slug": "pico_controller",
+      "label": "PICO Controller"
+    },
+    {
+      "slug": "insight9_sdk_vio",
+      "label": "Insight9 SDK VIO"
+    },
+    {
+      "slug": "tagslam",
+      "label": "TagSLAM"
+    },
+    {
+      "slug": "ucoslam",
+      "label": "UcoSLAM"
+    },
+    {
+      "slug": "openvins_aruco",
+      "label": "OpenVINS(ArUco)"
+    }
+  ],
+  "items": [
+    {
+      "task": "Analemma",
+      "task_slug": "analemma",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.043/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/analemma__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/analemma__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Analemma_2_t__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Analemma",
+      "task_slug": "analemma",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.097/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/analemma__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/analemma__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "analemma_2_t__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Analemma",
+      "task_slug": "analemma",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.070/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/analemma__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/analemma__tagslam_event_zoom_replay_poster.png",
+      "sequence": "analemma_2_t__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Analemma",
+      "task_slug": "analemma",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "4.486/0.92",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/analemma__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/analemma__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "analemma_2_t__aruco_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Analemma",
+      "task_slug": "analemma",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "2.7249/0.78",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/analemma__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/analemma__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "analemma_2_t__aruco_4__insta360_x5",
+      "note": "trajectory_generated_internal_candidate"
+    },
+    {
+      "task": "Circular",
+      "task_slug": "circular",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.019/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/circular__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/circular__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Circular_2_t__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Circular",
+      "task_slug": "circular",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.015/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/circular__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/circular__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "circular_2_t__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Circular",
+      "task_slug": "circular",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.040/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/circular__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/circular__tagslam_event_zoom_replay_poster.png",
+      "sequence": "circular_2_t__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Circular",
+      "task_slug": "circular",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.433/0.96",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/circular__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/circular__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "circular_2_t__aruco_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Circular",
+      "task_slug": "circular",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "$\\times$",
+      "status": "fail_video_table_cross",
+      "video": "assets/videos/replay_matrix/circular__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/circular__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "circular_2_t__aruco_4__insta360_x5",
+      "note": "no_trajectory"
+    },
+    {
+      "task": "Zigzag",
+      "task_slug": "zigzag",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.077/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/zigzag__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/zigzag__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Zigzag_2_t__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Zigzag",
+      "task_slug": "zigzag",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.014/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/zigzag__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/zigzag__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "zigzag_2_t__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Zigzag",
+      "task_slug": "zigzag",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.320/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/zigzag__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/zigzag__tagslam_event_zoom_replay_poster.png",
+      "sequence": "zigzag_2_t__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Zigzag",
+      "task_slug": "zigzag",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.340/0.43",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/zigzag__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/zigzag__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "zigzag_2_t__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Zigzag",
+      "task_slug": "zigzag",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "10.6777/0.88",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/zigzag__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/zigzag__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "zigzag_2_t__aruco_4__insta360_x5",
+      "note": "trajectory_generated_divergent_diagnostic; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Bookshelf 01",
+      "task_slug": "bookshelf01",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.140/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf01__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf01__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Bookshelf01_2__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Bookshelf 01",
+      "task_slug": "bookshelf01",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.034/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf01__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf01__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "bookshelf01_2__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Bookshelf 01",
+      "task_slug": "bookshelf01",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.035/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf01__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf01__tagslam_event_zoom_replay_poster.png",
+      "sequence": "bookshelf01_2__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Bookshelf 01",
+      "task_slug": "bookshelf01",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "$\\times$",
+      "status": "fail_video_table_cross",
+      "video": "assets/videos/replay_matrix/bookshelf01__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf01__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "bookshelf01_2__aruco_4__insta360_x5",
+      "note": "Table V marks this run as tested without evaluable metric."
+    },
+    {
+      "task": "Bookshelf 01",
+      "task_slug": "bookshelf01",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "2.8848/0.90",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf01__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf01__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "bookshelf01_2__aruco_4__insta360_x5",
+      "note": "trajectory_generated_internal_candidate"
+    },
+    {
+      "task": "Bookshelf 02",
+      "task_slug": "bookshelf02",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.071/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf02__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf02__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Bookshelf02_2__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Bookshelf 02",
+      "task_slug": "bookshelf02",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.063/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf02__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf02__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "bookshelf02_2__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Bookshelf 02",
+      "task_slug": "bookshelf02",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.061/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/bookshelf02__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf02__tagslam_event_zoom_replay_poster.png",
+      "sequence": "bookshelf02_2__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Bookshelf 02",
+      "task_slug": "bookshelf02",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.635/0.17",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/bookshelf02__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf02__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "bookshelf02_2__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Bookshelf 02",
+      "task_slug": "bookshelf02",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "4.6028/0.92",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/bookshelf02__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/bookshelf02__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "bookshelf02_2__aruco_4__insta360_x5",
+      "note": "trajectory_generated_internal_candidate; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Box 01",
+      "task_slug": "box01",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.052/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/box01__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box01__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Box01__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Box 01",
+      "task_slug": "box01",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.565/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/box01__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box01__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "box01__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Box 01",
+      "task_slug": "box01",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.110/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/box01__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box01__tagslam_event_zoom_replay_poster.png",
+      "sequence": "box01__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Box 01",
+      "task_slug": "box01",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.921/0.98",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/box01__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box01__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "box01__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Box 01",
+      "task_slug": "box01",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "2.1863/0.92",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/box01__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box01__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "box01__aruco_4__insta360_x5",
+      "note": "trajectory_generated_internal_candidate; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Pick-and-place 04",
+      "task_slug": "pick_and_place04",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.043/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place04__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place04__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Grab_Place04__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 04",
+      "task_slug": "pick_and_place04",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.019/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place04__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place04__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "grab_place04__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 04",
+      "task_slug": "pick_and_place04",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.252/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place04__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place04__tagslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place04__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Pick-and-place 04",
+      "task_slug": "pick_and_place04",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.719/0.99",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/pick_and_place04__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place04__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place04__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Pick-and-place 04",
+      "task_slug": "pick_and_place04",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "5.0162/0.61",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/pick_and_place04__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place04__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "grab_place04__aruco_4__insta360_x5",
+      "note": "trajectory_generated_divergent_diagnostic; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Pick-and-place 05",
+      "task_slug": "pick_and_place05",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.029/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place05__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place05__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Grab_Place05__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 05",
+      "task_slug": "pick_and_place05",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.025/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place05__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place05__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "grab_place05__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 05",
+      "task_slug": "pick_and_place05",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.433/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place05__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place05__tagslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place05__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Pick-and-place 05",
+      "task_slug": "pick_and_place05",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.733/0.64",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/pick_and_place05__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place05__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place05__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Pick-and-place 05",
+      "task_slug": "pick_and_place05",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "18.6128/0.95",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/pick_and_place05__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place05__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "grab_place05__aruco_4__insta360_x5",
+      "note": "trajectory_generated_divergent_diagnostic; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Pick-and-place 06",
+      "task_slug": "pick_and_place06",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.045/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place06__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place06__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Grab_Place06_t__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 06",
+      "task_slug": "pick_and_place06",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.023/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place06__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place06__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "grab_place06_t__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Pick-and-place 06",
+      "task_slug": "pick_and_place06",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.030/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/pick_and_place06__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place06__tagslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place06_t__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Pick-and-place 06",
+      "task_slug": "pick_and_place06",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "$\\times$",
+      "status": "fail_video_table_cross",
+      "video": "assets/videos/replay_matrix/pick_and_place06__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place06__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "grab_place06_t__aruco_4__insta360_x5",
+      "note": "Table V marks this run as tested without evaluable metric."
+    },
+    {
+      "task": "Pick-and-place 06",
+      "task_slug": "pick_and_place06",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "6.5439/0.94",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/pick_and_place06__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place06__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "grab_place06_t__aruco_4__insta360_x5",
+      "note": "trajectory_generated_divergent_diagnostic; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Wiping 01",
+      "task_slug": "wiping01",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.025/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping01__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping01__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Wiping01__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Wiping 01",
+      "task_slug": "wiping01",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.201/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping01__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping01__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "wiping01__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Wiping 01",
+      "task_slug": "wiping01",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.026/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping01__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping01__tagslam_event_zoom_replay_poster.png",
+      "sequence": "wiping01__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Wiping 01",
+      "task_slug": "wiping01",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.286/0.99",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/wiping01__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping01__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "wiping01__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Wiping 01",
+      "task_slug": "wiping01",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "0.3838/0.33",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/wiping01__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping01__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "wiping01__aruco_4__insta360_x5",
+      "note": "trajectory_generated_internal_candidate; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Wiping 02",
+      "task_slug": "wiping02",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "metric": "0.026/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping02__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping02__pico_controller_event_zoom_replay_poster.png",
+      "sequence": "Wiping02_1__orin__pico_left_controller",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Wiping 02",
+      "task_slug": "wiping02",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "metric": "0.029/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping02__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping02__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "sequence": "wiping02_1__aruco_4__insight9",
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+    },
+    {
+      "task": "Wiping 02",
+      "task_slug": "wiping02",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "metric": "0.095/1.00",
+      "status": "rendered",
+      "video": "assets/videos/replay_matrix/wiping02__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping02__tagslam_event_zoom_replay_poster.png",
+      "sequence": "wiping02_1__apriltag_4__insta360_x5",
+      "note": ""
+    },
+    {
+      "task": "Wiping 02",
+      "task_slug": "wiping02",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "metric": "0.352/0.72",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/wiping02__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping02__ucoslam_event_zoom_replay_poster.png",
+      "sequence": "wiping02_1__aruco_4__insta360_x5",
+      "note": "; visualization render/alignment error: not enough timestamp associations for alignment"
+    },
+    {
+      "task": "Wiping 02",
+      "task_slug": "wiping02",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "metric": "16.7636/0.95",
+      "status": "visualization_blocked",
+      "video": "assets/videos/replay_matrix/wiping02__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/wiping02__openvins_aruco_event_zoom_replay_poster.png",
+      "sequence": "wiping02_1__aruco_4__insta360_x5",
+      "note": "trajectory_generated_divergent_diagnostic; visualization render/alignment error: not enough timestamp associations for alignment"
+    }
+  ]
+}
