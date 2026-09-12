@@ -343,9 +343,9 @@ select {
 
 .replay-matrix {
   display: grid;
-  grid-template-columns: minmax(136px, 160px) repeat(5, minmax(190px, 1fr));
+  grid-template-columns: minmax(136px, 160px) repeat(6, minmax(180px, 1fr));
   gap: 10px;
-  min-width: 1140px;
+  min-width: 1280px;
   align-items: stretch;
 }
 
