@@ -1,4 +1,4 @@
-const REPLAY_ASSET_VERSION = "20260913-orion-final-gt-tight-v1";
+const REPLAY_ASSET_VERSION = "20260913-event-gt-interp-1s-v1";
 const REPLAY_MATRIX_URL = `assets/videos/replay_matrix_manifest.json?v=${REPLAY_ASSET_VERSION}`;
 
 const replayMatrix = document.getElementById("replayMatrix");
