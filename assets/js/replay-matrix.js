@@ -1,4 +1,5 @@
-const REPLAY_MATRIX_URL = "assets/videos/replay_matrix_manifest.json";
+const REPLAY_ASSET_VERSION = "20260912-gt-remount-v2";
+const REPLAY_MATRIX_URL = `assets/videos/replay_matrix_manifest.json?v=${REPLAY_ASSET_VERSION}`;
 
 const replayMatrix = document.getElementById("replayMatrix");
 const replayStatus = document.getElementById("replayMatrixStatus");
@@ -37,11 +38,11 @@ function createReplayVideoCell(item) {
   video.loop = true;
   video.playsInline = true;
   video.preload = "metadata";
-  video.poster = item.poster;
+  video.poster = versionedReplayUrl(item.poster);
   video.setAttribute("aria-label", `${item.task}, ${item.method}`);
 
   const source = document.createElement("source");
-  source.src = item.video;
+  source.src = versionedReplayUrl(item.video);
   source.type = "video/mp4";
   video.appendChild(source);
 
@@ -59,6 +60,14 @@ function createReplayVideoCell(item) {
   meta.append(metric, badge);
   cell.append(video, meta);
   return cell;
+}
+
+function versionedReplayUrl(url) {
+  if (!url) {
+    return url;
+  }
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}v=${REPLAY_ASSET_VERSION}`;
 }
 
 function buildReplayMatrix(data) {
