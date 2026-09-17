@@ -6,8 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-title-accent-v1">
-  <script defer src="assets/js/collapsible-sections.js?v=20260917-triangle-toggle-v1"></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-default-collapsed-v1">
+  <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
 </head>
@@ -31,11 +31,11 @@
   </header>
 
   <main>
-    <section id="videos" class="section video-section">
+    <section id="videos" class="section video-section is-collapsed">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
-          <span class="title-accent">MILD</span> Dataset overview
-          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="videos-content" aria-label="Collapse Dataset overview"></button>
+          <span class="title-accent">MILD</span><span>Dataset overview</span>
+          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="videos-content" aria-label="Expand Dataset overview"></button>
         </p>
         <p>
           Each card presents a synchronized 10 s excerpt from a MILD recording.
@@ -45,7 +45,7 @@
         </p>
       </div>
 
-      <div class="section-content" id="videos-content">
+      <div class="section-content" id="videos-content" hidden>
         <div class="toolbar" aria-label="Video filters">
           <label class="select-wrap">
             <span>Sensor</span>
@@ -73,11 +73,11 @@
       </div>
     </section>
 
-    <section id="event-zooms" class="section event-video-section">
+    <section id="event-zooms" class="section event-video-section is-collapsed">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
-          Localization comparison with <span class="title-accent">AprilVINS</span>
-          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content" aria-label="Collapse localization comparison"></button>
+          <span>Localization comparison with</span><span class="title-accent title-accent-after">AprilVINS</span>
+          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="event-zooms-content" aria-label="Expand localization comparison"></button>
         </p>
         <p>
           Rows are manipulation tasks and columns are localization methods.
@@ -88,7 +88,7 @@
           Metrics are APE RMSE (m) / time completion.
         </p>
       </div>
-      <div class="section-content" id="event-zooms-content">
+      <div class="section-content" id="event-zooms-content" hidden>
         <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
         <div class="replay-matrix-shell" id="replayMatrixShell" tabindex="0" aria-live="polite" aria-label="Task-by-method localization comparison video matrix. Use left and right arrow keys to scroll horizontally.">
           <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method localization comparison video matrix"></div>

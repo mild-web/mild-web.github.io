@@ -216,6 +216,7 @@ figcaption {
 .section-eyebrow-toggle {
   display: inline-flex;
   align-items: center;
+  gap: 0.28em;
   margin-bottom: 12px;
   color: var(--blue);
   font-size: clamp(19px, 2vw, 25px);
@@ -225,6 +226,10 @@ figcaption {
 
 .title-accent {
   color: #11a7bf;
+}
+
+.title-accent-after {
+  margin-left: 0.02em;
 }
 
 .section-toggle {
