@@ -279,13 +279,11 @@ select {
   border-radius: 20px;
   background: var(--card);
   box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
-  cursor: pointer;
   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .video-card:hover,
-.video-card:focus-visible,
-.video-card.is-selected {
+.video-card:focus-visible {
   border-color: rgba(35, 87, 217, 0.42);
   box-shadow: 0 18px 44px rgba(35, 87, 217, 0.14);
 }
@@ -296,6 +294,7 @@ select {
 }
 
 .video-frame {
+  position: relative;
   background: #0f172a;
 }
 
@@ -326,24 +325,33 @@ select {
 }
 
 .download-placeholder {
-  display: none;
-  width: 100%;
-  min-height: 38px;
-  margin-top: 12px;
-  border: 1px solid rgba(35, 87, 217, 0.18);
-  border-radius: 12px;
-  color: #7a8798;
-  background: #f3f6fb;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(10px);
   font: inherit;
   font-size: 13px;
   font-weight: 740;
   cursor: not-allowed;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
-.video-card.is-selected .download-placeholder {
+.video-card:hover .download-placeholder,
+.video-card:focus-within .download-placeholder {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .event-video-section {

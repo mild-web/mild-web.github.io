@@ -53,7 +53,16 @@ function createCard(record) {
   source.src = record.video;
   source.type = "video/mp4";
   video.appendChild(source);
+
+  const download = document.createElement("button");
+  download.className = "download-placeholder";
+  download.type = "button";
+  download.disabled = true;
+  download.textContent = "Download";
+  download.setAttribute("aria-label", `Download placeholder for ${record.task_label}`);
+
   videoWrap.appendChild(video);
+  videoWrap.appendChild(download);
 
   const body = document.createElement("div");
   body.className = "video-card-body";
@@ -68,33 +77,10 @@ function createCard(record) {
   stream.className = "stream-label";
   stream.textContent = record.stream_label;
 
-  const download = document.createElement("button");
-  download.className = "download-placeholder";
-  download.type = "button";
-  download.disabled = true;
-  download.textContent = "Download (coming soon)";
-  download.setAttribute("aria-label", `Download placeholder for ${record.task_label}`);
-
-  body.append(title, meta, stream, download);
+  body.append(title, meta, stream);
   article.append(videoWrap, body);
   article.tabIndex = 0;
-  article.addEventListener("click", () => selectCard(article));
-  article.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      selectCard(article);
-    }
-  });
   return article;
-}
-
-function selectCard(card) {
-  document.querySelectorAll(".video-card.is-selected").forEach((item) => {
-    if (item !== card) {
-      item.classList.remove("is-selected");
-    }
-  });
-  card.classList.toggle("is-selected");
 }
 
 function setupObserver() {
