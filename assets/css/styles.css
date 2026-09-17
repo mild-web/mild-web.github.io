@@ -264,9 +264,9 @@ figcaption {
 }
 
 .section {
-  max-width: var(--page);
+  width: min(calc(100% - 2 * clamp(20px, 4vw, 40px)), var(--page));
   margin: 0 auto;
-  padding: 76px clamp(20px, 4vw, 40px);
+  padding: 76px 0;
 }
 
 .section-heading {
@@ -351,7 +351,10 @@ figcaption {
 }
 
 .video-section {
+  width: 100%;
   max-width: none;
+  padding-left: clamp(20px, 4vw, 40px);
+  padding-right: clamp(20px, 4vw, 40px);
   background: #ffffff;
 }
 
@@ -490,7 +493,10 @@ select {
 
 .event-video-section {
   background: var(--soft);
+  width: 100%;
   max-width: none;
+  padding-left: clamp(20px, 4vw, 40px);
+  padding-right: clamp(20px, 4vw, 40px);
 }
 
 .event-video-section > .section-heading {
