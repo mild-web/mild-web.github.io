@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f2f4f7">
+    <title>X5 and Insight9 hand-eye spatial viewer</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./styles.css?v=20260723-mild-embed-compact">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.js",
+          "three/addons/": "./vendor/addons/"
+        }
+      }
+    </script>
+    <script>
+      window.addEventListener("error", function (event) {
+        if (document.body) document.body.dataset.ready = "error";
+        var output = document.querySelector("#runtime-status");
+        if (output) output.textContent = "Runtime error: " + event.message;
+      });
+      window.addEventListener("unhandledrejection", function (event) {
+        if (document.body) document.body.dataset.ready = "error";
+        var output = document.querySelector("#runtime-status");
+        if (output) output.textContent = "Runtime rejection: " + String(event.reason);
+      });
+    </script>
+  </head>
+  <body data-ready="false" data-self-test="pending" data-canvas-signal="pending" data-layout-signal="pending" data-candidate-tab-signal="pending" data-ee-frame-signal="pending" data-label-anchor-signal="pending" data-scene-label-signal="pending">
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="title-block">
+          <span class="eyebrow">Hand-eye calibration</span>
+          <h1>Sensor poses at the robot end effector</h1>
+        </div>
+
+        <div class="toolbar" aria-label="Viewer controls">
+          <div class="segmented" role="tablist" aria-label="Device view">
+            <button type="button" role="tab" data-mode="compare" aria-selected="true">Compare</button>
+            <button type="button" role="tab" data-mode="x5" aria-selected="false">X5</button>
+            <button type="button" role="tab" data-mode="x5-cam002-kalibr" aria-selected="false" title="Audit-only independent Cam002-Kalibr IMU chain">X5 Cam002 audit</button>
+            <button type="button" role="tab" data-mode="insight9" aria-selected="false">Insight9</button>
+          </div>
+          <div class="view-buttons" aria-label="Camera viewpoint">
+            <button type="button" data-view="front" title="Front view">Front</button>
+            <button type="button" data-view="side" title="Side view">Side</button>
+            <button type="button" data-view="top" title="Top view">Top</button>
+            <button type="button" data-view="reset" title="Reset orbit view">Reset</button>
+          </div>
+        </div>
+      </header>
+
+      <section id="viewport" class="viewport" aria-label="Interactive three-dimensional sensor transform viewer">
+        <canvas id="scene" tabindex="0" aria-label="Draggable three-dimensional hand-eye calibration scene"></canvas>
+        <div class="scale-badge"><span class="scale-line"></span>100 mm</div>
+
+        <aside class="inspector" aria-label="Sensor visibility and selected transform">
+          <div class="inspector-heading">
+            <div>
+              <span class="section-label">Visible sensors</span>
+              <strong id="device-heading">Device comparison</strong>
+            </div>
+            <span id="viewer-state" class="state-indicator">Loading</span>
+          </div>
+
+          <div id="sensor-list" class="sensor-list"></div>
+
+          <div class="selected-transform" aria-live="polite">
+            <div class="selected-title">
+              <span id="selected-swatch" class="selected-swatch"></span>
+              <strong id="selected-name">Select a sensor</strong>
+              <span id="selected-distance"></span>
+            </div>
+            <code id="selected-translation">t_EE = --</code>
+            <span id="selected-source" class="source-label"></span>
+          </div>
+
+          <div class="display-options" aria-label="Display options">
+            <label><input type="checkbox" data-option="labels" checked><span>Labels</span></label>
+            <label><input type="checkbox" data-option="links" checked><span>Links</span></label>
+            <label><input type="checkbox" data-option="axes" checked><span>Axes</span></label>
+            <label><input type="checkbox" data-option="autorotate"><span>Rotate</span></label>
+          </div>
+        </aside>
+
+        <div id="tooltip" class="tooltip" role="status" hidden></div>
+        <output id="runtime-status" class="sr-only">Viewer loading</output>
+      </section>
+
+      <footer class="coordinate-note">
+        <span><b>X</b> red</span>
+        <span><b>Y</b> green</span>
+        <span><b>Z</b> blue</span>
+        <span><code>T_EE_Sensor</code></span>
+        <span>millimeters</span>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js?v=20260723-mild-embed-compact"></script>
+  </body>
+</html>

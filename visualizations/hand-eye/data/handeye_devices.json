@@ -1,0 +1,294 @@
+{
+  "schema_version": 2,
+  "member": "india",
+  "calibration_recomputed": false,
+  "coordinate_convention": "T_EE_Sensor maps sensor coordinates into robot end-effector coordinates",
+  "position_units": "mm",
+  "geometry_note": "Interactive sensors and robot EE have no visible body marker. Thick cylinder-and-cone coordinate axes show orientation; larger labels are staggered just beyond transformed local-axis endpoints, and an invisible hit target preserves sensor selection.",
+  "devices": [
+    {
+      "id": "x5",
+      "name": "Insta360 X5",
+      "short_name": "X5",
+      "ee_scene_label": "End Effector",
+      "status": "Cam001 hand-eye anchor with MC-Calib camera rig and Cam001 Kalibr IMU",
+      "caveat": "Cam001 is the only directly solved hand-eye anchor. Cam002 uses MC-Calib camera-camera geometry; IMU uses Cam001 Kalibr. The independent Cam002-IMU result is audit-only.",
+      "anchor_sensor_id": "x5-cam001",
+      "sensors": [
+        {
+          "id": "x5-cam001",
+          "name": "X5 Cam001",
+          "scene_label": "cam01",
+          "geometry": "camera",
+          "color": "#d94f3d",
+          "pose_xyzw_m": [
+            -0.023381144370859613,
+            -0.06705436345166921,
+            0.10626030034782193,
+            -0.5293757171481278,
+            -0.5210369438576244,
+            0.48058940126134336,
+            0.46617129965783577
+          ],
+          "translation_mm": [
+            -23.381144370859612,
+            -67.0543634516692,
+            106.26030034782193
+          ],
+          "distance_mm": 127.80538721043357,
+          "source": "direct p015326 hand-eye anchor",
+          "source_kind": "direct_hand_eye",
+          "transform_chain": "T_EE_Cam001"
+        },
+        {
+          "id": "x5-cam002",
+          "name": "X5 Cam002",
+          "scene_label": "cam02",
+          "geometry": "camera",
+          "color": "#158b8b",
+          "pose_xyzw_m": [
+            -0.012583321865627781,
+            -0.06454796431998053,
+            0.10644807263100815,
+            -0.48258223354833274,
+            0.46592301075122555,
+            -0.5305326964009713,
+            0.5182327604132441
+          ],
+          "translation_mm": [
+            -12.58332186562778,
+            -64.54796431998052,
+            106.44807263100816
+          ],
+          "distance_mm": 125.12382608393916,
+          "source": "MC-Calib camera-camera rigid extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_Cam001 * inv(T_Cam002_Cam001_MC-Calib)"
+        },
+        {
+          "id": "x5-imu",
+          "name": "X5 Physical IMU",
+          "scene_label": "imu",
+          "geometry": "imu",
+          "color": "#a33d8f",
+          "pose_xyzw_m": [
+            -0.007062273863402892,
+            -0.050166233911166425,
+            0.10662648775340147,
+            0.5204582975688261,
+            0.4691308576146314,
+            -0.4792407731559435,
+            0.5285524385247061
+          ],
+          "translation_mm": [
+            -7.062273863402892,
+            -50.16623391116642,
+            106.62648775340148
+          ],
+          "distance_mm": 118.04971252645151,
+          "source": "Kalibr Cam001-IMU extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_Cam001 * T_Cam001_Imu"
+        }
+      ]
+    },
+    {
+      "id": "insight9",
+      "name": "Insight9",
+      "short_name": "Insight9",
+      "ee_scene_label": "End Effector",
+      "status": "Left-gray hand-eye plus factory sensor chain",
+      "caveat": "Only T_EE_left-gray is directly solved by hand-eye; right-gray, RGB, and IMU poses are chained through the captured Insight9 factory tf_static extrinsics.",
+      "sensors": [
+        {
+          "id": "insight9-left-gray",
+          "name": "Left gray",
+          "scene_label": "Left gray",
+          "geometry": "camera",
+          "color": "#2563eb",
+          "pose_xyzw_m": [
+            0.0508809529650211,
+            -0.0615698913737946,
+            0.037593881890537,
+            -0.0128739219377535,
+            -0.0165741182709755,
+            -0.999732067395489,
+            0.00976494539784204
+          ],
+          "translation_mm": [
+            50.880952965021095,
+            -61.569891373794604,
+            37.593881890537
+          ],
+          "distance_mm": 88.27809951516402,
+          "source": "direct hand-eye",
+          "source_kind": "direct_hand_eye",
+          "transform_chain": "T_EE_left"
+        },
+        {
+          "id": "insight9-right-gray",
+          "name": "Right gray",
+          "scene_label": "Right gray",
+          "geometry": "camera",
+          "color": "#16a34a",
+          "pose_xyzw_m": [
+            -0.05004669804043764,
+            -0.06516134174393555,
+            0.04124234774229232,
+            -0.012492118006465327,
+            -0.01197028477851214,
+            -0.9998236886838893,
+            0.007297315710260544
+          ],
+          "translation_mm": [
+            -50.04669804043764,
+            -65.16134174393555,
+            41.24234774229232
+          ],
+          "distance_mm": 91.93260406361209,
+          "source": "factory stereo extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_left * T_left_right"
+        },
+        {
+          "id": "insight9-rgb",
+          "name": "RGB",
+          "scene_label": "RGB",
+          "geometry": "camera",
+          "color": "#c026d3",
+          "pose_xyzw_m": [
+            -0.0004587870929755461,
+            -0.06352934427299449,
+            0.03941905039999576,
+            -0.011793809736241305,
+            -0.013719563931744146,
+            -0.9998071370037808,
+            0.007639922364219989
+          ],
+          "translation_mm": [
+            -0.4587870929755461,
+            -63.52934427299449,
+            39.41905039999576
+          ],
+          "distance_mm": 74.76663429492292,
+          "source": "factory RGB extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_left * T_left_rgb"
+        },
+        {
+          "id": "insight9-imu",
+          "name": "Physical IMU",
+          "scene_label": "Physical IMU",
+          "geometry": "imu",
+          "color": "#d97706",
+          "pose_xyzw_m": [
+            0.0077533964876003655,
+            -0.07487638332875086,
+            0.016212064283429316,
+            -0.012873921937753495,
+            -0.016574118270975494,
+            -0.9997320673954886,
+            0.009764945397842036
+          ],
+          "translation_mm": [
+            7.753396487600366,
+            -74.87638332875086,
+            16.212064283429317
+          ],
+          "distance_mm": 77.0027205092003,
+          "source": "factory IMU extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_left * inv(T_imu_left)"
+        }
+      ]
+    },
+    {
+      "id": "x5-cam002-kalibr",
+      "name": "Insta360 X5 / Cam002-Kalibr audit",
+      "short_name": "X5 C2 audit",
+      "ee_scene_label": "End Effector",
+      "status": "Audit-only IMU pose composed through independent Cam002 Kalibr",
+      "caveat": "audit-only candidate; frozen public X5 chain remains unchanged",
+      "include_in_compare": false,
+      "publication_role": "internal_geometry_audit",
+      "anchor_sensor_id": "x5-cam002-kalibr-cam001",
+      "sensors": [
+        {
+          "id": "x5-cam002-kalibr-cam001",
+          "name": "X5 Cam001",
+          "scene_label": "cam01",
+          "geometry": "camera",
+          "color": "#d94f3d",
+          "pose_xyzw_m": [
+            -0.023381144370859613,
+            -0.06705436345166921,
+            0.10626030034782193,
+            -0.5293757171481278,
+            -0.5210369438576244,
+            0.48058940126134336,
+            0.46617129965783577
+          ],
+          "translation_mm": [
+            -23.381144370859612,
+            -67.0543634516692,
+            106.26030034782193
+          ],
+          "distance_mm": 127.80538721043355,
+          "source": "direct p015326 hand-eye anchor",
+          "source_kind": "direct_hand_eye",
+          "transform_chain": "T_EE_Cam001"
+        },
+        {
+          "id": "x5-cam002-kalibr-cam002",
+          "name": "X5 Cam002",
+          "scene_label": "cam02",
+          "geometry": "camera",
+          "color": "#158b8b",
+          "pose_xyzw_m": [
+            -0.012583321865627781,
+            -0.06454796431998053,
+            0.10644807263100815,
+            -0.48258223354833274,
+            0.46592301075122555,
+            -0.5305326964009713,
+            0.5182327604132441
+          ],
+          "translation_mm": [
+            -12.58332186562778,
+            -64.54796431998052,
+            106.44807263100816
+          ],
+          "distance_mm": 125.12382608393915,
+          "source": "MC-Calib camera-camera rigid extrinsic",
+          "source_kind": "derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_Cam001 * inv(T_Cam002_Cam001_MC-Calib)"
+        },
+        {
+          "id": "x5-cam002-kalibr-imu",
+          "name": "X5 IMU / Cam002 Kalibr",
+          "scene_label": "imu",
+          "geometry": "imu",
+          "color": "#a33d8f",
+          "pose_xyzw_m": [
+            -0.01599528457767779,
+            -0.05180189734021314,
+            0.10020119504464586,
+            0.521372505506035,
+            0.4659920014159992,
+            -0.4805440933331184,
+            0.5292443098242265
+          ],
+          "translation_mm": [
+            -15.99528457767779,
+            -51.801897340213145,
+            100.20119504464586
+          ],
+          "distance_mm": 113.92789467528152,
+          "source": "Kalibr Cam002-IMU result",
+          "source_kind": "audit_derived_inter_sensor_extrinsic",
+          "transform_chain": "T_EE_Cam002_MC-Calib * T_Cam002_Imu_Kalibr"
+        }
+      ]
+    }
+  ]
+}

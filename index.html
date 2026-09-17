@@ -6,9 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-sensor-frames-v2">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-handeye-embed-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
-  <script defer src="assets/js/sensor-frames.js?v=20260917-sensor-frames-v2"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
 </head>
@@ -98,42 +97,13 @@
       <div class="section-content" id="sensor-setup-content">
         <div class="sensor-setup-grid">
           <article class="sensor-card">
-            <div class="sensor-frame-figure sensor-frame-3d" tabindex="0" data-rot-x="-22" data-rot-y="34" aria-label="Draggable 3D frame layout for Insta360 X5 relative to TCP">
-              <div class="frame-scene">
-                <div class="frame-floor"></div>
-                <div class="frame-link"></div>
-                <div class="frame-object tcp-object">
-                  <span>TCP</span>
-                </div>
-                <div class="frame-object sensor-object x5-object">
-                  <span>X5</span>
-                </div>
-                <div class="coord-frame tcp-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>TCP</b>
-                </div>
-                <div class="coord-frame sensor-frame x5-front-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>front cam</b>
-                </div>
-                <div class="coord-frame sensor-frame x5-back-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>back cam</b>
-                </div>
-                <div class="coord-frame imu-frame x5-imu-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>IMU</b>
-                </div>
-              </div>
-              <div class="drag-hint">Drag to rotate</div>
+            <div class="sensor-frame-figure handeye-embed-frame">
+              <iframe
+                title="Interactive 3D hand-eye calibration viewer for Insta360 X5"
+                src="visualizations/hand-eye/?embed=mild-x5"
+                loading="lazy"
+                allow="fullscreen"
+              ></iframe>
             </div>
             <div class="sensor-card-body">
               <h3>Insta360 X5 panoramic route</h3>
@@ -146,48 +116,13 @@
           </article>
 
           <article class="sensor-card">
-            <div class="sensor-frame-figure sensor-frame-3d" tabindex="0" data-rot-x="-22" data-rot-y="34" aria-label="Draggable 3D frame layout for Insight9 relative to TCP">
-              <div class="frame-scene">
-                <div class="frame-floor"></div>
-                <div class="frame-link insight-link"></div>
-                <div class="frame-object tcp-object">
-                  <span>TCP</span>
-                </div>
-                <div class="frame-object sensor-object insight-object">
-                  <span>I9</span>
-                </div>
-                <div class="coord-frame tcp-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>TCP</b>
-                </div>
-                <div class="coord-frame sensor-frame insight-left-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>left cam</b>
-                </div>
-                <div class="coord-frame sensor-frame insight-center-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>center cam</b>
-                </div>
-                <div class="coord-frame sensor-frame insight-right-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>right cam</b>
-                </div>
-                <div class="coord-frame imu-frame insight-imu-frame">
-                  <i class="axis-3d axis-3d-x"><span>x</span></i>
-                  <i class="axis-3d axis-3d-y"><span>y</span></i>
-                  <i class="axis-3d axis-3d-z"><span>z</span></i>
-                  <b>IMU</b>
-                </div>
-              </div>
-              <div class="drag-hint">Drag to rotate</div>
+            <div class="sensor-frame-figure handeye-embed-frame">
+              <iframe
+                title="Interactive 3D hand-eye calibration viewer for Insight9"
+                src="visualizations/hand-eye/?embed=mild-insight9"
+                loading="lazy"
+                allow="fullscreen"
+              ></iframe>
             </div>
             <div class="sensor-card-body">
               <h3>Insight9 stereo companion route</h3>
@@ -199,7 +134,7 @@
             </div>
           </article>
         </div>
-        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. These compact 3D views illustrate TCP, camera, and IMU frame layout only; frozen numeric transforms will be released with the calibration package.</p>
+        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. The embedded viewers use the same local <code>T_EE_Sensor</code> hand-eye configuration as the original calibration page; frozen numeric transforms will be released with the calibration package.</p>
       </div>
     </section>
 
