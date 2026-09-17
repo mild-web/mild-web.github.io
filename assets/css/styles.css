@@ -197,12 +197,25 @@ h3 {
 }
 
 .contents-details summary {
-  list-style-position: outside;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34em;
+  list-style: none;
 }
 
-.contents-details summary::marker {
+.contents-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.contents-details summary::after {
+  content: "▾";
   color: var(--blue);
-  font-size: 0.86em;
+  font-size: 0.76em;
+  line-height: 1;
+}
+
+.contents-details[open] summary::after {
+  content: "▴";
 }
 
 .contents-subitems {

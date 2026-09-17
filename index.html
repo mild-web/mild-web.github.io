@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-plain-link-contents-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-open-right-marker-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
@@ -40,11 +40,11 @@
   </nav>
 
   <main>
-    <section id="videos" class="section video-section is-collapsed">
+    <section id="videos" class="section video-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
           <span class="title-accent">MILD</span><span>Dataset overview</span>
-          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="videos-content" aria-label="Expand Dataset overview"></button>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="videos-content" aria-label="Collapse Dataset overview"></button>
         </p>
         <p>
           Each card presents a synchronized 10 s excerpt from a MILD recording.
@@ -54,7 +54,7 @@
         </p>
       </div>
 
-      <div class="section-content" id="videos-content" hidden>
+      <div class="section-content" id="videos-content">
         <div class="toolbar" aria-label="Video filters">
           <label class="select-wrap">
             <span>Sensor</span>
@@ -82,11 +82,11 @@
       </div>
     </section>
 
-    <section id="sensor-setup" class="section sensor-setup-section is-collapsed">
+    <section id="sensor-setup" class="section sensor-setup-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
           Sensor setup
-          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="sensor-setup-content" aria-label="Expand sensor setup"></button>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="sensor-setup-content" aria-label="Collapse sensor setup"></button>
         </p>
         <p>
           This section will summarize the recommended camera, IMU, robot TCP,
@@ -94,16 +94,16 @@
           setup.
         </p>
       </div>
-      <div class="section-content" id="sensor-setup-content" hidden>
+      <div class="section-content" id="sensor-setup-content">
         <p class="placeholder-note">Detailed sensor setup materials will be activated with the release package.</p>
       </div>
     </section>
 
-    <section id="event-zooms" class="section event-video-section is-collapsed">
+    <section id="event-zooms" class="section event-video-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
           <span>Localization comparison with</span><span class="title-accent title-accent-after">AprilVINS</span>
-          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="event-zooms-content" aria-label="Expand localization comparison"></button>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content" aria-label="Collapse localization comparison"></button>
         </p>
         <p>
           Rows are manipulation tasks and columns are localization methods.
@@ -114,7 +114,7 @@
           Metrics are APE RMSE (m) / time completion.
         </p>
       </div>
-      <div class="section-content" id="event-zooms-content" hidden>
+      <div class="section-content" id="event-zooms-content">
         <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
         <div class="replay-matrix-shell" id="replayMatrixShell" tabindex="0" aria-live="polite" aria-label="Task-by-method localization comparison video matrix. Use left and right arrow keys to scroll horizontally.">
           <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method localization comparison video matrix"></div>
@@ -122,11 +122,11 @@
       </div>
     </section>
 
-    <section id="start-localization" class="section start-localization-section is-collapsed">
+    <section id="start-localization" class="section start-localization-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
           Start your own UMI-style millimeter-level localization setup
-          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="start-localization-content" aria-label="Expand start your own UMI-style millimeter-level localization setup"></button>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="start-localization-content" aria-label="Collapse start your own UMI-style millimeter-level localization setup"></button>
         </p>
         <p>
           A practical checklist for preparing tags, calibrating sensors,
@@ -134,7 +134,7 @@
           provided with the release package.
         </p>
       </div>
-      <div class="section-content setup-steps" id="start-localization-content" hidden>
+      <div class="section-content setup-steps" id="start-localization-content">
         <section id="print-apriltags">
           <h3>Print AprilTags</h3>
           <p>Prepare tag IDs and physical tag sizes for the manipulation scene.</p>
