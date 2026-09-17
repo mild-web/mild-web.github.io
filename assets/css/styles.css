@@ -388,7 +388,7 @@ figcaption {
 
 .sensor-frame-3d {
   position: relative;
-  height: 240px;
+  height: 268px;
   overflow: hidden;
   perspective: 760px;
   cursor: grab;
@@ -409,18 +409,18 @@ figcaption {
   position: absolute;
   left: 50%;
   top: 52%;
-  width: 260px;
-  height: 170px;
+  width: 300px;
+  height: 190px;
   transform-style: preserve-3d;
   transform: translate(-50%, -50%) rotateX(var(--rot-x, -22deg)) rotateY(var(--rot-y, 34deg));
 }
 
 .frame-floor {
   position: absolute;
-  left: 10px;
-  top: 48px;
-  width: 240px;
-  height: 120px;
+  left: 18px;
+  top: 54px;
+  width: 264px;
+  height: 132px;
   border: 1px solid rgba(35, 87, 217, 0.12);
   border-radius: 18px;
   background:
@@ -442,8 +442,8 @@ figcaption {
 }
 
 .tcp-object {
-  left: 168px;
-  top: 82px;
+  left: 204px;
+  top: 98px;
   width: 72px;
   height: 42px;
   border: 1px solid #9fb0c7;
@@ -454,10 +454,10 @@ figcaption {
 }
 
 .sensor-object {
-  left: 32px;
-  top: 46px;
-  width: 94px;
-  height: 58px;
+  left: 36px;
+  top: 58px;
+  width: 112px;
+  height: 64px;
   border: 1px solid #9fb0c7;
   border-radius: 18px;
   background: #ffffff;
@@ -466,9 +466,9 @@ figcaption {
 }
 
 .insight-object {
-  top: 54px;
-  width: 90px;
-  height: 46px;
+  top: 66px;
+  width: 118px;
+  height: 48px;
   transform: translateZ(30px) rotateY(-6deg);
 }
 
@@ -498,24 +498,36 @@ figcaption {
 }
 
 .insight-object::before {
-  left: 22px;
+  left: 20px;
   top: 14px;
   width: 15px;
   height: 15px;
 }
 
 .insight-object::after {
-  right: 22px;
+  right: 20px;
   top: 14px;
   width: 15px;
   height: 15px;
 }
 
+.insight-object span::before {
+  content: "";
+  position: absolute;
+  left: 51px;
+  top: 14px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #60738e;
+  border-radius: 999px;
+  background: #dfe8f5;
+}
+
 .frame-link {
   position: absolute;
-  left: 112px;
-  top: 84px;
-  width: 72px;
+  left: 136px;
+  top: 100px;
+  width: 78px;
   height: 4px;
   border-radius: 999px;
   background: repeating-linear-gradient(90deg, #9aacc3 0 9px, transparent 9px 15px);
@@ -535,28 +547,63 @@ figcaption {
 }
 
 .tcp-frame {
-  left: 204px;
-  top: 102px;
+  left: 240px;
+  top: 118px;
   transform: translateZ(56px);
 }
 
 .sensor-frame {
-  left: 78px;
-  top: 74px;
-  transform: translateZ(78px) rotateY(-10deg);
+  transform: translateZ(82px) rotateY(-10deg);
 }
 
-.insight-frame {
-  top: 76px;
-  transform: translateZ(70px) rotateY(-6deg);
+.x5-front-frame {
+  left: 64px;
+  top: 90px;
+  transform: translateZ(92px) rotateY(-10deg);
+}
+
+.x5-back-frame {
+  left: 120px;
+  top: 88px;
+  transform: translateZ(92px) rotateY(170deg);
+}
+
+.x5-imu-frame {
+  left: 92px;
+  top: 46px;
+  transform: translateZ(76px) rotateY(-10deg) rotateX(-8deg);
+}
+
+.insight-left-frame {
+  left: 60px;
+  top: 92px;
+  transform: translateZ(78px) rotateY(-8deg);
+}
+
+.insight-center-frame {
+  left: 95px;
+  top: 88px;
+  transform: translateZ(78px) rotateY(-6deg);
+}
+
+.insight-right-frame {
+  left: 130px;
+  top: 92px;
+  transform: translateZ(78px) rotateY(-4deg);
+}
+
+.insight-imu-frame {
+  left: 94px;
+  top: 48px;
+  transform: translateZ(68px) rotateY(-6deg) rotateX(-8deg);
 }
 
 .axis-3d {
   position: absolute;
   left: 0;
   top: 0;
-  width: 54px;
-  height: 4px;
+  width: 44px;
+  height: 3px;
   border-radius: 999px;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -565,7 +612,7 @@ figcaption {
 .axis-3d::after {
   content: "";
   position: absolute;
-  right: -7px;
+  right: -6px;
   top: -4px;
   width: 0;
   height: 0;
@@ -576,9 +623,9 @@ figcaption {
 
 .axis-3d span {
   position: absolute;
-  right: -20px;
+  right: -18px;
   top: -12px;
-  font-size: 12px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 820;
 }
@@ -599,6 +646,35 @@ figcaption {
   color: #2f6fed;
   background: #2f6fed;
   transform: rotateY(-90deg);
+}
+
+.coord-frame b {
+  position: absolute;
+  left: -10px;
+  top: 14px;
+  min-width: 58px;
+  padding: 2px 5px;
+  border: 1px solid rgba(116, 132, 157, 0.22);
+  border-radius: 999px;
+  color: #526276;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  font-size: 9px;
+  font-weight: 820;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateZ(8px);
+}
+
+.tcp-frame b {
+  color: #1f3760;
+}
+
+.imu-frame b {
+  color: #8a5a00;
+  border-color: rgba(218, 154, 43, 0.28);
+  background: rgba(255, 248, 225, 0.9);
 }
 
 .drag-hint {

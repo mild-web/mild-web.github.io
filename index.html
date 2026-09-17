@@ -6,9 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-sensor-3d-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-sensor-frames-v2">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
-  <script defer src="assets/js/sensor-frames.js?v=20260917-sensor-3d-v1"></script>
+  <script defer src="assets/js/sensor-frames.js?v=20260917-sensor-frames-v2"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
 </head>
@@ -112,18 +112,32 @@
                   <i class="axis-3d axis-3d-x"><span>x</span></i>
                   <i class="axis-3d axis-3d-y"><span>y</span></i>
                   <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>TCP</b>
                 </div>
-                <div class="coord-frame sensor-frame x5-frame">
+                <div class="coord-frame sensor-frame x5-front-frame">
                   <i class="axis-3d axis-3d-x"><span>x</span></i>
                   <i class="axis-3d axis-3d-y"><span>y</span></i>
                   <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>front cam</b>
+                </div>
+                <div class="coord-frame sensor-frame x5-back-frame">
+                  <i class="axis-3d axis-3d-x"><span>x</span></i>
+                  <i class="axis-3d axis-3d-y"><span>y</span></i>
+                  <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>back cam</b>
+                </div>
+                <div class="coord-frame imu-frame x5-imu-frame">
+                  <i class="axis-3d axis-3d-x"><span>x</span></i>
+                  <i class="axis-3d axis-3d-y"><span>y</span></i>
+                  <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>IMU</b>
                 </div>
               </div>
               <div class="drag-hint">Drag to rotate</div>
             </div>
             <div class="sensor-card-body">
               <h3>Insta360 X5 panoramic route</h3>
-              <p>Front/back fisheye streams and IMU are mounted near the gripper and evaluated against the robot TCP trajectory.</p>
+              <p>Front/back fisheye camera frames and the IMU frame are mounted near the gripper and evaluated against the robot TCP trajectory.</p>
               <ul>
                 <li>Wide-FOV visual--inertial route for AprilVINS and VIO baselines.</li>
                 <li>Release assets include camera/IMU calibration and sensor-to-TCP metadata.</li>
@@ -146,18 +160,38 @@
                   <i class="axis-3d axis-3d-x"><span>x</span></i>
                   <i class="axis-3d axis-3d-y"><span>y</span></i>
                   <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>TCP</b>
                 </div>
-                <div class="coord-frame sensor-frame insight-frame">
+                <div class="coord-frame sensor-frame insight-left-frame">
                   <i class="axis-3d axis-3d-x"><span>x</span></i>
                   <i class="axis-3d axis-3d-y"><span>y</span></i>
                   <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>left cam</b>
+                </div>
+                <div class="coord-frame sensor-frame insight-center-frame">
+                  <i class="axis-3d axis-3d-x"><span>x</span></i>
+                  <i class="axis-3d axis-3d-y"><span>y</span></i>
+                  <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>center cam</b>
+                </div>
+                <div class="coord-frame sensor-frame insight-right-frame">
+                  <i class="axis-3d axis-3d-x"><span>x</span></i>
+                  <i class="axis-3d axis-3d-y"><span>y</span></i>
+                  <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>right cam</b>
+                </div>
+                <div class="coord-frame imu-frame insight-imu-frame">
+                  <i class="axis-3d axis-3d-x"><span>x</span></i>
+                  <i class="axis-3d axis-3d-y"><span>y</span></i>
+                  <i class="axis-3d axis-3d-z"><span>z</span></i>
+                  <b>IMU</b>
                 </div>
               </div>
               <div class="drag-hint">Drag to rotate</div>
             </div>
             <div class="sensor-card-body">
               <h3>Insight9 stereo companion route</h3>
-              <p>Left/right grayscale views provide a compact stereo route for sensor-route comparison and diagnostic localization baselines.</p>
+              <p>Three camera frames and the IMU frame provide a compact route for sensor-route comparison and diagnostic localization baselines.</p>
               <ul>
                 <li>Used to study sensor layout effects under matched manipulation tasks.</li>
                 <li>Release assets include stereo calibration and hand--eye metadata where available.</li>
@@ -165,7 +199,7 @@
             </div>
           </article>
         </div>
-        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. These compact 3D views illustrate frame layout only; frozen numeric transforms will be released with the calibration package.</p>
+        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. These compact 3D views illustrate TCP, camera, and IMU frame layout only; frozen numeric transforms will be released with the calibration package.</p>
       </div>
     </section>
 
