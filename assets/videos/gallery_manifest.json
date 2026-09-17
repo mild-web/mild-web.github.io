@@ -1,7 +1,7 @@
 [
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insight9",
@@ -16,7 +16,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insta360-x5",
@@ -31,7 +31,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insight9",
@@ -46,7 +46,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insta360-x5",
@@ -61,7 +61,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "apriltag_2",
     "scene_label": "AprilTag 2",
     "sensor_slug": "insta360-x5",
@@ -76,7 +76,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "apriltag_4",
     "scene_label": "AprilTag 4",
     "sensor_slug": "insta360-x5",
@@ -91,7 +91,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "aruco_2",
     "scene_label": "ArUco 2",
     "sensor_slug": "insta360-x5",
@@ -106,7 +106,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insight9",
@@ -121,7 +121,7 @@
   },
   {
     "task_slug": "analemma_2_t",
-    "task_label": "Analemma 02",
+    "task_label": "Analemma",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insta360-x5",
@@ -136,7 +136,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insight9",
@@ -151,7 +151,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insta360-x5",
@@ -166,7 +166,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insight9",
@@ -181,7 +181,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insta360-x5",
@@ -196,7 +196,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "apriltag_2",
     "scene_label": "AprilTag 2",
     "sensor_slug": "insta360-x5",
@@ -211,7 +211,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "apriltag_4",
     "scene_label": "AprilTag 4",
     "sensor_slug": "insta360-x5",
@@ -226,7 +226,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "aruco_2",
     "scene_label": "ArUco 2",
     "sensor_slug": "insta360-x5",
@@ -241,7 +241,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insight9",
@@ -256,7 +256,7 @@
   },
   {
     "task_slug": "circular_2_t",
-    "task_label": "Circular 02",
+    "task_label": "Circular",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insta360-x5",
@@ -271,7 +271,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insight9",
@@ -286,7 +286,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "table",
     "scene_label": "Plain table",
     "sensor_slug": "insta360-x5",
@@ -301,7 +301,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insight9",
@@ -316,7 +316,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "tablecloth",
     "scene_label": "Tablecloth",
     "sensor_slug": "insta360-x5",
@@ -331,7 +331,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "apriltag_2",
     "scene_label": "AprilTag 2",
     "sensor_slug": "insight9",
@@ -346,7 +346,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "apriltag_2",
     "scene_label": "AprilTag 2",
     "sensor_slug": "insta360-x5",
@@ -361,7 +361,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "apriltag_4",
     "scene_label": "AprilTag 4",
     "sensor_slug": "insta360-x5",
@@ -376,7 +376,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "aruco_2",
     "scene_label": "ArUco 2",
     "sensor_slug": "insight9",
@@ -391,7 +391,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "aruco_2",
     "scene_label": "ArUco 2",
     "sensor_slug": "insta360-x5",
@@ -406,7 +406,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insight9",
@@ -421,7 +421,7 @@
   },
   {
     "task_slug": "zigzag_2_t",
-    "task_label": "Zigzag 02",
+    "task_label": "Zigzag",
     "scene_slug": "aruco_4",
     "scene_label": "ArUco 4",
     "sensor_slug": "insta360-x5",
@@ -1291,7 +1291,7 @@
   },
   {
     "task_slug": "analemma_02_sim",
-    "task_label": "Analemma 02 (sim)",
+    "task_label": "Analemma (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-fisheye",
@@ -1306,7 +1306,7 @@
   },
   {
     "task_slug": "analemma_02_sim",
-    "task_label": "Analemma 02 (sim)",
+    "task_label": "Analemma (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-rgb",
@@ -1351,7 +1351,7 @@
   },
   {
     "task_slug": "circular_02_sim",
-    "task_label": "Circular 02 (sim)",
+    "task_label": "Circular (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-fisheye",
@@ -1366,7 +1366,7 @@
   },
   {
     "task_slug": "circular_02_sim",
-    "task_label": "Circular 02 (sim)",
+    "task_label": "Circular (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-rgb",
@@ -1471,7 +1471,7 @@
   },
   {
     "task_slug": "zigzag_02_sim",
-    "task_label": "Zigzag 02 (sim)",
+    "task_label": "Zigzag (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-fisheye",
@@ -1486,7 +1486,7 @@
   },
   {
     "task_slug": "zigzag_02_sim",
-    "task_label": "Zigzag 02 (sim)",
+    "task_label": "Zigzag (sim)",
     "scene_slug": "simulation",
     "scene_label": "Simulation",
     "sensor_slug": "mildsim-rgb",
