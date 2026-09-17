@@ -68,9 +68,33 @@ function createCard(record) {
   stream.className = "stream-label";
   stream.textContent = record.stream_label;
 
-  body.append(title, meta, stream);
+  const download = document.createElement("button");
+  download.className = "download-placeholder";
+  download.type = "button";
+  download.disabled = true;
+  download.textContent = "Download (coming soon)";
+  download.setAttribute("aria-label", `Download placeholder for ${record.task_label}`);
+
+  body.append(title, meta, stream, download);
   article.append(videoWrap, body);
+  article.tabIndex = 0;
+  article.addEventListener("click", () => selectCard(article));
+  article.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      selectCard(article);
+    }
+  });
   return article;
+}
+
+function selectCard(card) {
+  document.querySelectorAll(".video-card.is-selected").forEach((item) => {
+    if (item !== card) {
+      item.classList.remove("is-selected");
+    }
+  });
+  card.classList.toggle("is-selected");
 }
 
 function setupObserver() {
@@ -109,7 +133,7 @@ function activeRecords() {
 function render() {
   const filtered = activeRecords();
   gallery.replaceChildren(...filtered.map(createCard));
-  statusEl.textContent = `${filtered.length} clips shown from ${records.length} synchronized preview clips.`;
+  statusEl.textContent = `${filtered.length} recordings shown from ${records.length} synchronized preview recordings.`;
   setupObserver();
 }
 
