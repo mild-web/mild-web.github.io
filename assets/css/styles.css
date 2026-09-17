@@ -695,6 +695,29 @@ select {
   background: var(--dark);
 }
 
+.back-to-top-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  font-size: 14px;
+  font-weight: 820;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.24);
+}
+
+.back-to-top-float:hover {
+  transform: translateY(-1px);
+}
+
 @media (max-width: 1100px) {
   .figure-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -737,5 +760,10 @@ select {
 
   .footer {
     flex-direction: column;
+  }
+
+  .back-to-top-float {
+    right: 16px;
+    bottom: 16px;
   }
 }
