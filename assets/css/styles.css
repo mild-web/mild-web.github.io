@@ -159,9 +159,9 @@ h3 {
 }
 
 .contents-list {
-  max-width: var(--page);
+  width: min(calc(100% - 2 * clamp(20px, 4vw, 40px)), var(--page));
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 40px) 34px;
+  padding: 0 0 34px;
   display: grid;
   gap: 8px;
 }
