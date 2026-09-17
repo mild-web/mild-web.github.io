@@ -217,7 +217,7 @@ figcaption {
   display: inline-flex;
   align-items: center;
   margin-bottom: 12px;
-  color: #1f2f49;
+  color: var(--blue);
   font-size: clamp(19px, 2vw, 25px);
   letter-spacing: -0.015em;
   text-transform: none;
@@ -232,7 +232,7 @@ figcaption {
   margin-left: 8px;
   padding: 0;
   border: 0;
-  color: #24406c;
+  color: var(--blue);
   background: transparent;
   font: inherit;
   vertical-align: 0.04em;
