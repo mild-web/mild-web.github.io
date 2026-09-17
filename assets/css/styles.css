@@ -395,7 +395,12 @@ select {
   max-width: none;
 }
 
-.event-video-section > .section-heading,
+.event-video-section > .section-heading {
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .event-video-section > .section-content {
   max-width: 1680px;
   margin-left: auto;
