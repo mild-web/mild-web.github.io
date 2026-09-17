@@ -3,6 +3,9 @@ const REPLAY_MATRIX_URL = `assets/videos/replay_matrix_manifest.json?v=${REPLAY_
 
 const replayMatrix = document.getElementById("replayMatrix");
 const replayStatus = document.getElementById("replayMatrixStatus");
+const replayMatrixShell = document.getElementById("replayMatrixShell");
+const replayScrollLeft = document.getElementById("replayScrollLeft");
+const replayScrollRight = document.getElementById("replayScrollRight");
 let replayObserver = null;
 
 function statusLabel(status) {
@@ -113,7 +116,23 @@ function buildReplayMatrix(data) {
     });
   });
 
-  replayStatus.textContent = `${data.items.length} replay clips arranged as ${data.task_order.length} tasks × ${data.method_order.length} methods.`;
+  replayStatus.textContent = "Use the left and right arrows to slide the video matrix.";
+}
+
+function setupReplayScrollButtons() {
+  if (!replayMatrixShell || !replayScrollLeft || !replayScrollRight) {
+    return;
+  }
+
+  const scrollByOneView = (direction) => {
+    replayMatrixShell.scrollBy({
+      left: direction * Math.max(420, replayMatrixShell.clientWidth * 0.72),
+      behavior: "smooth",
+    });
+  };
+
+  replayScrollLeft.addEventListener("click", () => scrollByOneView(-1));
+  replayScrollRight.addEventListener("click", () => scrollByOneView(1));
 }
 
 function setupReplayObserver() {
@@ -137,6 +156,7 @@ function setupReplayObserver() {
 }
 
 if (replayMatrix && replayStatus) {
+  setupReplayScrollButtons();
   fetch(REPLAY_MATRIX_URL)
     .then((response) => {
       if (!response.ok) {

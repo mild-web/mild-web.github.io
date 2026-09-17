@@ -417,10 +417,48 @@ select {
   margin-right: auto;
 }
 
-.replay-status {
+.replay-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 14px;
+}
+
+.replay-status {
   color: var(--muted);
   font-size: 14px;
+}
+
+.replay-scroll-buttons {
+  display: inline-flex;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.replay-scroll-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(35, 87, 217, 0.18);
+  border-radius: 999px;
+  color: var(--blue);
+  background: #ffffff;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 780;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.replay-scroll-button:hover {
+  border-color: rgba(35, 87, 217, 0.42);
+  background: #f3f7ff;
+  transform: translateY(-1px);
 }
 
 .replay-matrix-shell {
@@ -452,9 +490,9 @@ select {
 
 .replay-matrix {
   display: grid;
-  grid-template-columns: minmax(136px, 160px) repeat(6, minmax(180px, 1fr));
-  gap: 10px;
-  min-width: 1680px;
+  grid-template-columns: minmax(150px, 180px) repeat(6, minmax(260px, 1fr));
+  gap: 12px;
+  min-width: 2300px;
   align-items: stretch;
 }
 

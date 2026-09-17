@@ -6,10 +6,10 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-replay-scroll-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-replay-arrows-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-triangle-toggle-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
-  <script defer src="assets/js/replay-matrix.js?v=20260913-event-gt-interp-1s-v1"></script>
+  <script defer src="assets/js/replay-matrix.js?v=20260917-replay-arrows-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -88,8 +88,14 @@
         </p>
       </div>
       <div class="section-content" id="event-zooms-content">
-        <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
-        <div class="replay-matrix-shell" aria-live="polite">
+        <div class="replay-control-row">
+          <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
+          <div class="replay-scroll-buttons" aria-label="Replay matrix horizontal scroll controls">
+            <button class="replay-scroll-button" id="replayScrollLeft" type="button" aria-label="Scroll replay matrix left">←</button>
+            <button class="replay-scroll-button" id="replayScrollRight" type="button" aria-label="Scroll replay matrix right">→</button>
+          </div>
+        </div>
+        <div class="replay-matrix-shell" id="replayMatrixShell" aria-live="polite">
           <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method event replay video matrix"></div>
         </div>
       </div>
