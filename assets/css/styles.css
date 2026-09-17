@@ -223,6 +223,10 @@ figcaption {
   text-transform: none;
 }
 
+.title-accent {
+  color: #11a7bf;
+}
+
 .section-toggle {
   display: inline-flex;
   align-items: center;
