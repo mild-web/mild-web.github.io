@@ -6,8 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-handeye-embed-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-handeye-mini-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
+  <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
 </head>
@@ -97,13 +98,9 @@
       <div class="section-content" id="sensor-setup-content">
         <div class="sensor-setup-grid">
           <article class="sensor-card">
-            <div class="sensor-frame-figure handeye-embed-frame">
-              <iframe
-                title="Interactive 3D hand-eye calibration viewer for Insta360 X5"
-                src="visualizations/hand-eye/?embed=mild-x5"
-                loading="lazy"
-                allow="fullscreen"
-              ></iframe>
+            <div class="sensor-frame-figure handeye-mini" data-device="x5" tabindex="0" aria-label="Compact 3D hand-eye frame view for Insta360 X5">
+              <canvas aria-hidden="true"></canvas>
+              <div class="handeye-mini-hint">Drag to rotate · T<sub>EE</sub><sub>Sensor</sub></div>
             </div>
             <div class="sensor-card-body">
               <h3>Insta360 X5 panoramic route</h3>
@@ -116,13 +113,9 @@
           </article>
 
           <article class="sensor-card">
-            <div class="sensor-frame-figure handeye-embed-frame">
-              <iframe
-                title="Interactive 3D hand-eye calibration viewer for Insight9"
-                src="visualizations/hand-eye/?embed=mild-insight9"
-                loading="lazy"
-                allow="fullscreen"
-              ></iframe>
+            <div class="sensor-frame-figure handeye-mini" data-device="insight9" tabindex="0" aria-label="Compact 3D hand-eye frame view for Insight9">
+              <canvas aria-hidden="true"></canvas>
+              <div class="handeye-mini-hint">Drag to rotate · T<sub>EE</sub><sub>Sensor</sub></div>
             </div>
             <div class="sensor-card-body">
               <h3>Insight9 stereo companion route</h3>
@@ -134,7 +127,7 @@
             </div>
           </article>
         </div>
-        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. The embedded viewers use the same local <code>T_EE_Sensor</code> hand-eye configuration as the original calibration page; frozen numeric transforms will be released with the calibration package.</p>
+        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. The compact views reuse the same local <code>T_EE_Sensor</code> hand-eye configuration as the original calibration page; frozen numeric transforms will be released with the calibration package.</p>
       </div>
     </section>
 
