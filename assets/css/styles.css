@@ -345,8 +345,7 @@ select {
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
-.video-card:hover .download-placeholder,
-.video-card:focus-within .download-placeholder {
+.video-card:hover .download-placeholder {
   display: inline-flex;
   align-items: center;
   justify-content: center;
