@@ -412,7 +412,7 @@ select {
 }
 
 .event-video-section > .section-content {
-  max-width: 1680px;
+  max-width: 1360px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -425,6 +425,7 @@ select {
 
 .replay-matrix-shell {
   overflow-x: auto;
+  scrollbar-gutter: stable;
   padding: 12px;
   border: 1px solid #d9e2ee;
   border-radius: 28px;
@@ -434,11 +435,26 @@ select {
   box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
 }
 
+.replay-matrix-shell::-webkit-scrollbar {
+  height: 12px;
+}
+
+.replay-matrix-shell::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: #e8eef7;
+}
+
+.replay-matrix-shell::-webkit-scrollbar-thumb {
+  border: 3px solid #e8eef7;
+  border-radius: 999px;
+  background: #8aa0c5;
+}
+
 .replay-matrix {
   display: grid;
   grid-template-columns: minmax(136px, 160px) repeat(6, minmax(180px, 1fr));
   gap: 10px;
-  min-width: 1280px;
+  min-width: 1680px;
   align-items: stretch;
 }
 
