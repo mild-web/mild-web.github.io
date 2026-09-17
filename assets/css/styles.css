@@ -213,41 +213,35 @@ figcaption {
   margin-bottom: 26px;
 }
 
-.section-title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.section-title-row h2 {
-  margin-bottom: 0;
-}
-
-.section-title-row + p {
-  margin-top: 14px;
-}
-
 .section-toggle {
-  flex: 0 0 auto;
-  min-height: 36px;
-  padding: 0 14px;
-  border: 1px solid rgba(35, 87, 217, 0.2);
-  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
   color: #24406c;
-  background: #f3f7ff;
+  background: transparent;
   font: inherit;
-  font-size: 13px;
-  font-weight: 760;
+  vertical-align: 0.04em;
   cursor: pointer;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.section-toggle::before {
+  content: "▴";
+  font-size: 0.68em;
+  line-height: 1;
 }
 
 .section-toggle:hover {
-  border-color: rgba(35, 87, 217, 0.42);
-  background: #eaf1ff;
-  transform: translateY(-1px);
+  color: #2357d9;
+}
+
+.section-toggle[aria-expanded="false"]::before {
+  content: "▾";
 }
 
 .section.is-collapsed {
@@ -605,11 +599,6 @@ select {
   .figure-grid,
   .video-grid {
     grid-template-columns: 1fr;
-  }
-
-  .section-title-row {
-    flex-direction: column;
-    gap: 12px;
   }
 
   .footer {

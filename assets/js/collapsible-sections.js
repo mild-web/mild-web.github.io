@@ -10,7 +10,7 @@ document.querySelectorAll(".section-toggle").forEach((button) => {
   button.addEventListener("click", () => {
     const shouldExpand = button.getAttribute("aria-expanded") !== "true";
     button.setAttribute("aria-expanded", String(shouldExpand));
-    button.textContent = shouldExpand ? "Collapse" : "Expand";
+    button.setAttribute("aria-label", shouldExpand ? "Collapse section" : "Expand section");
     section.classList.toggle("is-collapsed", !shouldExpand);
     content.hidden = !shouldExpand;
 
