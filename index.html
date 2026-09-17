@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="assets/css/styles.css?v=20260917-replay-arrows-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-triangle-toggle-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
-  <script defer src="assets/js/replay-matrix.js?v=20260917-keyboard-scroll-v1"></script>
+  <script defer src="assets/js/replay-matrix.js?v=20260917-localization-comparison-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
     <nav class="nav" aria-label="Primary navigation">
       <div class="nav-links">
         <a href="#videos">Videos</a>
-        <a href="#event-zooms">Event zooms</a>
+        <a href="#event-zooms">Comparison</a>
       </div>
     </nav>
 
@@ -76,21 +76,21 @@
     <section id="event-zooms" class="section event-video-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
-          Replay event localization
-          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content" aria-label="Collapse replay event localization"></button>
+          Localization comparison
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content" aria-label="Collapse localization comparison"></button>
         </p>
         <p>
           Rows are manipulation tasks and columns are localization methods.
-          Each clip shows the estimated trajectory against the recorded TCP
-          reference and zooms in on logged pick/place neighborhoods. A black
-          <span class="inline-code">Fail</span> clip follows a table-cross
-          result from the paper table.
+          The clips summarize the qualitative trajectory comparisons behind
+          the paper tables, showing each estimated trajectory against the
+          recorded TCP reference. A black <span class="inline-code">Fail</span>
+          clip follows a failed result from the corresponding table entry.
         </p>
       </div>
       <div class="section-content" id="event-zooms-content">
         <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
-        <div class="replay-matrix-shell" id="replayMatrixShell" tabindex="0" aria-live="polite" aria-label="Task-by-method event replay video matrix. Use left and right arrow keys to scroll horizontally.">
-          <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method event replay video matrix"></div>
+        <div class="replay-matrix-shell" id="replayMatrixShell" tabindex="0" aria-live="polite" aria-label="Task-by-method localization comparison video matrix. Use left and right arrow keys to scroll horizontally.">
+          <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method localization comparison video matrix"></div>
         </div>
       </div>
     </section>

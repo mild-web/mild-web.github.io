@@ -114,7 +114,7 @@ function buildReplayMatrix(data) {
     });
   });
 
-  replayStatus.textContent = "Focus the video matrix and use keyboard ← / → to slide horizontally.";
+  replayStatus.textContent = "Focus the comparison matrix and use keyboard ← / → to slide horizontally.";
 }
 
 function setupReplayKeyboardScroll() {
@@ -170,7 +170,7 @@ if (replayMatrix && replayStatus) {
       setupReplayObserver();
     })
     .catch((error) => {
-      replayStatus.textContent = "Replay matrix failed to load. Please check the manifest and assets.";
+      replayStatus.textContent = "Comparison matrix failed to load. Please check the manifest and assets.";
       console.error(error);
     });
 }
