@@ -124,6 +124,10 @@ function setupReplayScrollButtons() {
     return;
   }
 
+  let holdFrame = null;
+  let holdDirection = 0;
+  let holdLastTime = 0;
+
   const scrollByOneView = (direction) => {
     replayMatrixShell.scrollBy({
       left: direction * Math.max(420, replayMatrixShell.clientWidth * 0.72),
@@ -131,8 +135,43 @@ function setupReplayScrollButtons() {
     });
   };
 
-  replayScrollLeft.addEventListener("click", () => scrollByOneView(-1));
-  replayScrollRight.addEventListener("click", () => scrollByOneView(1));
+  const stopHoldScroll = () => {
+    if (holdFrame) {
+      cancelAnimationFrame(holdFrame);
+      holdFrame = null;
+    }
+    holdDirection = 0;
+    holdLastTime = 0;
+  };
+
+  const stepHoldScroll = (time) => {
+    if (!holdDirection) {
+      return;
+    }
+    const deltaTime = holdLastTime ? time - holdLastTime : 16;
+    holdLastTime = time;
+    replayMatrixShell.scrollLeft += holdDirection * deltaTime * 1.15;
+    holdFrame = requestAnimationFrame(stepHoldScroll);
+  };
+
+  const startHoldScroll = (event, direction) => {
+    event.preventDefault();
+    stopHoldScroll();
+    holdDirection = direction;
+    holdFrame = requestAnimationFrame(stepHoldScroll);
+  };
+
+  const bindButton = (button, direction) => {
+    button.addEventListener("click", () => scrollByOneView(direction));
+    button.addEventListener("pointerdown", (event) => startHoldScroll(event, direction));
+    button.addEventListener("pointerup", stopHoldScroll);
+    button.addEventListener("pointercancel", stopHoldScroll);
+    button.addEventListener("pointerleave", stopHoldScroll);
+    button.addEventListener("blur", stopHoldScroll);
+  };
+
+  bindButton(replayScrollLeft, -1);
+  bindButton(replayScrollRight, 1);
 }
 
 function setupReplayObserver() {
