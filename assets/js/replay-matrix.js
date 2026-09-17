@@ -4,8 +4,6 @@ const REPLAY_MATRIX_URL = `assets/videos/replay_matrix_manifest.json?v=${REPLAY_
 const replayMatrix = document.getElementById("replayMatrix");
 const replayStatus = document.getElementById("replayMatrixStatus");
 const replayMatrixShell = document.getElementById("replayMatrixShell");
-const replayScrollLeft = document.getElementById("replayScrollLeft");
-const replayScrollRight = document.getElementById("replayScrollRight");
 let replayObserver = null;
 
 function statusLabel(status) {
@@ -116,62 +114,26 @@ function buildReplayMatrix(data) {
     });
   });
 
-  replayStatus.textContent = "Use the left and right arrows to slide the video matrix.";
+  replayStatus.textContent = "Focus the video matrix and use keyboard ← / → to slide horizontally.";
 }
 
-function setupReplayScrollButtons() {
-  if (!replayMatrixShell || !replayScrollLeft || !replayScrollRight) {
+function setupReplayKeyboardScroll() {
+  if (!replayMatrixShell) {
     return;
   }
 
-  let holdFrame = null;
-  let holdDirection = 0;
-  let holdLastTime = 0;
+  replayMatrixShell.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+      return;
+    }
 
-  const scrollByOneView = (direction) => {
+    event.preventDefault();
+    const direction = event.key === "ArrowRight" ? 1 : -1;
     replayMatrixShell.scrollBy({
       left: direction * Math.max(420, replayMatrixShell.clientWidth * 0.72),
       behavior: "smooth",
     });
-  };
-
-  const stopHoldScroll = () => {
-    if (holdFrame) {
-      cancelAnimationFrame(holdFrame);
-      holdFrame = null;
-    }
-    holdDirection = 0;
-    holdLastTime = 0;
-  };
-
-  const stepHoldScroll = (time) => {
-    if (!holdDirection) {
-      return;
-    }
-    const deltaTime = holdLastTime ? time - holdLastTime : 16;
-    holdLastTime = time;
-    replayMatrixShell.scrollLeft += holdDirection * deltaTime * 1.15;
-    holdFrame = requestAnimationFrame(stepHoldScroll);
-  };
-
-  const startHoldScroll = (event, direction) => {
-    event.preventDefault();
-    stopHoldScroll();
-    holdDirection = direction;
-    holdFrame = requestAnimationFrame(stepHoldScroll);
-  };
-
-  const bindButton = (button, direction) => {
-    button.addEventListener("click", () => scrollByOneView(direction));
-    button.addEventListener("pointerdown", (event) => startHoldScroll(event, direction));
-    button.addEventListener("pointerup", stopHoldScroll);
-    button.addEventListener("pointercancel", stopHoldScroll);
-    button.addEventListener("pointerleave", stopHoldScroll);
-    button.addEventListener("blur", stopHoldScroll);
-  };
-
-  bindButton(replayScrollLeft, -1);
-  bindButton(replayScrollRight, 1);
+  });
 }
 
 function setupReplayObserver() {
@@ -195,7 +157,7 @@ function setupReplayObserver() {
 }
 
 if (replayMatrix && replayStatus) {
-  setupReplayScrollButtons();
+  setupReplayKeyboardScroll();
   fetch(REPLAY_MATRIX_URL)
     .then((response) => {
       if (!response.ok) {
