@@ -160,10 +160,10 @@ h3 {
 
 .contents-list {
   width: min(calc(100% - 2 * clamp(20px, 4vw, 40px)), var(--page));
-  margin: 0 auto;
+  margin: 28px auto 0;
   padding: 0 0 34px;
   display: grid;
-  gap: 8px;
+  gap: 9px;
 }
 
 .contents-label {
@@ -177,16 +177,19 @@ h3 {
 .contents-list a,
 .contents-details summary {
   width: fit-content;
-  color: #24406c;
+  color: var(--blue);
   font-size: 16px;
   font-weight: 760;
   line-height: 1.35;
   cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
 }
 
 .contents-list a:hover,
 .contents-details summary:hover {
-  color: var(--blue);
+  color: #123fa9;
 }
 
 .contents-details {
@@ -210,7 +213,7 @@ h3 {
 }
 
 .contents-subitems a {
-  color: #667085;
+  color: var(--blue);
   font-size: 14px;
   font-weight: 700;
 }
