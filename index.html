@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/styles.css?v=20260917-replay-arrows-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-triangle-toggle-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
-  <script defer src="assets/js/replay-matrix.js?v=20260917-localization-comparison-v1"></script>
+  <script defer src="assets/js/replay-matrix.js?v=20260917-aprilvins-comparison-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -34,7 +34,7 @@
     <section id="videos" class="section video-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
-          Dataset overview
+          MILD Dataset overview
           <button class="section-toggle" type="button" aria-expanded="true" aria-controls="videos-content" aria-label="Collapse Dataset overview"></button>
         </p>
         <p>
@@ -76,7 +76,7 @@
     <section id="event-zooms" class="section event-video-section">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
-          Localization comparison
+          Localization comparison with AprilVINS
           <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content" aria-label="Collapse localization comparison"></button>
         </p>
         <p>
@@ -85,6 +85,8 @@
           the paper tables, showing each estimated trajectory against the
           recorded TCP reference. A black <span class="inline-code">Fail</span>
           clip follows a failed result from the corresponding table entry.
+          Numeric entries such as <span class="inline-code">0.070 / 1.00</span>
+          report APE RMSE in meters followed by time completion.
         </p>
       </div>
       <div class="section-content" id="event-zooms-content">

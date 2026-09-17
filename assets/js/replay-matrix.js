@@ -114,7 +114,7 @@ function buildReplayMatrix(data) {
     });
   });
 
-  replayStatus.textContent = "Focus the comparison matrix and use keyboard ← / → to slide horizontally.";
+  replayStatus.textContent = "Focus the comparison matrix and use keyboard ← / → to slide horizontally. Metrics are APE RMSE (m) / time completion.";
 }
 
 function setupReplayKeyboardScroll() {
