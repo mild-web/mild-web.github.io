@@ -1,4 +1,4 @@
-const MANIFEST_URL = "assets/videos/gallery_manifest.json";
+const MANIFEST_URL = "assets/videos/gallery_manifest.json?v=20260917-sim-v1";
 
 const gallery = document.getElementById("videoGallery");
 const statusEl = document.getElementById("galleryStatus");
