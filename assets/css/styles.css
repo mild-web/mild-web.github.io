@@ -9,6 +9,7 @@
   --cyan: #11a7bf;
   --dark: #101827;
   --shadow: 0 22px 64px rgba(15, 23, 42, 0.12);
+  --page: 1180px;
 }
 
 * {
@@ -48,7 +49,7 @@ video {
 }
 
 .nav {
-  max-width: 1180px;
+  max-width: var(--page);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -96,7 +97,7 @@ video {
 }
 
 .hero-grid {
-  max-width: 1180px;
+  max-width: var(--page);
   margin: 48px auto 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -122,7 +123,7 @@ p {
 
 h1 {
   margin-bottom: 18px;
-  max-width: 1180px;
+  max-width: var(--page);
   font-size: clamp(30px, 4vw, 52px);
   line-height: 1.07;
   letter-spacing: -0.042em;
@@ -158,7 +159,7 @@ h3 {
 }
 
 .contents-list {
-  max-width: 1180px;
+  max-width: var(--page);
   margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 40px) 34px;
   display: grid;
@@ -263,13 +264,13 @@ figcaption {
 }
 
 .section {
-  max-width: 1180px;
+  max-width: var(--page);
   margin: 0 auto;
   padding: 76px clamp(20px, 4vw, 40px);
 }
 
 .section-heading {
-  max-width: 850px;
+  max-width: var(--page);
   margin-bottom: 26px;
 }
 
@@ -339,7 +340,7 @@ figcaption {
 .setup-steps {
   display: grid;
   gap: 14px;
-  max-width: 850px;
+  max-width: var(--page);
 }
 
 .setup-steps section {
@@ -356,7 +357,7 @@ figcaption {
 
 .video-section > .section-heading,
 .video-section > .section-content {
-  max-width: 1360px;
+  max-width: var(--page);
   margin-left: auto;
   margin-right: auto;
 }
@@ -493,13 +494,13 @@ select {
 }
 
 .event-video-section > .section-heading {
-  max-width: 1360px;
+  max-width: var(--page);
   margin-left: auto;
   margin-right: auto;
 }
 
 .event-video-section > .section-content {
-  max-width: 1360px;
+  max-width: var(--page);
   margin-left: auto;
   margin-right: auto;
 }
