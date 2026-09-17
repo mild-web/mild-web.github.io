@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-start-accent-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-sensor-setup-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
@@ -95,7 +95,88 @@
         </p>
       </div>
       <div class="section-content" id="sensor-setup-content">
-        <p class="placeholder-note">Detailed sensor setup materials will be activated with the release package.</p>
+        <div class="sensor-setup-grid">
+          <article class="sensor-card">
+            <div class="sensor-frame-figure" aria-label="Insta360 X5 frame relative to TCP">
+              <svg viewBox="0 0 360 170" role="img">
+                <defs>
+                  <marker id="axis-arrow-x5-x" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#e5484d"></path></marker>
+                  <marker id="axis-arrow-x5-y" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2fb344"></path></marker>
+                  <marker id="axis-arrow-x5-z" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f6fed"></path></marker>
+                </defs>
+                <rect x="24" y="28" width="132" height="82" rx="20" class="device-body"></rect>
+                <circle cx="66" cy="69" r="22" class="device-lens"></circle>
+                <circle cx="112" cy="69" r="22" class="device-lens"></circle>
+                <rect x="232" y="88" width="88" height="40" rx="14" class="tcp-block"></rect>
+                <path d="M156 78 C190 72 204 94 232 105" class="mount-link"></path>
+                <g transform="translate(276 108)">
+                  <line x1="0" y1="0" x2="42" y2="0" class="axis-x" marker-end="url(#axis-arrow-x5-x)"></line>
+                  <line x1="0" y1="0" x2="0" y2="38" class="axis-y" marker-end="url(#axis-arrow-x5-y)"></line>
+                  <line x1="0" y1="0" x2="-26" y2="-30" class="axis-z" marker-end="url(#axis-arrow-x5-z)"></line>
+                  <text x="47" y="4" class="axis-label axis-label-x">x</text>
+                  <text x="5" y="45" class="axis-label axis-label-y">y</text>
+                  <text x="-45" y="-34" class="axis-label axis-label-z">z</text>
+                </g>
+                <g transform="translate(90 69)">
+                  <line x1="0" y1="0" x2="34" y2="-8" class="axis-x" marker-end="url(#axis-arrow-x5-x)"></line>
+                  <line x1="0" y1="0" x2="-10" y2="32" class="axis-y" marker-end="url(#axis-arrow-x5-y)"></line>
+                  <line x1="0" y1="0" x2="-23" y2="-26" class="axis-z" marker-end="url(#axis-arrow-x5-z)"></line>
+                </g>
+                <text x="54" y="139" class="frame-caption">Insta360 X5 route</text>
+                <text x="239" y="151" class="frame-caption">TCP frame</text>
+              </svg>
+            </div>
+            <div class="sensor-card-body">
+              <h3>Insta360 X5 panoramic route</h3>
+              <p>Front/back fisheye streams and IMU are mounted near the gripper and evaluated against the robot TCP trajectory.</p>
+              <ul>
+                <li>Wide-FOV visual--inertial route for AprilVINS and VIO baselines.</li>
+                <li>Release assets include camera/IMU calibration and sensor-to-TCP metadata.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="sensor-card">
+            <div class="sensor-frame-figure" aria-label="Insight9 frame relative to TCP">
+              <svg viewBox="0 0 360 170" role="img">
+                <defs>
+                  <marker id="axis-arrow-i9-x" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#e5484d"></path></marker>
+                  <marker id="axis-arrow-i9-y" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2fb344"></path></marker>
+                  <marker id="axis-arrow-i9-z" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f6fed"></path></marker>
+                </defs>
+                <rect x="34" y="38" width="122" height="58" rx="18" class="device-body"></rect>
+                <circle cx="73" cy="67" r="13" class="device-lens"></circle>
+                <circle cx="118" cy="67" r="13" class="device-lens"></circle>
+                <rect x="232" y="88" width="88" height="40" rx="14" class="tcp-block"></rect>
+                <path d="M156 70 C188 72 205 93 232 106" class="mount-link"></path>
+                <g transform="translate(276 108)">
+                  <line x1="0" y1="0" x2="42" y2="0" class="axis-x" marker-end="url(#axis-arrow-i9-x)"></line>
+                  <line x1="0" y1="0" x2="0" y2="38" class="axis-y" marker-end="url(#axis-arrow-i9-y)"></line>
+                  <line x1="0" y1="0" x2="-26" y2="-30" class="axis-z" marker-end="url(#axis-arrow-i9-z)"></line>
+                  <text x="47" y="4" class="axis-label axis-label-x">x</text>
+                  <text x="5" y="45" class="axis-label axis-label-y">y</text>
+                  <text x="-45" y="-34" class="axis-label axis-label-z">z</text>
+                </g>
+                <g transform="translate(96 67)">
+                  <line x1="0" y1="0" x2="32" y2="4" class="axis-x" marker-end="url(#axis-arrow-i9-x)"></line>
+                  <line x1="0" y1="0" x2="0" y2="30" class="axis-y" marker-end="url(#axis-arrow-i9-y)"></line>
+                  <line x1="0" y1="0" x2="-25" y2="-20" class="axis-z" marker-end="url(#axis-arrow-i9-z)"></line>
+                </g>
+                <text x="58" y="139" class="frame-caption">Insight9 route</text>
+                <text x="239" y="151" class="frame-caption">TCP frame</text>
+              </svg>
+            </div>
+            <div class="sensor-card-body">
+              <h3>Insight9 stereo companion route</h3>
+              <p>Left/right grayscale views provide a compact stereo route for sensor-route comparison and diagnostic localization baselines.</p>
+              <ul>
+                <li>Used to study sensor layout effects under matched manipulation tasks.</li>
+                <li>Release assets include stereo calibration and hand--eye metadata where available.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <p class="sensor-note">Coordinate colors follow the paper convention: x is red, y is green, and z is blue. The diagrams are compact frame-layout illustrations; frozen numeric transforms will be released with the calibration package.</p>
       </div>
     </section>
 
