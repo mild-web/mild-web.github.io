@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-hero-toc-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-vertical-toc-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
@@ -26,11 +26,19 @@
         <p class="hero-tagline">
           Enabling millimeter-level localization for UMI-style manipulation teaching.
         </p>
-        <div class="toc-bar" aria-label="Page contents">
-          <span>Contents</span>
-          <a href="#videos">Dataset overview</a>
-          <a href="#event-zooms">Method comparison</a>
-        </div>
+        <nav class="toc-bar" aria-label="Page contents">
+          <span class="toc-title">Contents</span>
+          <a class="toc-item" href="#videos">MILD Dataset overview</a>
+          <a class="toc-item" href="#sensor-setup">Sensor setup</a>
+          <a class="toc-item" href="#event-zooms">Localization comparison with AprilVINS</a>
+          <a class="toc-item" href="#start-localization">Start your own localization setup</a>
+          <div class="toc-subitems" aria-label="Start your own localization setup subsections">
+            <a href="#print-apriltags">Print AprilTags</a>
+            <a href="#calibrate-sensors">Calibrate sensors</a>
+            <a href="#configure-files">Configure files</a>
+            <a href="#run-code">Run code</a>
+          </div>
+        </nav>
       </div>
     </section>
   </header>
@@ -78,6 +86,23 @@
       </div>
     </section>
 
+    <section id="sensor-setup" class="section sensor-setup-section is-collapsed">
+      <div class="section-heading">
+        <p class="eyebrow section-eyebrow-toggle">
+          Sensor setup
+          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="sensor-setup-content" aria-label="Expand sensor setup"></button>
+        </p>
+        <p>
+          This section will summarize the recommended camera, IMU, robot TCP,
+          and calibration layout for reproducing the MILD-style acquisition
+          setup.
+        </p>
+      </div>
+      <div class="section-content" id="sensor-setup-content" hidden>
+        <p class="placeholder-note">Detailed sensor setup materials will be activated with the release package.</p>
+      </div>
+    </section>
+
     <section id="event-zooms" class="section event-video-section is-collapsed">
       <div class="section-heading">
         <p class="eyebrow section-eyebrow-toggle">
@@ -98,6 +123,38 @@
         <div class="replay-matrix-shell" id="replayMatrixShell" tabindex="0" aria-live="polite" aria-label="Task-by-method localization comparison video matrix. Use left and right arrow keys to scroll horizontally.">
           <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method localization comparison video matrix"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="start-localization" class="section start-localization-section is-collapsed">
+      <div class="section-heading">
+        <p class="eyebrow section-eyebrow-toggle">
+          Start your own localization setup
+          <button class="section-toggle" type="button" aria-expanded="false" aria-controls="start-localization-content" aria-label="Expand start your own localization setup"></button>
+        </p>
+        <p>
+          A practical checklist for preparing tags, calibrating sensors,
+          configuring AprilVINS, and running the localization pipeline will be
+          provided with the release package.
+        </p>
+      </div>
+      <div class="section-content setup-steps" id="start-localization-content" hidden>
+        <section id="print-apriltags">
+          <h3>Print AprilTags</h3>
+          <p>Prepare tag IDs and physical tag sizes for the manipulation scene.</p>
+        </section>
+        <section id="calibrate-sensors">
+          <h3>Calibrate sensors</h3>
+          <p>Calibrate the camera--IMU route and the sensor-to-TCP transform.</p>
+        </section>
+        <section id="configure-files">
+          <h3>Configure files</h3>
+          <p>Update camera, IMU, tag-size, and output-promotion parameters.</p>
+        </section>
+        <section id="run-code">
+          <h3>Run code</h3>
+          <p>Run AprilVINS and inspect the generated trajectory and metrics.</p>
+        </section>
       </div>
     </section>
 
