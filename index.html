@@ -6,7 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-download-overlay-v2">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260917-collapsible-v1">
+  <script defer src="assets/js/collapsible-sections.js?v=20260917-collapsible-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260917-download-overlay-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260913-event-gt-interp-1s-v1"></script>
 </head>
@@ -33,8 +34,13 @@
   <main>
     <section id="videos" class="section video-section">
       <div class="section-heading">
-        <p class="eyebrow">Dataset overview</p>
-        <h2>Representative task--scene--sensor recordings</h2>
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Dataset overview</p>
+            <h2>Representative task--scene--sensor recordings</h2>
+          </div>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="videos-content">Collapse</button>
+        </div>
         <p>
           Each card presents a synchronized 10 s excerpt from a MILD recording.
           Real-world Insta360 X5 entries show front/back fisheye streams,
@@ -43,36 +49,43 @@
         </p>
       </div>
 
-      <div class="toolbar" aria-label="Video filters">
-        <label class="select-wrap">
-          <span>Sensor</span>
-          <select id="sensorFilter">
-            <option value="all">All sensors</option>
-          </select>
-        </label>
-        <label class="select-wrap">
-          <span>Scene</span>
-          <select id="sceneFilter">
-            <option value="all">All scenes</option>
-          </select>
-        </label>
-        <label class="select-wrap">
-          <span>Task</span>
-          <select id="taskFilter">
-            <option value="all">All tasks</option>
-          </select>
-        </label>
-        <button class="button compact" id="resetFilters" type="button">Reset</button>
-      </div>
+      <div class="section-content" id="videos-content">
+        <div class="toolbar" aria-label="Video filters">
+          <label class="select-wrap">
+            <span>Sensor</span>
+            <select id="sensorFilter">
+              <option value="all">All sensors</option>
+            </select>
+          </label>
+          <label class="select-wrap">
+            <span>Scene</span>
+            <select id="sceneFilter">
+              <option value="all">All scenes</option>
+            </select>
+          </label>
+          <label class="select-wrap">
+            <span>Task</span>
+            <select id="taskFilter">
+              <option value="all">All tasks</option>
+            </select>
+          </label>
+          <button class="button compact" id="resetFilters" type="button">Reset</button>
+        </div>
 
-      <div class="gallery-status" id="galleryStatus">Loading video clips…</div>
-      <div class="video-grid" id="videoGallery" aria-live="polite"></div>
+        <div class="gallery-status" id="galleryStatus">Loading video clips…</div>
+        <div class="video-grid" id="videoGallery" aria-live="polite"></div>
+      </div>
     </section>
 
     <section id="event-zooms" class="section event-video-section">
       <div class="section-heading">
-        <p class="eyebrow">Replay event localization</p>
-        <h2>Task-by-method trajectory replay matrix</h2>
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Replay event localization</p>
+            <h2>Task-by-method trajectory replay matrix</h2>
+          </div>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="event-zooms-content">Collapse</button>
+        </div>
         <p>
           Rows are manipulation tasks and columns are localization methods.
           Each clip shows the estimated trajectory against the recorded TCP
@@ -81,19 +94,30 @@
           result from the paper table.
         </p>
       </div>
-      <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
-      <div class="replay-matrix-shell" aria-live="polite">
-        <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method event replay video matrix"></div>
+      <div class="section-content" id="event-zooms-content">
+        <div class="replay-status" id="replayMatrixStatus">Loading replay matrix…</div>
+        <div class="replay-matrix-shell" aria-live="polite">
+          <div class="replay-matrix" id="replayMatrix" role="table" aria-label="Task-by-method event replay video matrix"></div>
+        </div>
       </div>
     </section>
 
     <section id="release" class="section release">
-      <p class="eyebrow">Release</p>
-      <h2>Anonymous review page</h2>
-      <p>
-        This is an anonymous project-page draft for review. Dataset, paper, and
-        code links will be activated when the release package is finalized.
-      </p>
+      <div class="section-heading">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Release</p>
+            <h2>Anonymous review page</h2>
+          </div>
+          <button class="section-toggle" type="button" aria-expanded="true" aria-controls="release-content">Collapse</button>
+        </div>
+      </div>
+      <div class="section-content" id="release-content">
+        <p>
+          This is an anonymous project-page draft for review. Dataset, paper, and
+          code links will be activated when the release package is finalized.
+        </p>
+      </div>
     </section>
   </main>
 

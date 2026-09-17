@@ -213,15 +213,58 @@ figcaption {
   margin-bottom: 26px;
 }
 
+.section-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section-title-row h2 {
+  margin-bottom: 0;
+}
+
+.section-title-row + p {
+  margin-top: 14px;
+}
+
+.section-toggle {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(35, 87, 217, 0.2);
+  border-radius: 999px;
+  color: #24406c;
+  background: #f3f7ff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 760;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.section-toggle:hover {
+  border-color: rgba(35, 87, 217, 0.42);
+  background: #eaf1ff;
+  transform: translateY(-1px);
+}
+
+.section.is-collapsed {
+  padding-bottom: 42px;
+}
+
+.section-content[hidden] {
+  display: none;
+}
+
 .video-section {
   max-width: none;
   background: #ffffff;
 }
 
 .video-section > .section-heading,
-.video-section > .toolbar,
-.video-section > .gallery-status,
-.video-section > .video-grid {
+.video-section > .section-content {
   max-width: 1360px;
   margin-left: auto;
   margin-right: auto;
@@ -359,8 +402,7 @@ select {
 }
 
 .event-video-section > .section-heading,
-.event-video-section > .replay-status,
-.event-video-section > .replay-matrix-shell {
+.event-video-section > .section-content {
   max-width: 1680px;
   margin-left: auto;
   margin-right: auto;
@@ -563,6 +605,11 @@ select {
   .figure-grid,
   .video-grid {
     grid-template-columns: 1fr;
+  }
+
+  .section-title-row {
+    flex-direction: column;
+    gap: 12px;
   }
 
   .footer {
