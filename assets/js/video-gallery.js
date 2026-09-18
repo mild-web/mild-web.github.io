@@ -64,7 +64,7 @@ function createCard(record) {
 
   const downloadBubble = document.createElement("span");
   downloadBubble.className = "download-pending-bubble";
-  downloadBubble.innerHTML = '<span class="download-runner" aria-hidden="true">🏃</span><span>Dataset is on the way</span>';
+  downloadBubble.innerHTML = '<span class="download-runner" aria-hidden="true">🏃</span><span>on the way...</span>';
   downloadBubble.setAttribute("aria-hidden", "true");
 
   videoWrap.appendChild(video);
