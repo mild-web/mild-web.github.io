@@ -139,7 +139,7 @@ function updateAprilTagDownload() {
 }
 
 function fmt(value) {
-  return Number(value).toFixed(3).replace(/\\.0+$/, "").replace(/(\\.\\d*?)0+$/, "$1");
+  return Number(value).toFixed(3).replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1");
 }
 
 function pdfEscape(text) {
@@ -173,7 +173,7 @@ function pageContent(id) {
   commands.push(`${fmt(A4.width / 2 - 122)} ${fmt(18 * MM_TO_PT)} Td`);
   commands.push(`(${pdfEscape(`${f.name} ID ${String(id).padStart(3, "0")} | Print at 100% / actual size`)}) Tj`);
   commands.push("ET");
-  return `${commands.join("\\n")}\\n`;
+  return `${commands.join("\n")}\n`;
 }
 
 function buildPdf(count) {
@@ -191,7 +191,7 @@ function buildPdf(count) {
 
   for (let id = 0; id < count; id += 1) {
     const stream = pageContent(id);
-    const contentId = addObject(`<< /Length ${stream.length} >>\\nstream\\n${stream}endstream`);
+    const contentId = addObject(`<< /Length ${stream.length} >>\nstream\n${stream}endstream`);
     const pageId = addObject(`<< /Type /Page /Parent 1 0 R /MediaBox [0 0 ${fmt(A4.width)} ${fmt(A4.height)}] /Resources << /Font << /F1 3 0 R >> >> /Contents ${contentId} 0 R >>`);
     pageIds.push(pageId);
   }
@@ -199,19 +199,19 @@ function buildPdf(count) {
   objects[1] = `<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(" ")}] /Count ${pageIds.length} >>`;
   objects[2] = "<< /Type /Catalog /Pages 1 0 R >>";
 
-  let pdf = "%PDF-1.4\\n";
+  let pdf = "%PDF-1.4\n";
   const offsets = [0];
   for (let i = 1; i < objects.length; i += 1) {
     offsets[i] = pdf.length;
-    pdf += `${i} 0 obj\\n${objects[i]}\\nendobj\\n`;
+    pdf += `${i} 0 obj\n${objects[i]}\nendobj\n`;
   }
   const xrefOffset = pdf.length;
-  pdf += `xref\\n0 ${objects.length}\\n`;
-  pdf += "0000000000 65535 f \\n";
+  pdf += `xref\n0 ${objects.length}\n`;
+  pdf += "0000000000 65535 f \n";
   for (let i = 1; i < objects.length; i += 1) {
-    pdf += `${String(offsets[i]).padStart(10, "0")} 00000 n \\n`;
+    pdf += `${String(offsets[i]).padStart(10, "0")} 00000 n \n`;
   }
-  pdf += `trailer\\n<< /Size ${objects.length} /Root 2 0 R >>\\nstartxref\\n${xrefOffset}\\n%%EOF\\n`;
+  pdf += `trailer\n<< /Size ${objects.length} /Root 2 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
   return new Blob([pdf], { type: "application/pdf" });
 }
 
