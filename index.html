@@ -11,6 +11,7 @@
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
+  <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-print-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -32,7 +33,7 @@
     <details class="contents-details" open>
       <summary>Start your own millimeter-level UMI localization</summary>
       <div class="contents-subitems">
-        <a href="#print-apriltags">Print AprilTags</a>
+        <a href="#print-apriltags">Prepare AprilTags</a>
         <a href="#calibrate-sensors">Calibrate sensors</a>
         <a href="#configure-files">Configure files</a>
         <a href="#run-code">Run code</a>
@@ -159,8 +160,23 @@
       </div>
       <div class="section-content setup-steps" id="start-localization-content">
         <section id="print-apriltags">
-          <h3>Print AprilTags</h3>
-          <p>Prepare tag IDs and physical tag sizes for the manipulation scene.</p>
+          <h3>Prepare AprilTags</h3>
+          <p>Select the number of custom48h12 tags and download an A4 print-ready PDF.</p>
+          <div class="apriltag-print-panel" aria-label="AprilTag print PDF generator">
+            <label class="select-wrap apriltag-count-wrap">
+              <span>Tag count</span>
+              <select id="apriltagCountSelect">
+                <option value="1">1 tag: ID 0</option>
+                <option value="2">2 tags: IDs 0--1</option>
+                <option value="3">3 tags: IDs 0--2</option>
+                <option value="4" selected>4 tags: IDs 0--3</option>
+              </select>
+            </label>
+            <a class="button apriltag-download" id="apriltagDownload" href="assets/apriltags/tagCustom48h12_ids_0_3_A4.pdf" download>
+              Download PDF
+            </a>
+            <p class="apriltag-print-note" id="apriltagPrintNote">Family: tagCustom48h12. Print at 100% / actual size on A4 paper.</p>
+          </div>
         </section>
         <section id="calibrate-sensors">
           <h3>Calibrate sensors</h3>

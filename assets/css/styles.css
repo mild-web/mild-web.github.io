@@ -366,6 +366,34 @@ figcaption {
   background: #ffffff;
 }
 
+.apriltag-print-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #dbe6f3;
+  border-radius: 18px;
+  background: #f8fbff;
+}
+
+.apriltag-count-wrap {
+  margin: 0;
+}
+
+.apriltag-download {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.apriltag-print-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .sensor-setup-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
