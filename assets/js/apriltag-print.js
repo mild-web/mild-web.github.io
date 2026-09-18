@@ -171,9 +171,6 @@ function pageContent(id) {
   const x0 = (A4.width - TAG_IMAGE_WIDTH_PT) / 2;
   const y0 = (A4.height - TAG_IMAGE_WIDTH_PT) / 2;
   const commands = [
-    "0 g",
-    `${fmt(x0)} ${fmt(y0)} ${fmt(TAG_IMAGE_WIDTH_PT)} ${fmt(TAG_IMAGE_WIDTH_PT)} re f`,
-    "1 g",
     `q ${fmt(TAG_IMAGE_WIDTH_PT)} 0 0 ${fmt(TAG_IMAGE_WIDTH_PT)} ${fmt(x0)} ${fmt(y0)} cm /TagImage Do Q`,
   ];
 
@@ -200,7 +197,7 @@ function buildPdf(count) {
 
   for (let id = 0; id < count; id += 1) {
     const imageStream = tagMaskHex(id);
-    const imageId = addObject(`<< /Type /XObject /Subtype /Image /Width ${family().totalWidth} /Height ${family().totalWidth} /ImageMask true /BitsPerComponent 1 /Decode [1 0] /Interpolate false /Filter /ASCIIHexDecode /Length ${imageStream.length} >>\nstream\n${imageStream}endstream`);
+    const imageId = addObject(`<< /Type /XObject /Subtype /Image /Width ${family().totalWidth} /Height ${family().totalWidth} /ColorSpace /DeviceGray /BitsPerComponent 1 /Decode [0 1] /Interpolate false /Filter /ASCIIHexDecode /Length ${imageStream.length} >>\nstream\n${imageStream}endstream`);
     const stream = pageContent(id);
     const contentId = addObject(`<< /Length ${stream.length} >>\nstream\n${stream}endstream`);
     const pageId = addObject(`<< /Type /Page /Parent 1 0 R /MediaBox [0 0 ${fmt(A4.width)} ${fmt(A4.height)}] /Resources << /Font << /F1 3 0 R >> /XObject << /TagImage ${imageId} 0 R >> >> /Contents ${contentId} 0 R >>`);
