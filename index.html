@@ -6,13 +6,14 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260918-placement-note-v4">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260919-upload-mvp-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-dynamic-v7"></script>
+  <script defer src="assets/js/upload-runner.js?v=20260919-upload-mvp-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -37,6 +38,7 @@
         <a href="#print-apriltags">Prepare AprilTags</a>
         <a href="#calibrate-sensors">Calibrate sensors</a>
         <a href="#configure-files">Configure files</a>
+        <a href="#upload-x5-data">Upload X5 data</a>
         <a href="#run-code">Run code</a>
       </div>
     </details>
@@ -193,9 +195,42 @@
           <h3>Configure files</h3>
           <p>Update camera, IMU, tag-size, and output-promotion parameters.</p>
         </section>
+        <section id="upload-x5-data">
+          <h3>Upload X5 data</h3>
+          <p>Upload a zipped Insta360 X5 recording package and receive a downloadable trajectory package after AprilVINS processing.</p>
+          <form class="upload-runner-panel" id="uploadRunnerForm">
+            <label class="upload-field">
+              <span>API endpoint</span>
+              <input id="uploadApiBase" name="api_base" type="url" value="http://127.0.0.1:8000" autocomplete="off">
+            </label>
+            <label class="upload-field">
+              <span>Email (optional)</span>
+              <input id="uploadEmail" name="email" type="email" placeholder="for result notification or follow-up">
+            </label>
+            <label class="upload-field">
+              <span>Tag size at border (m)</span>
+              <input id="uploadTagSize" name="tag_size_m" type="number" min="0.001" step="0.001" value="0.108">
+            </label>
+            <label class="upload-field upload-file-field">
+              <span>X5 recording package</span>
+              <input id="uploadRecording" name="recording" type="file" accept=".zip,.tar,.tar.gz,.tgz,.bag,.mp4,.mov">
+            </label>
+            <label class="upload-field upload-notes-field">
+              <span>Notes (optional)</span>
+              <textarea id="uploadNotes" name="notes" rows="3" placeholder="task name, tag count, mounting notes, or known issues"></textarea>
+            </label>
+            <label class="upload-consent">
+              <input id="uploadConsent" name="consent" type="checkbox">
+              <span>Uploaded recordings may be stored and used by the project team to improve AprilVINS and MILD-related research tools.</span>
+            </label>
+            <button class="button upload-submit" id="uploadSubmit" type="submit">Upload and run AprilVINS</button>
+            <div class="upload-status" id="uploadStatus" role="status" aria-live="polite">Backend not contacted yet.</div>
+            <div class="upload-artifacts" id="uploadArtifacts" hidden></div>
+          </form>
+        </section>
         <section id="run-code">
           <h3>Run code</h3>
-          <p>Run AprilVINS and inspect the generated trajectory and metrics.</p>
+          <p>For local processing, run the backend service and use the upload panel above. For server deployment, set the API endpoint to the public backend URL.</p>
         </section>
       </div>
     </section>
