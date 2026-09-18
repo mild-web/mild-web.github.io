@@ -57,13 +57,19 @@ function createCard(record) {
   const download = document.createElement("button");
   download.className = "download-placeholder";
   download.type = "button";
-  download.textContent = "Preparing";
+  download.textContent = "Download";
   download.setAttribute("aria-disabled", "true");
-  download.setAttribute("aria-label", `Download package pending for ${record.task_label}`);
+  download.setAttribute("aria-label", `Dataset download pending for ${record.task_label}`);
   download.addEventListener("click", (event) => event.preventDefault());
+
+  const downloadBubble = document.createElement("span");
+  downloadBubble.className = "download-pending-bubble";
+  downloadBubble.innerHTML = '<span class="download-runner" aria-hidden="true">🏃</span><span>Dataset is on the way</span>';
+  downloadBubble.setAttribute("aria-hidden", "true");
 
   videoWrap.appendChild(video);
   videoWrap.appendChild(download);
+  videoWrap.appendChild(downloadBubble);
 
   const body = document.createElement("div");
   body.className = "video-card-body";
