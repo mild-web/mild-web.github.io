@@ -57,9 +57,10 @@ function createCard(record) {
   const download = document.createElement("button");
   download.className = "download-placeholder";
   download.type = "button";
-  download.disabled = true;
-  download.textContent = "Download";
-  download.setAttribute("aria-label", `Download placeholder for ${record.task_label}`);
+  download.textContent = "Preparing";
+  download.setAttribute("aria-disabled", "true");
+  download.setAttribute("aria-label", `Download package pending for ${record.task_label}`);
+  download.addEventListener("click", (event) => event.preventDefault());
 
   videoWrap.appendChild(video);
   videoWrap.appendChild(download);
