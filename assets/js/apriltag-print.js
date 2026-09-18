@@ -1,34 +1,70 @@
-const APRILTAG_PDFS = {
-  1: {
-    href: "assets/apriltags/tagCustom48h12_ids_0_A4.pdf",
-    label: "1 tag: ID 0",
-  },
-  2: {
-    href: "assets/apriltags/tagCustom48h12_ids_0_1_A4.pdf",
-    label: "2 tags: IDs 0--1",
-  },
-  3: {
-    href: "assets/apriltags/tagCustom48h12_ids_0_2_A4.pdf",
-    label: "3 tags: IDs 0--2",
-  },
-  4: {
-    href: "assets/apriltags/tagCustom48h12_ids_0_3_A4.pdf",
-    label: "4 tags: IDs 0--3",
-  },
-};
+const APRILTAG_MAX_COUNT = 32;
+const APRILTAG_FAMILY = "tagCustom48h12";
 
-const tagCountSelect = document.getElementById("apriltagCountSelect");
+const tagCountInput = document.getElementById("apriltagCountInput");
 const tagDownload = document.getElementById("apriltagDownload");
 const tagPrintNote = document.getElementById("apriltagPrintNote");
+const tagPreviewCount = document.getElementById("apriltagPreviewCount");
+const tagGrid = document.getElementById("apriltagGrid");
 
-function updateAprilTagDownload() {
-  if (!tagCountSelect || !tagDownload || !tagPrintNote) return;
-  const config = APRILTAG_PDFS[tagCountSelect.value] || APRILTAG_PDFS[4];
-  tagDownload.href = config.href;
-  tagDownload.setAttribute("download", config.href.split("/").pop());
-  tagDownload.setAttribute("aria-label", `Download custom48h12 PDF for ${config.label}`);
-  tagPrintNote.textContent = `Family: tagCustom48h12. ${config.label}. Print at 100% / actual size on A4 paper.`;
+function clampTagCount(value) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.max(1, Math.min(APRILTAG_MAX_COUNT, parsed));
 }
 
-tagCountSelect?.addEventListener("change", updateAprilTagDownload);
+function countLabel(count) {
+  if (count === 1) return "ID 0";
+  return `IDs 0--${count - 1}`;
+}
+
+function pdfPath(count) {
+  return `assets/apriltags/pdf/${APRILTAG_FAMILY}_count_${String(count).padStart(2, "0")}_A4.pdf`;
+}
+
+function tagImagePath(id) {
+  return `assets/apriltags/png/${APRILTAG_FAMILY}_id${String(id).padStart(3, "0")}.png`;
+}
+
+function renderTagGrid(count) {
+  if (!tagGrid) return;
+  const cells = [];
+  for (let id = 0; id < count; id += 1) {
+    const cell = document.createElement("figure");
+    cell.className = "apriltag-cell";
+
+    const image = document.createElement("img");
+    image.src = tagImagePath(id);
+    image.alt = `${APRILTAG_FAMILY} ID ${id}`;
+    image.loading = "lazy";
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = `ID ${id}`;
+
+    cell.append(image, caption);
+    cells.push(cell);
+  }
+  tagGrid.replaceChildren(...cells);
+}
+
+function updateAprilTagDownload() {
+  if (!tagCountInput || !tagDownload || !tagPrintNote || !tagPreviewCount) return;
+
+  const count = clampTagCount(tagCountInput.value);
+  if (String(count) !== tagCountInput.value) {
+    tagCountInput.value = count;
+  }
+
+  const href = pdfPath(count);
+  const label = countLabel(count);
+  tagDownload.href = href;
+  tagDownload.setAttribute("download", href.split("/").pop());
+  tagDownload.setAttribute("aria-label", `Download ${APRILTAG_FAMILY} A4 PDF for ${count} tags`);
+  tagPrintNote.textContent = `Family: ${APRILTAG_FAMILY}. ${label}. Print at 100% / actual size on A4 paper.`;
+  tagPreviewCount.textContent = `${count} ${count === 1 ? "tag" : "tags"}`;
+  renderTagGrid(count);
+}
+
+tagCountInput?.addEventListener("input", updateAprilTagDownload);
+tagCountInput?.addEventListener("change", updateAprilTagDownload);
 updateAprilTagDownload();
