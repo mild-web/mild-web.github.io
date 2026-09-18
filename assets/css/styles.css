@@ -413,7 +413,7 @@ figcaption {
 
 .apriltag-placement-note {
   margin: 16px 0 0;
-  color: var(--muted);
+  color: var(--ink);
   font-size: 13px;
 }
 
