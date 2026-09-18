@@ -8,6 +8,7 @@ const tagDownload = document.getElementById("apriltagDownload");
 const tagPrintNote = document.getElementById("apriltagPrintNote");
 const tagPreviewCount = document.getElementById("apriltagPreviewCount");
 const tagGrid = document.getElementById("apriltagGrid");
+const tagCountOptions = document.getElementById("apriltagCountOptions");
 
 function family() {
   return window.TAG_CUSTOM48H12;
@@ -26,6 +27,22 @@ function clampTagCount(value) {
 function countLabel(count) {
   if (count === 1) return "ID 0";
   return `IDs 0--${count - 1}`;
+}
+
+function populateTagCountOptions() {
+  if (!tagCountOptions) return;
+  const continuous = Array.from({ length: 100 }, (_, index) => index + 1);
+  const presets = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, maxCount()];
+  const values = [...new Set([...continuous, ...presets].filter((value) => value <= maxCount()))];
+  const options = values.map((value) => {
+    const option = document.createElement("option");
+    option.value = String(value);
+    if (value > 100) {
+      option.label = value === maxCount() ? `${value} (all available IDs)` : `${value} tags`;
+    }
+    return option;
+  });
+  tagCountOptions.replaceChildren(...options);
 }
 
 function tagMatrix(id) {
@@ -225,4 +242,5 @@ function generatePdf() {
 tagCountInput?.addEventListener("input", updateAprilTagDownload);
 tagCountInput?.addEventListener("change", updateAprilTagDownload);
 tagDownload?.addEventListener("click", generatePdf);
+populateTagCountOptions();
 updateAprilTagDownload();

@@ -12,7 +12,7 @@
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
-  <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-dynamic-v1"></script>
+  <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-dynamic-v2"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -168,16 +168,7 @@
               <label class="select-wrap apriltag-count-wrap">
                 <span>Tag count</span>
                 <input id="apriltagCountInput" type="number" min="1" max="42211" value="4" list="apriltagCountOptions" inputmode="numeric">
-                <datalist id="apriltagCountOptions">
-                  <option value="1"></option>
-                  <option value="2"></option>
-                  <option value="4"></option>
-                  <option value="8"></option>
-                  <option value="16"></option>
-                  <option value="32"></option>
-                  <option value="64"></option>
-                  <option value="128"></option>
-                </datalist>
+                <datalist id="apriltagCountOptions"></datalist>
               </label>
               <button class="button apriltag-download" id="apriltagDownload" type="button">
                 Generate PDF
