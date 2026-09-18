@@ -230,8 +230,6 @@ function initMiniViewer(container, device) {
 
     ctx.save();
     ctx.font = "700 12px Inter, system-ui, sans-serif";
-    ctx.fillStyle = "#64748b";
-    ctx.fillText(`${device.short_name || device.name}: ${sensors.length} frames`, 14, 22);
     ctx.fillStyle = AXIS_COLORS.x;
     ctx.fillText("x", 14, height - 18);
     ctx.fillStyle = AXIS_COLORS.y;
