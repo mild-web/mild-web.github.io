@@ -146,27 +146,36 @@ function pdfEscape(text) {
   return String(text).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
 }
 
-function pageContent(id) {
+function tagMaskHex(id) {
   const f = family();
   const matrix = tagMatrix(id);
+  const bytesPerRow = Math.ceil(f.totalWidth / 8);
+  const bytes = [];
+  for (let y = 0; y < f.totalWidth; y += 1) {
+    for (let byteIndex = 0; byteIndex < bytesPerRow; byteIndex += 1) {
+      let value = 0;
+      for (let bit = 0; bit < 8; bit += 1) {
+        const x = byteIndex * 8 + bit;
+        if (x < f.totalWidth && matrix[y][x]) {
+          value |= 1 << (7 - bit);
+        }
+      }
+      bytes.push(value);
+    }
+  }
+  return `${bytes.map((value) => value.toString(16).padStart(2, "0")).join("")}>\n`;
+}
+
+function pageContent(id) {
+  const f = family();
   const x0 = (A4.width - TAG_IMAGE_WIDTH_PT) / 2;
   const y0 = (A4.height - TAG_IMAGE_WIDTH_PT) / 2;
-  const cell = TAG_IMAGE_WIDTH_PT / f.totalWidth;
   const commands = [
     "0 g",
     `${fmt(x0)} ${fmt(y0)} ${fmt(TAG_IMAGE_WIDTH_PT)} ${fmt(TAG_IMAGE_WIDTH_PT)} re f`,
     "1 g",
+    `q ${fmt(TAG_IMAGE_WIDTH_PT)} 0 0 ${fmt(TAG_IMAGE_WIDTH_PT)} ${fmt(x0)} ${fmt(y0)} cm /TagImage Do Q`,
   ];
-
-  for (let y = 0; y < f.totalWidth; y += 1) {
-    for (let x = 0; x < f.totalWidth; x += 1) {
-      if (matrix[y][x]) {
-        const px = x0 + x * cell;
-        const py = y0 + (f.totalWidth - 1 - y) * cell;
-        commands.push(`${fmt(px)} ${fmt(py)} ${fmt(cell)} ${fmt(cell)} re f`);
-      }
-    }
-  }
 
   commands.push("0 g");
   commands.push("BT /F1 10 Tf");
@@ -190,9 +199,11 @@ function buildPdf(count) {
   objects[3] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>";
 
   for (let id = 0; id < count; id += 1) {
+    const imageStream = tagMaskHex(id);
+    const imageId = addObject(`<< /Type /XObject /Subtype /Image /Width ${family().totalWidth} /Height ${family().totalWidth} /ImageMask true /BitsPerComponent 1 /Decode [1 0] /Interpolate false /Filter /ASCIIHexDecode /Length ${imageStream.length} >>\nstream\n${imageStream}endstream`);
     const stream = pageContent(id);
     const contentId = addObject(`<< /Length ${stream.length} >>\nstream\n${stream}endstream`);
-    const pageId = addObject(`<< /Type /Page /Parent 1 0 R /MediaBox [0 0 ${fmt(A4.width)} ${fmt(A4.height)}] /Resources << /Font << /F1 3 0 R >> >> /Contents ${contentId} 0 R >>`);
+    const pageId = addObject(`<< /Type /Page /Parent 1 0 R /MediaBox [0 0 ${fmt(A4.width)} ${fmt(A4.height)}] /Resources << /Font << /F1 3 0 R >> /XObject << /TagImage ${imageId} 0 R >> >> /Contents ${contentId} 0 R >>`);
     pageIds.push(pageId);
   }
 
