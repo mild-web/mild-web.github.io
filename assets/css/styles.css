@@ -740,6 +740,13 @@ figcaption {
   color: var(--muted);
 }
 
+.sensor-config-line {
+  margin: 5px 0 0;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
 .sensor-card-body ul {
   margin: 10px 0 0;
   padding-left: 18px;
