@@ -455,7 +455,7 @@ figcaption {
   background: #fbfdff;
 }
 
-.apriltag-cell img {
+.apriltag-cell canvas {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -470,6 +470,16 @@ figcaption {
   font-size: 11px;
   font-weight: 760;
   text-align: center;
+}
+
+.apriltag-more-cell {
+  display: grid;
+  place-items: center;
+  min-height: 82px;
+  color: #8a96a8;
+  font-size: 28px;
+  font-weight: 820;
+  letter-spacing: 0.08em;
 }
 
 .sensor-setup-grid {
