@@ -411,11 +411,10 @@ figcaption {
   font-size: 13px;
 }
 
-.apriltag-placement-note {
+p.apriltag-placement-note {
   margin: 16px 0 0;
-  color: #0b1220;
-  font-size: 13px;
-  font-weight: 650;
+  color: var(--ink);
+  font-size: 12px;
 }
 
 .apriltag-preview {
