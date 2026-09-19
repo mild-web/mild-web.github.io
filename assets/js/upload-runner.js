@@ -9,9 +9,10 @@ const uploadSubmit = document.getElementById("uploadSubmit");
 const uploadStatus = document.getElementById("uploadStatus");
 const uploadArtifacts = document.getElementById("uploadArtifacts");
 
-const UPLOAD_API_STORAGE_KEY = "mildUploadApiBase";
 const UPLOAD_JOB_STORAGE_KEY = "mildUploadLastJob";
 let uploadPollTimer = null;
+let serviceReady = false;
+let uploadPollEpoch = 0;
 
 function normalizeApiBase(value) {
   return String(value || "").trim().replace(/\/+$/, "");
@@ -39,18 +40,28 @@ function renderArtifacts(apiBase, job) {
     return;
   }
   const title = document.createElement("strong");
-  title.textContent = "Available outputs";
+  title.textContent = job.processing_mode === "mock" ? "Test trajectory (mock)" : "Trajectory";
   const list = document.createElement("div");
   list.className = "upload-artifact-list";
   for (const name of names) {
     const link = document.createElement("a");
     link.href = artifactUrl(apiBase, urls[name]);
-    link.textContent = name;
+    link.textContent = name === "trajectory.tum" ? "Download TUM" : "Download ZIP";
     link.target = "_blank";
     link.rel = "noopener";
     list.append(link);
   }
-  uploadArtifacts.replaceChildren(title, list);
+  const returnLink = document.createElement("a");
+  const resultPage = new URL(window.location.href);
+  resultPage.searchParams.set("job", job.job_id);
+  resultPage.hash = "upload-x5-data";
+  returnLink.href = resultPage.href;
+  returnLink.textContent = "Keep this result link";
+  returnLink.className = "upload-result-link";
+  const note = document.createElement("small");
+  note.className = "upload-result-note";
+  note.textContent = "Anyone with the result link can view this trajectory. Raw recordings are not downloadable.";
+  uploadArtifacts.replaceChildren(title, list, returnLink, note);
   uploadArtifacts.hidden = false;
 }
 
@@ -63,29 +74,37 @@ async function fetchJob(apiBase, jobId) {
 }
 
 function stopUploadPolling() {
+  uploadPollEpoch += 1;
   if (uploadPollTimer) {
-    window.clearInterval(uploadPollTimer);
+    window.clearTimeout(uploadPollTimer);
     uploadPollTimer = null;
   }
 }
 
-async function pollJob(apiBase, jobId) {
+async function pollJob(apiBase, jobId, epoch) {
   try {
     const job = await fetchJob(apiBase, jobId);
+    if (epoch !== uploadPollEpoch) return;
     const status = job.status || "unknown";
     const label = status.charAt(0).toUpperCase() + status.slice(1);
-    setUploadStatus(`${label}: job ${jobId}`, status);
+    const modeNote = job.processing_mode === "mock" ? " · Mock test output" : "";
+    const summary = job.trajectory_summary;
+    const resultNote = summary ? ` · ${summary.poses} poses · ${summary.output_hz.toFixed(2)} Hz output` : "";
+    setUploadStatus(`${label}: job ${jobId}${modeNote}${resultNote}`, status);
     renderArtifacts(apiBase, job);
     if (status === "succeeded" || status === "failed") {
       stopUploadPolling();
-      uploadSubmit.disabled = false;
+      uploadSubmit.disabled = !serviceReady;
       if (status === "failed" && job.error) {
         setUploadStatus(`Failed: ${job.error}`, "failed");
       }
+    } else {
+      uploadPollTimer = window.setTimeout(() => pollJob(apiBase, jobId, epoch), 2200);
     }
   } catch (error) {
+    if (epoch !== uploadPollEpoch) return;
     stopUploadPolling();
-    uploadSubmit.disabled = false;
+    uploadSubmit.disabled = !serviceReady;
     setUploadStatus(error.message, "failed");
   }
 }
@@ -93,15 +112,18 @@ async function pollJob(apiBase, jobId) {
 function startUploadPolling(apiBase, jobId) {
   stopUploadPolling();
   window.localStorage.setItem(UPLOAD_JOB_STORAGE_KEY, JSON.stringify({ apiBase, jobId }));
-  pollJob(apiBase, jobId);
-  uploadPollTimer = window.setInterval(() => pollJob(apiBase, jobId), 2200);
+  const page = new URL(window.location.href);
+  page.searchParams.set("job", jobId);
+  window.history.replaceState(null, "", page);
+  uploadSubmit.disabled = true;
+  pollJob(apiBase, jobId, uploadPollEpoch);
 }
 
 async function submitUpload(event) {
   event.preventDefault();
   const apiBase = normalizeApiBase(uploadApiBase?.value);
-  if (!apiBase) {
-    setUploadStatus("Please set the API endpoint.", "failed");
+  if (!apiBase || !serviceReady) {
+    setUploadStatus("The processing service is not available yet. Please try again later.", "failed");
     return;
   }
   const file = uploadRecording?.files?.[0];
@@ -114,7 +136,10 @@ async function submitUpload(event) {
     return;
   }
 
-  window.localStorage.setItem(UPLOAD_API_STORAGE_KEY, apiBase);
+  if (!file.name.toLowerCase().endsWith(".zip") || file.size > 2 * 1024 ** 3) {
+    setUploadStatus("Choose an X5 SDK ZIP package no larger than 2 GiB.", "failed");
+    return;
+  }
   const formData = new FormData();
   formData.append("recording", file);
   formData.append("consent", "true");
@@ -142,17 +167,45 @@ async function submitUpload(event) {
   }
 }
 
-function restoreUploadPanel() {
+async function restoreUploadPanel() {
   if (!uploadForm) return;
-  const storedApiBase = window.localStorage.getItem(UPLOAD_API_STORAGE_KEY);
-  if (storedApiBase && uploadApiBase) {
-    uploadApiBase.value = storedApiBase;
+  const configured = normalizeApiBase(window.MILD_SERVICE?.apiBase);
+  const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
+  const apiBase = configured || (isLocal ? window.location.origin : "");
+  if (!apiBase) {
+    setUploadStatus("Hosted processing is not available yet. This page will enable uploads when the service is ready.", "idle");
+    return;
+  }
+  uploadApiBase.value = apiBase;
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(`${apiBase}/api/health`, { signal: controller.signal });
+    const health = await response.json();
+    if (!response.ok) {
+      throw new Error("The processing API is unavailable. Please try again later.");
+    }
+    serviceReady = Boolean(health.ready && health.real_command_configured && !health.mock_without_command);
+    uploadSubmit.disabled = !serviceReady;
+    setUploadStatus(serviceReady ? "Service ready. Choose your X5 SDK package to begin." : "Processing is temporarily unavailable. Saved results can still be viewed.");
+  } catch (error) {
+    setUploadStatus(error.name === "AbortError" ? "The processing service did not respond. Please try again later." : error.message, "failed");
+    return;
+  } finally {
+    window.clearTimeout(timeout);
+  }
+  const linkedJob = new URL(window.location.href).searchParams.get("job");
+  if (linkedJob && /^[a-f0-9]{32}$/.test(linkedJob)) {
+    uploadForm.closest(".section")?.querySelector('.section-toggle[aria-expanded="false"]')?.click();
+    document.getElementById("upload-x5-data")?.scrollIntoView();
+    startUploadPolling(apiBase, linkedJob);
+    return;
   }
   const lastJobRaw = window.localStorage.getItem(UPLOAD_JOB_STORAGE_KEY);
   if (lastJobRaw) {
     try {
       const lastJob = JSON.parse(lastJobRaw);
-      if (lastJob.apiBase && lastJob.jobId) {
+      if (lastJob.apiBase === apiBase && /^[a-f0-9]{32}$/.test(lastJob.jobId || "")) {
         setUploadStatus(`Last job: ${lastJob.jobId}. Polling status…`, "queued");
         startUploadPolling(lastJob.apiBase, lastJob.jobId);
       }

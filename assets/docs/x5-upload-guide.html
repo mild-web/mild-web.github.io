@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X5 recording guide · MILD / AprilVINS</title>
+  <style>body{font:17px/1.65 system-ui,sans-serif;color:#183047;background:#fafbfd;margin:40px auto;padding:0 24px;max-width:800px}h1,h2{line-height:1.25}a{color:#17679b}code,pre{background:#edf1f5}pre{padding:20px;overflow:auto;border-radius:10px}.note{border-left:4px solid #367ca4;padding-left:18px}</style>
+</head>
+<body>
+  <p><a href="../../index.html#upload-x5-data">← Back to MILD / AprilVINS</a></p>
+  <h1>From an X5 recording to a trajectory</h1>
+  <p>The first service version processes calibrated Insta360 X5 SDK captures. It estimates the camera's IMU/body trajectory from AprilTags and inertial measurements.</p>
+  <h2>1. Record supported data</h2>
+  <ul>
+    <li>Use unstitched dual-fisheye SDK capture at 3840 × 1920, 30 fps. Keep <code>stream_0.h264</code>, <code>video_packets.csv</code> and <code>imu.csv</code>.</li>
+    <li>Place static <code>tagCustom48h12</code> markers and measure their printed border size in meters. All markers in this version must have the same size.</li>
+    <li>Include views containing multiple markers together so their relative positions can be determined. Keep usable tags visible regularly; this version rejects visual gaps longer than 3 seconds.</li>
+    <li>Use recordings up to 120 seconds (at most 3600 frames). MP4/INSV exports alone do not contain the required synchronized input.</li>
+  </ul>
+  <h2>2. Include your calibration</h2>
+  <p>Provide polynomial fisheye intrinsics for both lenses, the rigid camera-to-IMU transforms, and the calibrated camera/IMU time offset. Use calibration for your device and recording resolution. Another camera's calibration can produce an inaccurate trajectory even when processing succeeds.</p>
+  <h2>3. Prepare the ZIP</h2>
+  <p>The SDK folder must be packaged with metadata and calibration. <a href="../tools/make_raw_package.py" download>Download the Python packager</a> (Python 3, no additional packages). The package format is <code>mild.x5.sdk.raw.v1</code>. Do not include robot logs, GT, existing trajectories, or unrelated files.</p>
+  <pre>python3 make_raw_package.py \
+  --raw /path/to/sdk-recording \
+  --calibration /path/to/calibration \
+  --calibration-description "Calibration for my camera" \
+  --camera-imu-td YOUR_CALIBRATED_OFFSET_SECONDS \
+  --tag-size YOUR_MEASURED_TAG_SIZE_METERS \
+  --output x5-recording.zip</pre>
+  <pre>metadata.json
+sensor.json
+calibration/cam0.yaml
+calibration/cam1.yaml
+calibration/extrinsics.yaml
+data/stream_0.h264
+data/video_packets.csv
+data/imu.csv</pre>
+  <p>The ZIP and its expanded contents must each fit within 2 GiB. Upload it from the project page, enter the same measured tag size, and review the data-use agreement before starting.</p>
+  <h2>4. Read your result</h2>
+  <p>The download is <code>trajectory.tum</code>, or a ZIP containing only that file. Each row is:</p>
+  <pre>timestamp tx ty tz qx qy qz qw</pre>
+  <p>Positions are in meters. The quaternion describes the IMU/body orientation in the local map. Time is in seconds from the first video SDK timestamp. The world frame is a tag selected from the recording; it is not an absolute geographic or robot frame. A separate rigid calibration is needed to express the result at a tool tip.</p>
+  <p>Output is sampled at approximately 10 Hz. Processing is offline and may take several minutes. A few boundary frames may be omitted when the camera and IMU start or stop at different times; missing IMU is not fabricated.</p>
+  <p class="note">A completed job means the estimator produced a valid trajectory. It does not establish an accuracy guarantee for your recording. The team retains consented uploads for review and algorithm development; estimated trajectories are not automatically treated as ground truth.</p>
+</body>
+</html>

@@ -1478,3 +1478,15 @@ select {
     bottom: 16px;
   }
 }
+.upload-result-link,
+.upload-result-note {
+  display: block;
+  margin-top: 8px;
+}
+
+.upload-guide-link,
+.upload-result-link {
+  color: #2358e7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
