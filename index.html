@@ -15,7 +15,7 @@
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-dynamic-v7"></script>
   <script defer src="assets/js/service-config.js?v=20260919-raw-v1"></script>
-  <script defer src="assets/js/upload-runner.js?v=20260919-durable-v1"></script>
+  <script defer src="assets/js/upload-runner.js?v=20260919-retry-v2"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -191,11 +191,11 @@
         <section id="calibrate-sensors">
           <h3>Calibrate sensors</h3>
           <p>Calibrate camera intrinsics, IMU intrinsics, and camera-to-IMU extrinsics for each camera route.</p>
-          <p>• If you use an Insta360 X5, you can start from the provided calibration/configuration file.</p>
+          <p>Use calibration for your own device and capture resolution. The upload guide lists the required calibration files.</p>
         </section>
         <section id="configure-files">
           <h3>Configure files</h3>
-          <p>Update camera, IMU, tag-size, and output-promotion parameters.</p>
+          <p>Package the SDK video, timestamps, IMU measurements, calibration, and measured tag size using the upload guide.</p>
         </section>
         <section id="upload-x5-data">
           <h3>Upload X5 data</h3>

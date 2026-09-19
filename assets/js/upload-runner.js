@@ -66,11 +66,19 @@ function renderArtifacts(apiBase, job) {
 }
 
 async function fetchJob(apiBase, jobId) {
-  const response = await fetch(`${apiBase}/api/jobs/${jobId}`);
-  if (!response.ok) {
-    throw new Error(`Status request failed: ${response.status}`);
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(`${apiBase}/api/jobs/${jobId}`, { signal: controller.signal });
+    if (!response.ok) {
+      const error = new Error(`Status request failed: ${response.status}`);
+      error.status = response.status;
+      throw error;
+    }
+    return await response.json();
+  } finally {
+    window.clearTimeout(timeout);
   }
-  return response.json();
 }
 
 function stopUploadPolling() {
@@ -81,7 +89,7 @@ function stopUploadPolling() {
   }
 }
 
-async function pollJob(apiBase, jobId, epoch) {
+async function pollJob(apiBase, jobId, epoch, failures = 0) {
   try {
     const job = await fetchJob(apiBase, jobId);
     if (epoch !== uploadPollEpoch) return;
@@ -103,9 +111,15 @@ async function pollJob(apiBase, jobId, epoch) {
     }
   } catch (error) {
     if (epoch !== uploadPollEpoch) return;
-    stopUploadPolling();
-    uploadSubmit.disabled = !serviceReady;
-    setUploadStatus(error.message, "failed");
+    if ([401, 403, 404, 410].includes(error.status)) {
+      stopUploadPolling();
+      uploadSubmit.disabled = !serviceReady;
+      setUploadStatus("This result link is unavailable. Check that the link is complete.", "unavailable");
+      return;
+    }
+    setUploadStatus("Status is temporarily unavailable. Your job may still be running; reconnecting…", "waiting");
+    const retryMs = Math.min(30000, 2200 * 2 ** Math.min(failures, 4));
+    uploadPollTimer = window.setTimeout(() => pollJob(apiBase, jobId, epoch, failures + 1), retryMs);
   }
 }
 
