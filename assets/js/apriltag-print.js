@@ -1,7 +1,7 @@
 const TAG_PREVIEW_LIMIT = 32;
 const MM_TO_PT = 72 / 25.4;
 const A4 = { width: 210 * MM_TO_PT, height: 297 * MM_TO_PT };
-const TAG_IMAGE_WIDTH_PT = 180 * MM_TO_PT;
+const TAG_IMAGE_WIDTH_PT = window.TAG_CUSTOM48H12.printedImageWidthMm * MM_TO_PT;
 
 const tagCountInput = document.getElementById("apriltagCountInput");
 const tagDownload = document.getElementById("apriltagDownload");
@@ -133,7 +133,7 @@ function updateAprilTagDownload() {
   const label = countLabel(count);
   tagDownload.disabled = false;
   tagDownload.setAttribute("aria-label", `Generate ${family().name} A4 PDF for ${count} tags`);
-  tagPrintNote.textContent = `Family: ${family().name}. ${label}. Print at 100% / actual size on A4 paper. Large PDFs may take time to generate.`;
+  tagPrintNote.textContent = `Family: ${family().name}. ${label}. Print at 100% / actual size on A4 paper. Detection border: ${family().printedWidthAtBorderMm} mm; this is already set in the service.`;
   tagPreviewCount.textContent = `${count} ${count === 1 ? "tag" : "tags"}`;
   renderTagGrid(count);
 }

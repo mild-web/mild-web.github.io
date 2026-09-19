@@ -13,7 +13,7 @@
   <h2>1. Record supported data</h2>
   <ul>
     <li>Use unstitched dual-fisheye SDK capture at 3840 × 1920, 30 fps. Keep <code>stream_0.h264</code>, <code>video_packets.csv</code> and <code>imu.csv</code>.</li>
-    <li>Place static <code>tagCustom48h12</code> markers and measure their printed border size in meters. All markers in this version must have the same size.</li>
+    <li>Use the AprilTags from <a href="../../index.html#print-apriltags">Prepare AprilTags</a>. Print at 100% / actual size on A4, with no scaling. The 180 mm image has a 108 mm detection border; this size is already set in the service and packager.</li>
     <li>Include views containing multiple markers together so their relative positions can be determined. Keep usable tags visible regularly; this version rejects visual gaps longer than 3 seconds.</li>
     <li>Use recordings up to 120 seconds (at most 3600 frames). MP4/INSV exports alone do not contain the required synchronized input.</li>
   </ul>
@@ -26,7 +26,6 @@
   --calibration /path/to/calibration \
   --calibration-description "Calibration for my camera" \
   --camera-imu-td YOUR_CALIBRATED_OFFSET_SECONDS \
-  --tag-size YOUR_MEASURED_TAG_SIZE_METERS \
   --output x5-recording.zip</pre>
   <pre>metadata.json
 sensor.json
@@ -36,12 +35,15 @@ calibration/extrinsics.yaml
 data/stream_0.h264
 data/video_packets.csv
 data/imu.csv</pre>
-  <p>The ZIP and its expanded contents must each fit within 2 GiB. Upload it from the project page, enter the same measured tag size, and review the data-use agreement before starting.</p>
+  <p>The ZIP and its expanded contents must each fit within the service’s 2 GiB application limit. Choose your ZIP and agree to data retention to upload it. The service checks required files, camera calibration, video/IMU timing and every video frame. If a check fails, the upload panel explains what to fix. Conversion starts only when all checks pass and you click <strong>Convert to trajectory</strong>.</p>
   <h2>4. Read your result</h2>
+  <p>After conversion, drag the 3D trajectory to rotate it, Shift-drag to pan, or scroll to zoom. On a touch screen, use one finger to rotate and two fingers to pan or zoom. The download button becomes available when the trajectory is complete.</p>
   <p>The download is <code>trajectory.tum</code>, or a ZIP containing only that file. Each row is:</p>
   <pre>timestamp tx ty tz qx qy qz qw</pre>
   <p>Positions are in meters. The quaternion describes the IMU/body orientation in the local map. Time is in seconds from the first video SDK timestamp. The world frame is a tag selected from the recording; it is not an absolute geographic or robot frame. A separate rigid calibration is needed to express the result at a tool tip.</p>
   <p>Output is sampled at approximately 10 Hz. Processing is offline and may take several minutes. A few boundary frames may be omitted when the camera and IMU start or stop at different times; missing IMU is not fabricated.</p>
-  <p class="note">A completed job means the estimator produced a valid trajectory. It does not establish an accuracy guarantee for your recording. The team retains consented uploads for review and algorithm development; estimated trajectories are not automatically treated as ground truth.</p>
+  <p class="note">Passing the checks confirms that the input files are readable and structurally consistent. Conversion can still fail if usable tags are absent or initialization cannot complete. A completed trajectory is an estimate, not an accuracy guarantee for your recording.</p>
+  <h2 id="data-use">Data use</h2>
+  <p>Before uploading, confirm that you are authorized to share the recording and allow the MILD / AprilVINS team to retain the input and results for research and algorithm development. Estimated trajectories are reviewed before research use and are not automatically treated as ground truth. Anyone with a result link can view its trajectory; raw recordings are not available through the public API.</p>
 </body>
 </html>

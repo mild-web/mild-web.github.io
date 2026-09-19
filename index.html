@@ -7,15 +7,17 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260919-durable-v1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
+  <link rel="stylesheet" href="assets/css/localization.css?v=20260919-simple-v1">
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
-  <script defer src="assets/js/apriltag-print.js?v=20260918-apriltag-dynamic-v7"></script>
-  <script defer src="assets/js/service-config.js?v=20260919-raw-v1"></script>
-  <script defer src="assets/js/upload-runner.js?v=20260919-retry-v2"></script>
+  <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
+  <script defer src="assets/js/service-config.js?v=20260919-simple-v1"></script>
+  <script defer src="assets/js/trajectory-viewer.js?v=20260919-simple-v1"></script>
+  <script defer src="assets/js/upload-runner.js?v=20260919-simple-v1"></script>
 </head>
 <body>
   <header id="top" class="hero">
@@ -38,10 +40,7 @@
       <summary>Start your own millimeter-level UMI localization</summary>
       <div class="contents-subitems">
         <a href="#print-apriltags">Prepare AprilTags</a>
-        <a href="#calibrate-sensors">Calibrate sensors</a>
-        <a href="#configure-files">Configure files</a>
         <a href="#upload-x5-data">Upload X5 data</a>
-        <a href="#run-code">Run code</a>
       </div>
     </details>
   </nav>
@@ -158,9 +157,7 @@
           <button class="section-toggle" type="button" aria-expanded="true" aria-controls="start-localization-content" aria-label="Collapse start your own millimeter-level UMI localization"></button>
         </p>
         <p>
-          This guide shows how to use AprilVINS to prepare tags, calibrate
-          sensors, configure files, and run millimeter-level localization for
-          UMI-style manipulation teaching.
+          Print the tags, upload a calibrated X5 recording, and get your trajectory.
         </p>
       </div>
       <div class="section-content setup-steps" id="start-localization-content">
@@ -188,50 +185,47 @@
           </div>
           <p class="apriltag-placement-note">• After printing, mount the tags on small indicator stands or attach them within the camera field of view.</p>
         </section>
-        <section id="calibrate-sensors">
-          <h3>Calibrate sensors</h3>
-          <p>Calibrate camera intrinsics, IMU intrinsics, and camera-to-IMU extrinsics for each camera route.</p>
-          <p>Use calibration for your own device and capture resolution. The upload guide lists the required calibration files.</p>
-        </section>
-        <section id="configure-files">
-          <h3>Configure files</h3>
-          <p>Package the SDK video, timestamps, IMU measurements, calibration, and measured tag size using the upload guide.</p>
-        </section>
         <section id="upload-x5-data">
-          <h3>Upload X5 data</h3>
-          <p>Turn a calibrated X5 recording into a trajectory. Upload your SDK video and IMU package, wait for processing, and download the result in TUM format.</p>
-          <p>This first version supports unstitched 3840 × 1920 X5 SDK recordings with tagCustom48h12 markers, up to 120 seconds. Include the camera calibration and actual printed tag size. Ordinary MP4 and INSV exports are not supported.</p>
-          <p><a class="upload-guide-link" href="assets/docs/x5-upload-guide.html">Recording and package guide</a> · The trajectory describes the IMU/body pose in a local tag frame, in meters, at about 10 Hz. Processing runs offline; this is not a real-time tracking service.</p>
-          <form class="upload-runner-panel" id="uploadRunnerForm">
-            <input id="uploadApiBase" type="hidden" value="">
-            <label class="upload-field">
-              <span>Email (optional)</span>
-              <input id="uploadEmail" name="email" type="email" placeholder="for follow-up about your contribution">
-            </label>
-            <label class="upload-field">
-              <span>Tag size at border (m)</span>
-              <input id="uploadTagSize" name="tag_size_m" type="number" min="0.001" step="0.001" value="0.108">
-            </label>
-            <label class="upload-field upload-file-field">
-              <span>X5 SDK recording package (.zip)</span>
-              <input id="uploadRecording" name="recording" type="file" accept=".zip">
-            </label>
-            <label class="upload-field upload-notes-field">
-              <span>Notes (optional)</span>
-              <textarea id="uploadNotes" name="notes" rows="3" placeholder="task name, tag count, mounting notes, or known issues"></textarea>
-            </label>
-            <label class="upload-consent">
-              <input id="uploadConsent" name="consent" type="checkbox">
-              <span>I agree that the project team may retain this recording and its results for MILD / AprilVINS research and algorithm development. I am authorized to contribute this recording. Results remain estimates and are reviewed before research use.</span>
-            </label>
-            <button class="button upload-submit" id="uploadSubmit" type="submit" disabled>Upload and run AprilVINS</button>
-            <div class="upload-status" id="uploadStatus" role="status" aria-live="polite">Checking service availability…</div>
-            <div class="upload-artifacts" id="uploadArtifacts" hidden></div>
-          </form>
-        </section>
-        <section id="run-code">
-          <h3>Run code</h3>
-          <p>The hosted service runs AprilVINS for you. Keep the result link to return to your trajectory; downloads contain only the TUM trajectory.</p>
+          <div class="localization-heading">
+            <div><h3>Your recording, in motion</h3><p>Upload → check → convert → explore.</p></div>
+            <span class="service-indicator" id="serviceIndicator" data-state="connecting" role="status">Connecting…</span>
+          </div>
+          <div class="localization-workspace">
+            <form class="recording-panel" id="uploadRunnerForm">
+              <div class="workspace-panel-heading"><span class="workspace-step">01</span><h4>Upload your recording</h4></div>
+              <label class="recording-dropzone" id="uploadDropzone" for="uploadRecording">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 22V5m-6 6 6-6 6 6M6 20v7h20v-7"/></svg>
+                <strong id="uploadFileLabel">Drop your X5 ZIP here</strong>
+                <span id="uploadFileDetail">or click to choose a file</span>
+                <input id="uploadRecording" name="recording" type="file" accept=".zip,application/zip" aria-label="Choose an X5 SDK recording ZIP">
+              </label>
+              <p class="recording-format">X5 SDK video + IMU + calibration · up to 120 s<br><a href="assets/docs/x5-upload-guide.html">How to prepare a recording ↗</a></p>
+              <label class="recording-consent"><input id="uploadConsent" name="consent" type="checkbox"><span>I can share this recording and agree to its retention for MILD / AprilVINS research. <a href="assets/docs/x5-upload-guide.html#data-use">Details</a></span></label>
+              <div class="recording-checks" id="uploadChecks" aria-label="Recording checks">
+                <div data-check="files" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Package contents</strong><small></small></div></div>
+                <div data-check="calibration" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Camera calibration</strong><small></small></div></div>
+                <div data-check="timing" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Video / IMU synchronization</strong><small></small></div></div>
+                <div data-check="video" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Video integrity</strong><small></small></div></div>
+              </div>
+              <p class="recording-status" id="uploadStatus" role="status" aria-live="polite">Choose a recording to begin.</p>
+              <button class="button recording-convert" id="uploadSubmit" type="submit" disabled>Convert to trajectory <span aria-hidden="true">→</span></button>
+            </form>
+            <div class="trajectory-panel">
+              <div class="workspace-panel-heading"><span class="workspace-step">02</span><h4>Explore your trajectory</h4><button type="button" class="trajectory-reset" id="trajectoryReset" hidden>Reset view</button></div>
+              <div class="trajectory-viewport" id="trajectoryViewport" data-state="empty">
+                <canvas id="trajectoryCanvas" hidden tabindex="0" role="img" aria-label="Interactive 3D trajectory. Drag to rotate; Shift-drag to pan; scroll to zoom. Arrow keys rotate, plus and minus zoom, R resets."></canvas>
+                <div class="trajectory-placeholder" id="trajectoryPlaceholder">
+                  <div class="trajectory-empty-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M12 45 32 55 53 44V21L32 10 12 21v24m0-24 20 12 21-12M32 33v22"/><path class="trajectory-icon-line" d="m18 39 8-12 10 16 10-14"/></svg></div>
+                  <span class="trajectory-spinner" aria-hidden="true"></span>
+                  <strong id="trajectoryStateTitle">Your trajectory will appear here</strong>
+                  <p id="trajectoryStateDetail">Check your recording, then click Convert.</p>
+                </div>
+              </div>
+              <div class="trajectory-caption"><span id="trajectorySummary">3D preview · IMU/body position in meters</span><span id="trajectoryControlsHint" hidden>Drag to rotate · Shift-drag to pan · Scroll to zoom</span></div>
+              <div class="trajectory-actions"><a class="button trajectory-download" id="downloadTrajectory" aria-disabled="true" tabindex="-1">Download trajectory <span>TUM ↓</span></a><button class="trajectory-share" id="copyResultLink" type="button" hidden>Copy result link</button></div>
+            </div>
+          </div>
+          <p class="localization-footnote">Use the AprilTags above, printed at 100% / actual size. Processing is offline; your download contains the trajectory only.</p>
         </section>
       </div>
     </section>

@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--calibration", required=True, type=Path, help="Folder with cam0.yaml, cam1.yaml and extrinsics.yaml")
     parser.add_argument("--calibration-description", required=True)
     parser.add_argument("--camera-imu-td", required=True, type=float, help="Calibrated camera-to-IMU offset in seconds")
-    parser.add_argument("--tag-size", required=True, type=float, help="Actual printed tag side length in meters")
+    parser.add_argument("--tag-size", default=0.108, type=float, help="Detection border in meters; the website PDF printed at actual size uses 0.108")
     parser.add_argument("--source-kind", default="user_declared_raw_recording")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
