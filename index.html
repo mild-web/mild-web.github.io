@@ -9,6 +9,8 @@
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
   <link rel="stylesheet" href="assets/css/localization.css?v=20260919-simple-v1">
+  <link rel="stylesheet" href="assets/css/hero-video.css?v=20260923-v8-1">
+  <script defer src="assets/js/hero-video.js?v=20260923-v8-1"></script>
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
@@ -20,16 +22,38 @@
   <script defer src="assets/js/upload-runner.js?v=20260919-simple-v1"></script>
 </head>
 <body>
-  <header id="top" class="hero">
+  <header id="top" class="hero hero-video">
+    <video class="hero-background" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
+      poster="assets/videos/supplementary/hero-v8-poster.jpg"
+      data-src="assets/videos/supplementary/hero-v8-background.mp4"></video>
     <section class="hero-grid">
       <div class="hero-copy">
         <h1>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</h1>
         <p class="hero-tagline">
           Making millimeter-level localization accessible for UMI-style manipulation teaching.
         </p>
+        <div class="hero-actions">
+          <a class="hero-watch" href="assets/videos/supplementary/icra_supplementary_video_v8.mp4" data-open-film>
+            <span aria-hidden="true">&#9654;</span> Watch full video <span class="hero-duration">1:25</span>
+          </a>
+          <button class="hero-motion" type="button" aria-label="Play background video" hidden>
+            <span data-motion-icon aria-hidden="true">&#9654;</span>
+            <span data-motion-label>Play background</span>
+          </button>
+        </div>
       </div>
     </section>
   </header>
+
+  <dialog class="hero-film" aria-labelledby="hero-film-title">
+    <div class="hero-film-bar">
+      <h2 id="hero-film-title">MILD &amp; AprilVINS</h2>
+      <button class="hero-film-close" type="button" aria-label="Close full video">&#215;</button>
+    </div>
+    <video controls playsinline preload="none" aria-label="MILD and AprilVINS supplementary video"
+      data-src="assets/videos/supplementary/icra_supplementary_video_v8.mp4"></video>
+    <p><a href="assets/videos/supplementary/icra_supplementary_video_v8.mp4" download>Download video (MP4, 19 MB)</a></p>
+  </dialog>
 
   <nav class="contents-list" aria-label="Page contents">
     <span class="contents-label">Contents</span>
