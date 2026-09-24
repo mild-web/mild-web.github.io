@@ -10,6 +10,14 @@
   const STORAGE = "mildUploadLastJob";
   const local = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
   const api = String(window.MILD_SERVICE?.apiBase || (local ? location.origin : "")).replace(/\/+$/, "");
+  const restricted = Boolean(window.MILD_SERVICE?.restrictedPilot);
+  const accessPanel = byId("pilotAccess"), accessInput = byId("pilotAccessKey"), accessStatus = byId("pilotAccessStatus");
+  const ACCESS_STORAGE = "mildPilotAccess:" + api;
+  let accessKey = "", authorized = !restricted, pendingRestore = null;
+  if (restricted) {
+    accessPanel.hidden = false;
+    try { accessKey = sessionStorage.getItem(ACCESS_STORAGE) || ""; } catch {}
+  }
   let ready = false, selectedFile = null, job = null, epoch = 0, timer = null, uploading = false, starting = false;
   let maxBytes = 2 * 1024 ** 3, loadedJob = null, previewRequest = null;
 
@@ -21,7 +29,7 @@
     fileInput.disabled = busy; consent.disabled = busy;
     dropzone.dataset.busy = String(busy);
   }
-  function canConvert() { return Boolean(ready && job?.can_convert && consent.checked && !starting && !uploading); }
+  function canConvert() { return Boolean(ready && authorized && job?.can_convert && consent.checked && !starting && !uploading); }
   function updateButton() { convert.disabled = !canConvert(); }
   function showView(state, title, detail) {
     viewport.dataset.state = state; placeholder.hidden = false;
@@ -54,12 +62,17 @@
     history.replaceState(null, "", resultURL(id));
   }
   function stopPolling() { epoch += 1; clearTimeout(timer); timer = null; }
+  function authHeaders(base) {
+    const headers = new Headers(base);
+    if (restricted && accessKey) headers.set("Authorization", "Bearer " + accessKey);
+    return headers;
+  }
 
   async function request(path, options = {}) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch(api + path, { ...options, signal: controller.signal });
+      const response = await fetch(api + path, { ...options, headers: authHeaders(options.headers), signal: controller.signal, credentials: "omit" });
       const body = await response.json().catch(() => ({}));
       if (!response.ok) {
         const error = new Error(typeof body.detail === "string" ? body.detail : `Request could not complete (${response.status}). Please try again.`);
@@ -79,7 +92,7 @@
     const controller = new AbortController(); previewRequest = controller;
     const timeout = setTimeout(() => controller.abort(), 20000);
     try {
-      const response = await fetch(api + tum, { signal: controller.signal });
+      const response = await fetch(api + tum, { headers: authHeaders(), signal: controller.signal, credentials: "omit" });
       if (!response.ok) throw new Error("The preview could not load. You can still download the trajectory.");
       const text = await response.text();
       if (job?.job_id !== result.job_id) return;
@@ -154,6 +167,7 @@
   async function uploadSelected() {
     if (!selectedFile || job || uploading) return;
     if (!consent.checked) { setStatus("Review the data-use agreement to upload and check this recording."); return; }
+    if (!authorized) { setStatus("Verify your pilot access key before uploading. Your file has not been sent.", "waiting"); return; }
     if (!ready) { setStatus("The service is temporarily offline. Your file has not been uploaded.", "waiting"); return; }
     uploading = true; lockInputs(true); updateButton();
     const data = new FormData();
@@ -166,6 +180,7 @@
       const body = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", api + "/api/jobs"); xhr.responseType = "json"; xhr.timeout = 1800000;
+        if (restricted && accessKey) xhr.setRequestHeader("Authorization", "Bearer " + accessKey);
         xhr.upload.onprogress = event => {
           const percent = event.lengthComputable ? Math.round(event.loaded / event.total * 100) : null;
           setStatus(percent === 100 ? "Upload sent. Saving your recording…" : `Uploading${percent !== null ? ` · ${percent}%` : "…"}`, "uploading");
@@ -223,6 +238,49 @@
     } finally { starting = false; updateButton(); }
   });
   byId("trajectoryReset").addEventListener("click", () => viewer.reset());
+  download.addEventListener("click", async event => {
+    event.preventDefault();
+    const path = job?.artifact_urls?.["trajectory.tum"];
+    if (!path || download.getAttribute("aria-disabled") !== "false") return;
+    try {
+      const response = await fetch(api + path, { headers: authHeaders(), credentials: "omit", signal: AbortSignal.timeout(30000) });
+      if (!response.ok) throw new Error("Download unavailable. Check your access key and try again.");
+      const url = URL.createObjectURL(await response.blob());
+      const link = document.createElement("a"); link.href = url; link.download = "trajectory.tum"; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+    } catch (error) { setStatus(error.message, "failed"); }
+  });
+  async function verifyAccess() {
+    if (!restricted) return;
+    const candidate = accessInput.value.trim() || accessKey;
+    if (!/^[A-Za-z0-9_-]{43}$/.test(candidate)) { accessStatus.textContent = "Enter the complete test access key provided by the operator."; return; }
+    accessKey = candidate; authorized = false; updateButton();
+    byId("pilotAccessUnlock").disabled = true;
+    try {
+      await request("/api/session"); authorized = true;
+      try { sessionStorage.setItem(ACCESS_STORAGE, accessKey); } catch {}
+      accessInput.value = ""; accessInput.placeholder = "Access verified for this tab";
+      accessStatus.textContent = "Access verified · up to 256 MiB per upload · limited test quota.";
+      byId("pilotAccessLock").hidden = false;
+      if (pendingRestore) { const id = pendingRestore; pendingRestore = null; watch(id); }
+      else { setStatus("Access verified. Choose a recording to begin."); uploadSelected(); }
+    } catch (error) {
+      authorized = false; accessKey = "";
+      try { sessionStorage.removeItem(ACCESS_STORAGE); } catch {}
+      accessStatus.textContent = error.message;
+    } finally { byId("pilotAccessUnlock").disabled = false; updateButton(); }
+  }
+  byId("pilotAccessUnlock").addEventListener("click", verifyAccess);
+  accessInput.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); verifyAccess(); } });
+  byId("pilotAccessLock").addEventListener("click", () => {
+    if (uploading || starting) { accessStatus.textContent = "Wait for the current request to finish before locking."; return; }
+    pendingRestore = job?.job_id || pendingRestore;
+    stopPolling(); job = null; clearResult(); lockInputs(false);
+    authorized = false; accessKey = ""; accessInput.value = ""; accessInput.placeholder = "Enter your test access key";
+    try { sessionStorage.removeItem(ACCESS_STORAGE); } catch {}
+    byId("pilotAccessLock").hidden = true; accessStatus.textContent = "Session locked. Server-side processing, if already started, continues.";
+    setStatus("Verify your pilot access key to continue.", "waiting"); updateButton();
+  });
   share.addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(resultURL(job.job_id).href); share.textContent = "Link copied"; }
     catch { share.textContent = "Copy the address from your browser"; }
@@ -250,10 +308,12 @@
   if (api && /^[a-f0-9]{32}$/.test(id || "")) {
     setStatus("Restoring your recording…", "waiting");
     byId("uploadFileDetail").textContent = "Restoring saved recording";
-    lockInputs(true); watch(id);
+    if (restricted) { pendingRestore = id; setStatus("Verify your pilot access key to restore this recording.", "waiting"); }
+    else { lockInputs(true); watch(id); }
     if (linked) {
       form.closest(".section")?.querySelector('.section-toggle[aria-expanded="false"]')?.click();
       byId("upload-x5-data").scrollIntoView();
     }
   }
+  if (restricted && accessKey) verifyAccess();
 })();

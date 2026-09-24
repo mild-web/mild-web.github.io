@@ -8,7 +8,7 @@
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
-  <link rel="stylesheet" href="assets/css/localization.css?v=20260919-simple-v1">
+  <link rel="stylesheet" href="assets/css/localization.css?v=20260924-pilot-v1">
   <link rel="stylesheet" href="assets/css/hero-video.css?v=20260923-v8-2">
   <script defer src="assets/js/hero-video.js?v=20260923-v8-1"></script>
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
@@ -17,9 +17,9 @@
   <script defer src="assets/js/replay-matrix.js?v=20260917-title-accent-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
-  <script defer src="assets/js/service-config.js?v=20260919-simple-v1"></script>
+  <script defer src="assets/js/service-config.js?v=20260924-pilot-v1"></script>
   <script defer src="assets/js/trajectory-viewer.js?v=20260919-simple-v1"></script>
-  <script defer src="assets/js/upload-runner.js?v=20260919-simple-v1"></script>
+  <script defer src="assets/js/upload-runner.js?v=20260924-pilot-v1"></script>
 </head>
 <body>
   <header id="top" class="hero hero-video">
@@ -217,6 +217,15 @@
           <div class="localization-workspace">
             <form class="recording-panel" id="uploadRunnerForm">
               <div class="workspace-panel-heading"><span class="workspace-step">01</span><h4>Upload your recording</h4></div>
+              <div class="pilot-access" id="pilotAccess" hidden>
+                <label for="pilotAccessKey">Restricted pilot access</label>
+                <div class="pilot-access-controls">
+                  <input id="pilotAccessKey" type="password" autocomplete="off" spellcheck="false" placeholder="Enter your test access key" aria-describedby="pilotAccessStatus">
+                  <button id="pilotAccessUnlock" type="button">Verify access</button>
+                </div>
+                <small id="pilotAccessStatus" role="status">An access key is required. Never include it in a shared result link.</small>
+                <button id="pilotAccessLock" type="button" hidden>Lock this session</button>
+              </div>
               <label class="recording-dropzone" id="uploadDropzone" for="uploadRecording">
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 22V5m-6 6 6-6 6 6M6 20v7h20v-7"/></svg>
                 <strong id="uploadFileLabel">Drop your X5 ZIP here</strong>
