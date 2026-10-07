@@ -19,7 +19,7 @@ to cloud storage or a real AprilVINS command later through environment variables
 ## Local quick start
 
 ```bash
-cd /media/zjj/Elements/CQU_ZJJ/UMID/Paper/mild_web_github_pages_20260912
+cd /mild_web_github_pages_20260912
 python3 -m venv backend/.venv
 source backend/.venv/bin/activate
 pip install -r backend/requirements.txt
