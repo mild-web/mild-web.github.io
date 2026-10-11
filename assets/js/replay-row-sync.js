@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261011-all15-row-timeline-v1";
+  const VERSION = "20261011-all15-recording-status-v2";
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   // Recover each clip's GT/estimate overlap rather than stretching a partial
@@ -153,7 +153,7 @@
     const cell = element("article", `replay-cell ${fail ? "is-fail" : unavailable ? "is-unavailable" : "is-rendered"}`);
     cell.setAttribute("role", "cell"); cell.dataset.task = item.task_slug; cell.dataset.method = item.method_slug; cell.dataset.status = item.status;
     const meta = element("div", "replay-cell-meta"), metric = element("span", "replay-metric", item.metric || "—");
-    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? "Unavailable" : item.metric_context || "Rendered");
+    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? item.status_title || "Unavailable" : item.metric_context || "Rendered");
     if (item.note || item.metric_context) metric.title = [item.metric_context, item.note].filter(Boolean).join(". ");
     if (item.video) {
       const video = document.createElement("video"); video.setAttribute("aria-label", `${item.task}, ${item.method}. Controlled by the shared task timeline.`);
@@ -162,9 +162,9 @@
       // Missing/invalid evidence is a reason-labelled tile, never a synthetic
       // successful video and never an independent clock or buffering source.
       const panel = element("div", "replay-status-panel"); panel.setAttribute("role", "img");
-      panel.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.status_detail || "No clip available"}`);
-      panel.append(element("strong", "replay-status-title", item.status_title || (fail ? "Fail" : "Unavailable")),
-        element("span", "replay-status-detail", item.status_detail || "No clip available"));
+      panel.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.status_detail || item.status_title || "No clip available"}`);
+      panel.append(element("strong", "replay-status-title", item.status_title || (fail ? "Fail" : "Unavailable")));
+      if (item.status_detail) panel.append(element("span", "replay-status-detail", item.status_detail));
       cell.appendChild(panel);
     }
     meta.append(metric, badge); cell.append(meta, element("div", "replay-recording-label", item.recording_label || "")); return cell;

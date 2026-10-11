@@ -15,7 +15,7 @@
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
-  <script defer src="assets/js/replay-row-sync.js?v=20261011-all15-row-timeline-v1"></script>
+  <script defer src="assets/js/replay-row-sync.js?v=20261011-all15-recording-status-v2"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
   <script defer src="assets/js/service-config.js?v=20260924-pilot-v1"></script>
@@ -169,6 +169,12 @@
           Each row shares one playback timeline, with a scene recording in the
           task column. Separate scene and sensor recordings are synchronized
           by normalized reference-trajectory progress, not by absolute time.
+        </p>
+        <p class="comparison-recording-note">
+          For Box 02, <span class="inline-code">Recording interrupted</span>
+          indicates a device-connection interruption before the task began:
+          camera, IMU, and SDK VIO recording stopped together. This entry does
+          not indicate an estimator tracking failure.
         </p>
       </div>
       <div class="section-content" id="event-zooms-content">

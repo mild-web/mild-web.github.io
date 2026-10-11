@@ -47,11 +47,17 @@ test("recording/pipeline/evaluation issues are distinct from no trajectory outpu
     assert.equal(item.video, undefined); assert.equal(item.metric, "—");
     assert.equal(get(`pick_and_place${n}`, "insight9_sdk_vio").status, "rendered");
   }
-  assert.equal(get("box02", "insight9_sdk_vio").status, "evaluation_unavailable");
+  const interrupted = get("box02", "insight9_sdk_vio");
+  assert.equal(interrupted.status, "recording_interrupted");
+  assert.equal(interrupted.status_title, "Recording interrupted");
+  assert.equal(interrupted.status_detail, "");
+  assert.match(interrupted.note, /camera, IMU and SDK VIO recording stopped together/);
+  assert.equal(interrupted.metric, "—");
+  assert.equal(interrupted.video, undefined);
   assert.equal(get("pick_and_place01", "ucoslam").status, "pipeline_failed");
   assert.equal(get("pick_and_place01", "openvins_aruco").status, "no_trajectory");
   assert.equal(manifest.items.filter(i => i.video).length, 84);
-  for (const item of manifest.items.filter(i => !i.video)) { assert(item.status_detail); assert.equal(item.timeline, undefined); }
+  for (const item of manifest.items.filter(i => !i.video)) { assert(item.status_detail || item.note); assert.equal(item.timeline, undefined); }
 });
 test("new AprilVINS rows use the final all15 packet and preserve partial baseline spans", () => {
   for (const slug of ["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]) {

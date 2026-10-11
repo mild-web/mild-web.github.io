@@ -81,7 +81,12 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('.replay-cell.is-fail').length"), 4);
   assert.equal(await evaluate("document.querySelectorAll('.replay-status-panel').length"), 6);
   assert.equal(await evaluate("document.querySelectorAll('[data-status=recording_invalid]').length"), 3);
-  assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio] .replay-status-detail').textContent === 'No valid time association'"));
+  assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio]').dataset.status === 'recording_interrupted'"));
+  assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio] .replay-status-title').textContent === 'Recording interrupted'"));
+  assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio] .replay-badge').textContent === 'Recording interrupted'"));
+  assert(await evaluate("!document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio] .replay-status-detail')"));
+  assert(await evaluate("document.querySelector('.comparison-recording-note').textContent.includes('camera, IMU, and SDK VIO recording stopped together')"));
+  assert(await evaluate("!document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio]').classList.contains('is-fail')"));
   assert(await evaluate("document.querySelector('.event-video-section strong').textContent === 'APE RMSE (m) / time completion'"));
   report.checks.push("15 task rows, 90 method cells, 84 clips and 6 reason-labelled status tiles");
   await evaluate("document.querySelector('.replay-row[data-task]').scrollIntoView({block:'center'}); window.row = document.querySelector('.replay-row[data-task]'); window.shell = document.getElementById('replayMatrixShell');");

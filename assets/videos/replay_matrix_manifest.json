@@ -1,5 +1,5 @@
 {
-  "version": "20261011-all15",
+  "version": "20261011-all15-recording-interrupted",
   "description": "Event-zoom replay matrix. Event insets use a +/-1 s window and draw interpolated GT trajectories with faint raw GT samples. AprilVINS(Ours) uses the 20260908 Orion final guarded IMU all15 trajectories.",
   "task_order": [
     {
@@ -2189,15 +2189,15 @@
       "method_slug": "insight9_sdk_vio",
       "sequence": "box02__aruco_4__insight9",
       "metric": "—",
-      "status": "evaluation_unavailable",
+      "status": "recording_interrupted",
       "event_count": "",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "",
+      "note": "The device connection was interrupted before the task reference began; camera, IMU and SDK VIO recording stopped together. This is a recording issue, not an estimator tracking failure.",
       "recording_label": "ArUco 4 · Insight9",
       "metric_context": "Auxiliary diagnostic",
-      "status_title": "Unavailable",
-      "status_detail": "No valid time association"
+      "status_title": "Recording interrupted",
+      "status_detail": ""
     },
     {
       "task": "Box 02",
@@ -2632,6 +2632,6 @@
       }
     }
   ],
-  "playback_version": "20261011-all15-row-timeline-v1",
+  "playback_version": "20261011-all15-recording-status-v2",
   "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; separate recordings share normalized reference progress, not a common absolute timestamp."
 }
