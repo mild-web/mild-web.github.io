@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261011-row-timeline-v1";
+  const VERSION = "20261011-all15-row-timeline-v1";
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   // Recover each clip's GT/estimate overlap rather than stretching a partial
@@ -120,7 +120,7 @@
       const rate = clamp(target.rate * this.speed, 0.0625, 16);
       if (Math.abs(video.playbackRate - rate) > 1e-6) video.playbackRate = rate;
       if (clip.badge && clip.item.status === "rendered") {
-        clip.badge.textContent = target.phase || "Rendered"; clip.badge.classList.toggle("is-ended", Boolean(target.phase));
+        clip.badge.textContent = target.phase || clip.item.metric_context || "Rendered"; clip.badge.classList.toggle("is-ended", Boolean(target.phase));
       }
       const canRun = this.visible && !this.paused && !this.scrubbing && !document.hidden && target.inside;
       // Buffering holds the shared clock and buffered peers; the waiting clip
@@ -149,14 +149,25 @@
   }
 
   function videoCell(item, row) {
-    const fail = item.status === "fail_video_table_cross", unavailable = item.status === "visualization_blocked";
+    const fail = ["fail_video_table_cross", "no_trajectory"].includes(item.status), unavailable = item.status !== "rendered" && !fail;
     const cell = element("article", `replay-cell ${fail ? "is-fail" : unavailable ? "is-unavailable" : "is-rendered"}`);
-    cell.setAttribute("role", "cell"); cell.dataset.task = item.task_slug; cell.dataset.method = item.method_slug;
-    const video = document.createElement("video"); video.setAttribute("aria-label", `${item.task}, ${item.method}. Controlled by the shared task timeline.`);
+    cell.setAttribute("role", "cell"); cell.dataset.task = item.task_slug; cell.dataset.method = item.method_slug; cell.dataset.status = item.status;
     const meta = element("div", "replay-cell-meta"), metric = element("span", "replay-metric", item.metric || "—");
-    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? "Unavailable" : "Rendered");
-    meta.append(metric, badge); cell.append(video, meta, element("div", "replay-recording-label", item.recording_label || ""));
-    row.addVideo(video, item, badge); return cell;
+    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? "Unavailable" : item.metric_context || "Rendered");
+    if (item.note || item.metric_context) metric.title = [item.metric_context, item.note].filter(Boolean).join(". ");
+    if (item.video) {
+      const video = document.createElement("video"); video.setAttribute("aria-label", `${item.task}, ${item.method}. Controlled by the shared task timeline.`);
+      cell.appendChild(video); row.addVideo(video, item, badge);
+    } else {
+      // Missing/invalid evidence is a reason-labelled tile, never a synthetic
+      // successful video and never an independent clock or buffering source.
+      const panel = element("div", "replay-status-panel"); panel.setAttribute("role", "img");
+      panel.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.status_detail || "No clip available"}`);
+      panel.append(element("strong", "replay-status-title", item.status_title || (fail ? "Fail" : "Unavailable")),
+        element("span", "replay-status-detail", item.status_detail || "No clip available"));
+      cell.appendChild(panel);
+    }
+    meta.append(metric, badge); cell.append(meta, element("div", "replay-recording-label", item.recording_label || "")); return cell;
   }
   function build(data) {
     if (data.playback_version !== VERSION) throw new Error("Playback mapping is missing or stale.");

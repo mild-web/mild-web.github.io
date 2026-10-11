@@ -1,5 +1,5 @@
 {
-  "version": "20260913-event-gt-interp-1s-v1",
+  "version": "20261011-all15",
   "description": "Event-zoom replay matrix. Event insets use a +/-1 s window and draw interpolated GT trajectories with faint raw GT samples. AprilVINS(Ours) uses the 20260908 Orion final guarded IMU all15 trajectories.",
   "task_order": [
     {
@@ -271,6 +271,138 @@
             "start_fraction": 0.000124185,
             "end_fraction": 0.999778858,
             "reference_duration_s": 88.730667591,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
+    },
+    {
+      "slug": "box02",
+      "label": "Box 02",
+      "scenes": [
+        {
+          "sequence": "box02__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/box02__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/box02__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000081652,
+            "end_fraction": 0.999965693,
+            "reference_duration_s": 198.857059002,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "box02__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/box02__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/box02__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000160649,
+            "end_fraction": 0.999969704,
+            "reference_duration_s": 201.341445207,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
+    },
+    {
+      "slug": "pick_and_place01",
+      "label": "Pick-and-place 01",
+      "scenes": [
+        {
+          "sequence": "grab_place01_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place01__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place01__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000233807,
+            "end_fraction": 0.999685375,
+            "reference_duration_s": 86.401385069,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place01_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place01__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place01__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000033938,
+            "end_fraction": 0.999735304,
+            "reference_duration_s": 86.513835907,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
+    },
+    {
+      "slug": "pick_and_place02",
+      "label": "Pick-and-place 02",
+      "scenes": [
+        {
+          "sequence": "grab_place02_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place02__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place02__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000015081,
+            "end_fraction": 0.999674222,
+            "reference_duration_s": 80.942589999,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place02_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place02__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place02__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000295675,
+            "end_fraction": 0.999748081,
+            "reference_duration_s": 80.893296718,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
+    },
+    {
+      "slug": "pick_and_place03",
+      "label": "Pick-and-place 03",
+      "scenes": [
+        {
+          "sequence": "grab_place03_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place03__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place03__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000452031,
+            "end_fraction": 0.999532822,
+            "reference_duration_s": 62.754684687,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place03_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place03__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place03__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000324665,
+            "end_fraction": 0.99994511,
+            "reference_duration_s": 62.152590274,
             "video_duration_s": 16,
             "last_frame_s": 15.95
           }
@@ -1980,8 +2112,526 @@
         "video_duration_s": 16,
         "last_frame_s": 15.95
       }
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "sequence": "box02__apriltag_4__insta360_x5",
+      "metric": "0.0896/1.00",
+      "status": "rendered",
+      "event_count": "4",
+      "event_planes": "Pick 1:XY;Place 1:XY;Pick 2:YZ;Place 2:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/box02__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box02__tagslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.000081653,
+        "end_fraction": 0.999965695,
+        "reference_duration_s": 198.857059002,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "sequence": "box02__aruco_4__insta360_x5",
+      "metric": "0.3342/0.56",
+      "status": "rendered",
+      "event_count": "0",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "Partial trajectory from a timeout run; original time coverage is retained.",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/box02__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box02__ucoslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.15776357,
+        "end_fraction": 0.714926552,
+        "reference_duration_s": 201.341445207,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "sequence": "box02__aruco_4__insta360_x5",
+      "metric": "0.5260/0.18",
+      "status": "rendered",
+      "event_count": "0",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/box02__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box02__openvins_aruco_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.04320759,
+        "end_fraction": 0.224675444,
+        "reference_duration_s": 201.341445207,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "sequence": "box02__aruco_4__insight9",
+      "metric": "—",
+      "status": "evaluation_unavailable",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insight9",
+      "metric_context": "Auxiliary diagnostic",
+      "status_title": "Unavailable",
+      "status_detail": "No valid time association"
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "sequence": "Box02__orin__pico_left_controller",
+      "metric": "0.050/1.00",
+      "status": "rendered",
+      "event_count": "4",
+      "event_planes": "Pick 1:YZ;Place 1:XZ;Pick 2:XZ;Place 2:XZ",
+      "event_half_window_s": "1.0",
+      "note": "Auxiliary controller record; the metric is an existing trajectory-shape diagnostic rather than an audited absolute controller-accuracy claim.",
+      "recording_label": "Controller recording",
+      "metric_context": "Auxiliary diagnostic",
+      "video": "assets/videos/replay_matrix/box02__pico_controller_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box02__pico_controller_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 199.084943295,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Box 02",
+      "task_slug": "box02",
+      "method": "AprilVINS(Ours)",
+      "method_slug": "aprilvins_ours",
+      "sequence": "box02__apriltag_4__insta360_x5",
+      "metric": "0.0098/1.00",
+      "status": "rendered",
+      "event_count": "4",
+      "event_planes": "Pick 1:XZ;Place 1:YZ;Pick 2:XZ;Place 2:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/box02__aprilvins_ours_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/box02__aprilvins_ours_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.999486277,
+        "reference_duration_s": 198.857059002,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "sequence": "grab_place01_t__apriltag_4__insta360_x5",
+      "metric": "0.0553/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place01__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place01__tagslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.000233805,
+        "end_fraction": 0.999685376,
+        "reference_duration_s": 86.401385069,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "sequence": "grab_place01_t__aruco_4__insta360_x5",
+      "metric": "—",
+      "status": "pipeline_failed",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "status_title": "Unavailable",
+      "status_detail": "Input preparation failed"
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "sequence": "grab_place01_t__aruco_4__insta360_x5",
+      "metric": "×",
+      "status": "no_trajectory",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "status_title": "Fail",
+      "status_detail": "No trajectory output"
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "sequence": "grab_place01_t__aruco_4__insight9",
+      "metric": "0.102/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "Auxiliary record: raw SDK positions are rigidly aligned for qualitative display; the reported metric is from the existing frame-hypothesis diagnostic.",
+      "recording_label": "ArUco 4 · Insight9",
+      "metric_context": "Auxiliary diagnostic",
+      "video": "assets/videos/replay_matrix/pick_and_place01__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place01__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 86.457682371,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "sequence": "Grab_Place01_t__orin__pico_left_controller",
+      "metric": "—",
+      "status": "recording_invalid",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "Controller recording",
+      "metric_context": "Auxiliary diagnostic",
+      "status_title": "Unavailable",
+      "status_detail": "Static controller recording"
+    },
+    {
+      "task": "Pick-and-place 01",
+      "task_slug": "pick_and_place01",
+      "method": "AprilVINS(Ours)",
+      "method_slug": "aprilvins_ours",
+      "sequence": "grab_place01_t__apriltag_4__insta360_x5",
+      "metric": "0.0032/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:YZ;Place 1:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place01__aprilvins_ours_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place01__aprilvins_ours_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998581972,
+        "reference_duration_s": 86.401385069,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "sequence": "grab_place02_t__apriltag_4__insta360_x5",
+      "metric": "0.0286/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place02__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place02__tagslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.000015082,
+        "end_fraction": 0.999674223,
+        "reference_duration_s": 80.942589999,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "sequence": "grab_place02_t__aruco_4__insta360_x5",
+      "metric": "0.3035/0.98",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XZ;Place 1:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place02__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place02__ucoslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.0155627,
+        "end_fraction": 0.99974808,
+        "reference_duration_s": 80.893296718,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "sequence": "grab_place02_t__aruco_4__insta360_x5",
+      "metric": "2.8176/0.89",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:YZ;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place02__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place02__openvins_aruco_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.106202298,
+        "end_fraction": 0.999638503,
+        "reference_duration_s": 80.893296718,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "sequence": "grab_place02_t__aruco_4__insight9",
+      "metric": "0.038/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:YZ;Place 1:YZ",
+      "event_half_window_s": "1.0",
+      "note": "Auxiliary record: raw SDK positions are rigidly aligned for qualitative display; the reported metric is from the existing frame-hypothesis diagnostic.",
+      "recording_label": "ArUco 4 · Insight9",
+      "metric_context": "Auxiliary diagnostic",
+      "video": "assets/videos/replay_matrix/pick_and_place02__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place02__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 80.840425014,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "sequence": "Grab_Place02_t__orin__pico_left_controller",
+      "metric": "—",
+      "status": "recording_invalid",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "Controller recording",
+      "metric_context": "Auxiliary diagnostic",
+      "status_title": "Unavailable",
+      "status_detail": "Static controller recording"
+    },
+    {
+      "task": "Pick-and-place 02",
+      "task_slug": "pick_and_place02",
+      "method": "AprilVINS(Ours)",
+      "method_slug": "aprilvins_ours",
+      "sequence": "grab_place02_t__apriltag_4__insta360_x5",
+      "metric": "0.0023/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XZ",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place02__aprilvins_ours_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place02__aprilvins_ours_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998496405,
+        "reference_duration_s": 80.942589999,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "TagSLAM",
+      "method_slug": "tagslam",
+      "sequence": "grab_place03_t__apriltag_4__insta360_x5",
+      "metric": "0.0404/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place03__tagslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place03__tagslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.000452032,
+        "end_fraction": 0.999532823,
+        "reference_duration_s": 62.754684687,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "UcoSLAM",
+      "method_slug": "ucoslam",
+      "sequence": "grab_place03_t__aruco_4__insta360_x5",
+      "metric": "0.3684/0.98",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XZ;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place03__ucoslam_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place03__ucoslam_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.023943955,
+        "end_fraction": 0.999945112,
+        "reference_duration_s": 62.152590274,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "OpenVINS(ArUco)",
+      "method_slug": "openvins_aruco",
+      "sequence": "grab_place03_t__aruco_4__insta360_x5",
+      "metric": "5.0842/0.89",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:YZ;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "Divergent diagnostic trajectory; this is not a successful tracking claim.",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place03__openvins_aruco_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place03__openvins_aruco_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0.108077808,
+        "end_fraction": 0.999271558,
+        "reference_duration_s": 62.152590274,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "Insight9 SDK VIO",
+      "method_slug": "insight9_sdk_vio",
+      "sequence": "grab_place03_t__aruco_4__insight9",
+      "metric": "0.021/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:YZ",
+      "event_half_window_s": "1.0",
+      "note": "Auxiliary record: raw SDK positions are rigidly aligned for qualitative display; the reported metric is from the existing frame-hypothesis diagnostic.",
+      "recording_label": "ArUco 4 · Insight9",
+      "metric_context": "Auxiliary diagnostic",
+      "video": "assets/videos/replay_matrix/pick_and_place03__insight9_sdk_vio_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place03__insight9_sdk_vio_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 61.721599817,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "PICO Controller",
+      "method_slug": "pico_controller",
+      "sequence": "Grab_Place03_t__orin__pico_left_controller",
+      "metric": "—",
+      "status": "recording_invalid",
+      "event_count": "",
+      "event_planes": "",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "Controller recording",
+      "metric_context": "Auxiliary diagnostic",
+      "status_title": "Unavailable",
+      "status_detail": "Static controller recording"
+    },
+    {
+      "task": "Pick-and-place 03",
+      "task_slug": "pick_and_place03",
+      "method": "AprilVINS(Ours)",
+      "method_slug": "aprilvins_ours",
+      "sequence": "grab_place03_t__apriltag_4__insta360_x5",
+      "metric": "0.0017/1.00",
+      "status": "rendered",
+      "event_count": "2",
+      "event_planes": "Pick 1:XY;Place 1:XY",
+      "event_half_window_s": "1.0",
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "video": "assets/videos/replay_matrix/pick_and_place03__aprilvins_ours_event_zoom_replay.mp4",
+      "poster": "assets/images/replay_matrix/pick_and_place03__aprilvins_ours_event_zoom_replay_poster.png",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998013643,
+        "reference_duration_s": 62.754684687,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     }
   ],
-  "playback_version": "20261011-row-timeline-v1",
+  "playback_version": "20261011-all15-row-timeline-v1",
   "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; separate recordings share normalized reference progress, not a common absolute timestamp."
 }

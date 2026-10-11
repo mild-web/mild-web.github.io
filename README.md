@@ -32,6 +32,18 @@ reference progress, not absolute timestamps. Loading pauses the row clock;
 off-screen videos pause and rejoin that clock when they become visible.
 The existing metrics and black Fail clips are unchanged.
 
+The matrix covers all 15 task rows and six methods: 84 video clips and six
+reason-labelled status tiles. The added Box 02 and Pick-and-place 01–03 rows
+use the same sequence-specific references and the Orion final all15 output.
+Static PICO recordings, input-preparation errors, missing trajectory output,
+and unavailable timestamp associations are shown as distinct states; they
+are not collectively attributed to estimator failure. Auxiliary SDK/PICO
+records are marked as diagnostic. Partial estimates retain their time spans.
+
+`scripts/render-comparison-additions.py` accepts a local input plan and an
+existing renderer path, reuses its geometry/event plotting, and generates
+visualization assets without running an estimator or recomputing metrics.
+
 Validation: `node --test tests/replay-sync.test.cjs`. The optional browser
 regression check uses an installed Chrome without adding npm dependencies:
 `node scripts/check-replay-browser.mjs /tmp/mild-comparison-check`.

@@ -74,11 +74,16 @@ try {
   await send("Page.enable"); await send("Runtime.enable");
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await send("Page.navigate", { url });
-  await until("document.querySelectorAll('.replay-row[data-task]').length === 11");
-  assert.equal(await evaluate("document.querySelectorAll('.replay-scene-video').length"), 11);
-  assert.equal(await evaluate("document.querySelectorAll('.replay-cell video').length"), 66);
-  assert.equal(await evaluate("document.querySelectorAll('.replay-cell.is-fail').length"), 3);
-  report.checks.push("11 scene previews, 66 method cells, 3 original Fail cells");
+  await until("document.querySelectorAll('.replay-row[data-task]').length === 15");
+  assert.equal(await evaluate("document.querySelectorAll('.replay-scene-video').length"), 15);
+  assert.equal(await evaluate("document.querySelectorAll('.replay-cell').length"), 90);
+  assert.equal(await evaluate("document.querySelectorAll('.replay-cell video').length"), 84);
+  assert.equal(await evaluate("document.querySelectorAll('.replay-cell.is-fail').length"), 4);
+  assert.equal(await evaluate("document.querySelectorAll('.replay-status-panel').length"), 6);
+  assert.equal(await evaluate("document.querySelectorAll('[data-status=recording_invalid]').length"), 3);
+  assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio] .replay-status-detail').textContent === 'No valid time association'"));
+  assert(await evaluate("document.querySelector('.event-video-section strong').textContent === 'APE RMSE (m) / time completion'"));
+  report.checks.push("15 task rows, 90 method cells, 84 clips and 6 reason-labelled status tiles");
   await evaluate("document.querySelector('.replay-row[data-task]').scrollIntoView({block:'center'}); window.row = document.querySelector('.replay-row[data-task]'); window.shell = document.getElementById('replayMatrixShell');");
   await until("row.querySelector('.replay-scene-video').readyState >= 3 && [...row.querySelectorAll('.replay-cell video')].filter(v=>v.getAttribute('src')).every(v=>v.readyState>=3)");
   await delay(1700);
@@ -118,7 +123,7 @@ try {
   report.checks.push("Shared speed control and common loop restart");
   const rowReports = [];
   await evaluate("document.documentElement.style.scrollBehavior='auto';document.querySelectorAll('.replay-row[data-task]').forEach(r=>{if(r.dataset.paused==='false')r.querySelector('.replay-row-play').click()})");
-  for (let i = 0; i < 11; i++) {
+  for (let i = 0; i < 15; i++) {
     console.log(JSON.stringify({ checking_task_row: i + 1 }));
     await evaluate(`window.row=document.querySelectorAll('.replay-row[data-task]')[${i}];row.scrollIntoView({block:'center'});shell.scrollLeft=shell.scrollWidth;row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))`);
     await until("row.querySelector('.replay-scene-video').readyState>=3 && row.querySelector('[data-method=aprilvins_ours] video').readyState>=3");
@@ -128,7 +133,7 @@ try {
     rowReports.push({ task: await evaluate("row.dataset.task"), max_error_s: Math.max(...state.map((v) => v.error)) });
   }
   report.all_row_seeks = rowReports;
-  report.checks.push("All 11 task rows preserve shared source-progress position after seeking");
+  report.checks.push("All 15 task rows preserve shared source-progress position after seeking");
   await evaluate("window.row=document.querySelector('.replay-row[data-task]');row.scrollIntoView({block:'center'})");
   await evaluate("if(row.dataset.paused==='false')row.querySelector('.replay-row-play').click();row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
   await delay(500);
@@ -140,6 +145,14 @@ try {
   await evaluate("row.scrollIntoView({block:'center'})"); await delay(300);
   const shot = await send("Page.captureScreenshot", { format: "png" });
   fs.writeFileSync(path.join(artifactRoot, "comparison-desktop.png"), Buffer.from(shot.data, "base64"));
+
+  for (const task of ["box02", "pick_and_place01"]) {
+    await evaluate(`window.row=document.querySelector('.replay-row[data-task=${task}]');row.scrollIntoView({block:'center'});shell.scrollLeft=${task === "box02" ? 1000 : 1500};row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))`);
+    await until("row.querySelector('.replay-scene-video').readyState>=3"); await delay(400);
+    const newShot = await send("Page.captureScreenshot", { format: "png" });
+    fs.writeFileSync(path.join(artifactRoot, `comparison-${task}.png`), Buffer.from(newShot.data, "base64"));
+  }
+  await evaluate("window.row=document.querySelector('.replay-row[data-task]')");
 
   await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   await evaluate("shell.scrollLeft=0;row.scrollIntoView({block:'center'})"); await delay(500);

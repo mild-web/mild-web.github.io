@@ -27,14 +27,40 @@ test("invalid time intervals cannot drive a player", () => {
   assert.equal(mappedClipTime(1, 16, null, NaN), null);
 });
 test("paper metrics, statuses, sequence IDs and method ordering are unchanged", () => {
-  const original = JSON.parse(cp.execFileSync("git", ["show", "origin/main:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
+  const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
   assert.deepEqual(manifest.method_order, original.method_order);
-  for (let i = 0; i < original.items.length; i++) {
-    for (const [key, value] of Object.entries(original.items[i])) assert.deepEqual(manifest.items[i][key], value);
+  const items = new Map(manifest.items.map(i => [`${i.task_slug}::${i.method_slug}`, i]));
+  for (const item of original.items) {
+    for (const [key, value] of Object.entries(item)) assert.deepEqual(items.get(`${item.task_slug}::${item.method_slug}`)[key], value);
   }
-  assert.equal(manifest.items.length, 66);
-  assert.equal(manifest.task_order.length, 11);
+  for (const task of original.task_order) assert.deepEqual(manifest.task_order.find(t => t.slug === task.slug), task);
+  assert.equal(manifest.items.length, 90);
+  assert.equal(items.size, 90);
+  assert.equal(manifest.task_order.length, 15);
   assert.equal(manifest.items.filter((i) => i.status === "fail_video_table_cross").length, 3);
+});
+test("recording/pipeline/evaluation issues are distinct from no trajectory output", () => {
+  const get = (task, method) => manifest.items.find(i => i.task_slug === task && i.method_slug === method);
+  for (const n of ["01", "02", "03"]) {
+    const item = get(`pick_and_place${n}`, "pico_controller");
+    assert.equal(item.status, "recording_invalid"); assert.equal(item.status_detail, "Static controller recording");
+    assert.equal(item.video, undefined); assert.equal(item.metric, "—");
+    assert.equal(get(`pick_and_place${n}`, "insight9_sdk_vio").status, "rendered");
+  }
+  assert.equal(get("box02", "insight9_sdk_vio").status, "evaluation_unavailable");
+  assert.equal(get("pick_and_place01", "ucoslam").status, "pipeline_failed");
+  assert.equal(get("pick_and_place01", "openvins_aruco").status, "no_trajectory");
+  assert.equal(manifest.items.filter(i => i.video).length, 84);
+  for (const item of manifest.items.filter(i => !i.video)) { assert(item.status_detail); assert.equal(item.timeline, undefined); }
+});
+test("new AprilVINS rows use the final all15 packet and preserve partial baseline spans", () => {
+  for (const slug of ["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]) {
+    const item = manifest.items.find(i => i.task_slug === slug && i.method_slug === "aprilvins_ours");
+    assert.equal(item.sequence.endsWith("__apriltag_4__insta360_x5"), true);
+    assert(item.timeline.end_fraction > 0.99);
+  }
+  const partial = manifest.items.find(i => i.task_slug === "box02" && i.method_slug === "openvins_aruco");
+  assert(partial.timeline.end_fraction - partial.timeline.start_fraction < 0.2);
 });
 test("all successful clips have valid timestamp maps", () => {
   for (const item of manifest.items.filter((i) => i.status === "rendered")) {
@@ -62,5 +88,14 @@ test("all task rows have sequence-matched full scene recordings", () => {
       scenes++;
     }
   }
-  assert.equal(scenes, 29);
+  assert.equal(scenes, 37);
+});
+test("all trajectory clips and posters exist and match the shared 16 s clock", () => {
+  for (const item of manifest.items.filter(i => i.video)) {
+    assert(fs.existsSync(path.join(root, item.video)), item.video);
+    assert(fs.existsSync(path.join(root, item.poster)), item.poster);
+    const info = JSON.parse(cp.execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration:stream=r_frame_rate", "-of", "json", path.join(root, item.video)], { encoding: "utf8" }));
+    assert(Math.abs(Number(info.format.duration) - 16) < 0.06, item.video);
+    assert.equal(info.streams[0].r_frame_rate, "20/1");
+  }
 });

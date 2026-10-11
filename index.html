@@ -8,14 +8,14 @@
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
-  <link rel="stylesheet" href="assets/css/comparison.css?v=20261011-row-timeline-v1">
+  <link rel="stylesheet" href="assets/css/comparison.css?v=20261011-all15-row-timeline-v1">
   <link rel="stylesheet" href="assets/css/localization.css?v=20260924-pilot-v1">
   <link rel="stylesheet" href="assets/css/hero-video.css?v=20260923-v8-2">
   <script defer src="assets/js/hero-video.js?v=20260923-v8-1"></script>
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
-  <script defer src="assets/js/replay-row-sync.js?v=20261011-row-timeline-v1"></script>
+  <script defer src="assets/js/replay-row-sync.js?v=20261011-all15-row-timeline-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
   <script defer src="assets/js/service-config.js?v=20260924-pilot-v1"></script>
@@ -162,8 +162,9 @@
           Rows are manipulation tasks and columns are localization methods.
           The clips summarize the qualitative trajectory comparisons behind
           the paper tables, showing each estimated trajectory against the
-          recorded TCP reference. A black <span class="inline-code">Fail</span>
-          clip follows a failed result from the corresponding table entry.
+          recorded TCP reference. <span class="inline-code">Fail</span> denotes
+          no evaluable trajectory; unavailable entries explain recording,
+          input-processing, or evaluation issues.
           Metrics are <strong>APE RMSE (m) / time completion</strong>.
           Each row shares one playback timeline, with a scene recording in the
           task column. Separate scene and sensor recordings are synchronized
