@@ -2,6 +2,12 @@
 .replay-matrix { display: block; min-width: 2300px; }
 .replay-row { display: grid; grid-template-columns: 260px repeat(6, minmax(310px, 1fr)); align-items: stretch; gap: 12px; margin-bottom: 12px; }
 .replay-row:last-child { margin-bottom: 0; }
+.replay-sticky-header { position: fixed; z-index: 30; overflow: hidden; background: #f6f8fb; box-shadow: 0 5px 14px rgba(15, 23, 42, 0.12); pointer-events: none; }
+.replay-sticky-header[hidden] { display: none; }
+.replay-sticky-header-track { display: grid; align-items: stretch; }
+.replay-sticky-header-track .replay-corner { position: relative; left: auto; background: #f8fbff; }
+.replay-sticky-header-track .replay-method-header { background: #fff; overflow: hidden; }
+.replay-sticky-method-label { display: block; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .replay-corner, .replay-task-header { position: sticky; left: 0; z-index: 2; box-shadow: 5px 0 12px rgba(15, 23, 42, 0.07); }
 .replay-task-header { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 8px; padding: 12px; background: #f8fbff; }
 .replay-task-name { font-size: 14px; }

@@ -47,6 +47,11 @@ confirmed Box 02 SDK acquisition interruption is labelled `Recording
 interrupted` below an empty window throughout the task, since its short
 recorded pose segment ends before the task reference begins.
 
+The method header follows page scrolling while the matrix is in view. Its
+visual copy stays horizontally aligned with the video columns and pinned
+task column, and disappears below the matrix or when the section is folded.
+The original header retains the table's accessibility semantics.
+
 `scripts/render-comparison-additions.py` accepts a local input plan and an
 existing renderer path, reuses its geometry/event plotting, and generates
 visualization assets without running an estimator or recomputing metrics.

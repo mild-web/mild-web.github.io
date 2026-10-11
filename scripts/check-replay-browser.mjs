@@ -133,7 +133,9 @@ try {
     console.log(JSON.stringify({ checking_task_row: i + 1 }));
     await evaluate(`window.row=document.querySelectorAll('.replay-row[data-task]')[${i}];row.scrollIntoView({block:'center'});shell.scrollLeft=shell.scrollWidth;row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))`);
     await until("row.querySelector('.replay-scene-video').readyState>=3 && row.querySelector('[data-method=aprilvins_ours] video').readyState>=3");
-    await delay(250);
+    // Wait for all newly visible decoders to finish the common seek; the
+    // scene and AprilVINS can load before a partially visible method clip.
+    await until(`${snapshot}.every(v=>v.ready>=3 && v.error<0.07)`);
     const state = await evaluate(snapshot);
     assert(state.every((v) => v.error < 0.07), `Shared seek failed on row ${i}`);
     rowReports.push({ task: await evaluate("row.dataset.task"), max_error_s: Math.max(...state.map((v) => v.error)) });
@@ -152,6 +154,34 @@ try {
   await delay(400);
   assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] video')).visibility === 'visible'"));
   report.checks.push("Partial trajectory appears only within coverage and returns correctly after seeking back");
+  await evaluate("window.row=document.querySelector('.replay-row[data-task=pick_and_place01]');shell.scrollLeft=0;window.scrollTo(0,row.getBoundingClientRect().top+window.scrollY-120)");
+  await until("document.querySelector('.replay-sticky-header')?.hidden === false"); await delay(150);
+  const headerAlignment = `(() => {
+    const floating=document.querySelector('.replay-sticky-header'), rect=floating.getBoundingClientRect();
+    const columns=[...floating.querySelectorAll('.replay-method-header')], cells=[...row.querySelectorAll(':scope > .replay-cell')];
+    return {top:rect.top,left:rect.left,right:rect.right,width:rect.width,viewport:document.documentElement.clientWidth,
+      labels:columns.map(n=>n.textContent),
+      errors:columns.map((n,i)=>Math.abs(n.getBoundingClientRect().left-cells[i].getBoundingClientRect().left)),
+      cornerError:Math.abs(floating.querySelector('.replay-corner').getBoundingClientRect().left-row.querySelector('.replay-task-header').getBoundingClientRect().left)};
+  })()`;
+  const initialHeader = await evaluate(headerAlignment);
+  assert(Math.abs(initialHeader.top) < 1);
+  assert(initialHeader.errors.every(e=>e<1)); assert(initialHeader.cornerError<1);
+  assert.deepEqual(initialHeader.labels,["TagSLAM","UcoSLAM","OpenVINS(ArUco)","Insight9 SDK VIO","PICO Controller","AprilVINS(Ours)"]);
+  await evaluate("shell.scrollLeft=shell.scrollWidth"); await delay(200);
+  const movedHeader = await evaluate(headerAlignment);
+  assert(movedHeader.errors.every(e=>e<1)); assert(movedHeader.cornerError<1);
+  const stickyShot = await send("Page.captureScreenshot", { format: "png" });
+  fs.writeFileSync(path.join(artifactRoot,"comparison-sticky-header.png"),Buffer.from(stickyShot.data,"base64"));
+  report.sticky_header = {initial:initialHeader,horizontally_scrolled:movedHeader};
+  await evaluate("window.scrollTo(0,document.getElementById('replayMatrix').getBoundingClientRect().bottom+window.scrollY+80)");
+  await until("document.querySelector('.replay-sticky-header').hidden");
+  await evaluate("window.scrollTo(0,row.getBoundingClientRect().top+window.scrollY-120)");
+  await until("!document.querySelector('.replay-sticky-header').hidden");
+  await evaluate("document.querySelector('[aria-controls=event-zooms-content]').click()");
+  await until("document.querySelector('.replay-sticky-header').hidden");
+  await evaluate("document.querySelector('[aria-controls=event-zooms-content]').click()"); await delay(200);
+  report.checks.push("Method header stays at viewport top, follows horizontal columns, and hides outside the table or on collapse");
   await evaluate("window.row=document.querySelector('.replay-row[data-task]');row.scrollIntoView({block:'center'})");
   await evaluate("if(row.dataset.paused==='false')row.querySelector('.replay-row-play').click();row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
   await delay(500);
@@ -179,6 +209,20 @@ try {
   const mobileShot = await send("Page.captureScreenshot", { format: "png" });
   fs.writeFileSync(path.join(artifactRoot, "comparison-mobile.png"), Buffer.from(mobileShot.data, "base64"));
   report.checks.push("Mobile matrix stays within the page width");
+  await evaluate("window.row=document.querySelector('.replay-row[data-task=pick_and_place01]');shell.scrollLeft=shell.scrollWidth;window.scrollTo(0,row.getBoundingClientRect().top+window.scrollY-120)");
+  await until("!document.querySelector('.replay-sticky-header').hidden"); await delay(200);
+  const mobileHeader = await evaluate(headerAlignment);
+  assert(mobileHeader.left>=0 && mobileHeader.right<=mobileHeader.viewport);
+  assert(mobileHeader.errors.every(e=>e<1)); assert(mobileHeader.cornerError<1);
+  assert(await evaluate(`(() => {
+    const head=document.querySelector('.replay-sticky-header'), corner=head.querySelector('.replay-corner').getBoundingClientRect();
+    const labels=[...head.querySelectorAll('.replay-sticky-method-label')].filter(n=>getComputedStyle(n).visibility==='visible');
+    return labels.length>0 && labels.every(n=>{const r=n.getBoundingClientRect();return r.left>=corner.right && r.right<=head.getBoundingClientRect().right;});
+  })()`), "Visible mobile method names must not be hidden under the pinned task heading");
+  const mobileStickyShot = await send("Page.captureScreenshot", { format: "png" });
+  fs.writeFileSync(path.join(artifactRoot,"comparison-sticky-header-mobile.png"),Buffer.from(mobileStickyShot.data,"base64"));
+  report.sticky_header.mobile = mobileHeader;
+  report.checks.push("Mobile sticky header fits the viewport and matches the responsive column widths");
   assert.equal(exceptions.length, 0);
   report.passed = true;
   console.log(JSON.stringify(report));
