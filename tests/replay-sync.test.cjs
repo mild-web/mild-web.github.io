@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const cp = require("node:child_process");
-const { mappedClipTime, coverageNotice } = require("../assets/js/replay-row-sync.js");
+const { mappedClipTime, coverageNotice, coverageDetail, heldFramePath } = require("../assets/js/replay-row-sync.js");
 const root = path.resolve(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "assets/videos/replay_matrix_manifest.json")));
 
@@ -33,6 +33,26 @@ test("coverage labels follow timestamps without inventing an interruption cause"
   assert.equal(coverageNotice(partial, mappedClipTime(14, 16, timeline, 16)), "No trajectory coverage");
   assert.equal(coverageNotice({ status: "recording_interrupted" }, null), "Recording interrupted");
   assert.equal(coverageNotice({ status: "fail_video_table_cross" }, null), "");
+});
+test("out-of-coverage holds describe existing frames, never invented poses", () => {
+  const item = { status: "rendered" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
+  assert.match(coverageDetail(item, mappedClipTime(2, 16, timeline, 16)), /has not started/);
+  assert.match(coverageDetail(item, mappedClipTime(14, 16, timeline, 16)), /last recorded frame/);
+  assert.match(coverageDetail(item, mappedClipTime(14, 16, timeline, 16)), /No new estimated poses/);
+  assert.equal(coverageDetail(item, mappedClipTime(8, 16, timeline, 16)), "");
+  assert.equal(coverageDetail({ status: "recording_interrupted" }, null), "");
+  const before = mappedClipTime(14, 16, timeline, 16), after = mappedClipTime(15, 16, timeline, 16);
+  assert.equal(before.time, after.time);
+  assert.equal(before.inside, false);
+  assert.equal(after.inside, false);
+});
+test("boundary images come from existing videos or their final-frame posters", () => {
+  for (const item of manifest.items.filter(i=>i.status==="rendered")) {
+    assert.equal(heldFramePath(item,{inside:false,phase:"Trajectory ended"}),item.poster);
+    assert.equal(heldFramePath(item,{inside:true,phase:""}),"");
+    if(item.timeline.start_fraction>0) assert(fs.existsSync(path.join(root,heldFramePath(item,{inside:false,phase:"Not started"}))));
+  }
+  assert.equal(heldFramePath({status:"recording_interrupted"},{inside:false}),"");
 });
 test("paper metrics, statuses, sequence IDs and method ordering are unchanged", () => {
   const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));

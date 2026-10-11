@@ -98,7 +98,11 @@ try {
 
   const snapshot = `(() => {
     const p=Number(row.dataset.time)/16;
-    return [...row.querySelectorAll('video')].filter(v=>v.getAttribute('src') && v.getBoundingClientRect().right > shell.getBoundingClientRect().left && v.getBoundingClientRect().left < shell.getBoundingClientRect().right)
+    const bounds=shell.getBoundingClientRect(), pinnedRight=row.querySelector('.replay-task-header').getBoundingClientRect().right;
+    return [...row.querySelectorAll('video')].filter(v=>{
+      const rect=v.getBoundingClientRect(), left=v.classList.contains('replay-scene-video')?bounds.left:Math.max(bounds.left,pinnedRight);
+      return v.getAttribute('src') && rect.right>left && rect.left<bounds.right;
+    })
       .map(v=>{const a=Number(v.dataset.syncStart), b=Number(v.dataset.syncEnd), expected=Math.max(0,Math.min(1,(p-a)/(b-a)))*15.95;return {label:v.getAttribute('aria-label'),time:v.currentTime,expected,error:Math.abs(v.currentTime-expected),paused:v.paused,ready:v.readyState};});
   })()`;
   const live = await evaluate(snapshot); report.live_sync = live;
@@ -147,13 +151,35 @@ try {
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coverage === 'covered'"));
   assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] video')).visibility === 'visible'"));
   await evaluate("row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
-  await delay(400);
-  assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] video')).visibility === 'hidden'"));
+  await until("(() => { const img=row.querySelector('[data-method=openvins_aruco] .replay-held-frame'); return !img.hidden && img.complete && img.naturalWidth>0; })()");
+  assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] .replay-held-frame')).display !== 'none'"));
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-badge').textContent === 'No trajectory coverage'"));
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coveragePhase === 'Trajectory ended'"));
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] video').getAttribute('aria-hidden') === 'true'"));
+  const heldImage = await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-held-frame').getAttribute('src')");
+  assert(heldImage.includes('box02__openvins_aruco_event_zoom_replay_poster.png'));
+  const sceneBefore = Number(await evaluate("row.querySelector('.replay-scene-video').currentTime"));
+  await evaluate("if(row.dataset.paused==='true')row.querySelector('.replay-row-play').click()");
+  await until("Number(row.dataset.time)>8.5");
+  assert.equal(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-held-frame').getAttribute('src')"),heldImage);
+  assert(await evaluate("!row.querySelector('[data-method=openvins_aruco] .replay-held-frame').hidden"));
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] video').paused"));
+  assert(await evaluate("!row.querySelector('[data-method=openvins_aruco] video').getAttribute('src')"));
+  assert(Number(await evaluate("row.querySelector('.replay-scene-video').currentTime")) > sceneBefore + 0.3);
+  await evaluate("if(row.dataset.paused==='false')row.querySelector('.replay-row-play').click()");
+  report.coverage_hold = {boundary_image:heldImage,row_time_s:Number(await evaluate("row.dataset.time")),scene_advanced:true};
+  const holdShot = await send("Page.captureScreenshot", {format:"png"});
+  fs.writeFileSync(path.join(artifactRoot,"comparison-coverage-hold.png"),Buffer.from(holdShot.data,"base64"));
+  await evaluate("row.querySelector('input').value='0.1';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
+  await until("(() => { const img=row.querySelector('[data-method=openvins_aruco] .replay-held-frame'); return !img.hidden && img.src.includes('_first.jpg') && img.complete && img.naturalWidth>0; })()");
+  assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] .replay-held-frame')).display !== 'none'"));
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coveragePhase === 'Not started'"));
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] video').paused && !row.querySelector('[data-method=openvins_aruco] video').getAttribute('src')"));
   await evaluate("row.querySelector('input').value='1.6';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
-  await delay(400);
+  await until("row.querySelector('[data-method=openvins_aruco] video').readyState>=3 && !row.querySelector('[data-method=openvins_aruco] video').seeking && row.querySelector('[data-method=openvins_aruco] .replay-held-frame').hidden");
   assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] video')).visibility === 'visible'"));
-  report.checks.push("Partial trajectory appears only within coverage and returns correctly after seeking back");
+  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coverage === 'covered'"));
+  report.checks.push("Partial estimate retains real first/last boundary images outside coverage; shared clock and scene continue; seeking restores covered playback");
   await evaluate("window.row=document.querySelector('.replay-row[data-task=pick_and_place01]');shell.scrollLeft=0;window.scrollTo(0,row.getBoundingClientRect().top+window.scrollY-120)");
   await until("document.querySelector('.replay-sticky-header')?.hidden === false"); await delay(150);
   const headerAlignment = `(() => {

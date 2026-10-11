@@ -1,5 +1,5 @@
 {
-  "version": "20261011-coverage-aware",
+  "version": "20261011-coverage-hold",
   "description": "Event-zoom replay matrix. Event insets use a +/-1 s window and draw interpolated GT trajectories with faint raw GT samples. AprilVINS(Ours) uses the 20260908 Orion final guarded IMU all15 trajectories.",
   "task_order": [
     {
@@ -2632,6 +2632,6 @@
       }
     }
   ],
-  "playback_version": "20261011-coverage-window-v3",
-  "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; separate recordings share normalized reference progress, not a common absolute timestamp."
+  "playback_version": "20261011-coverage-hold-v4",
+  "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; outside estimate coverage, their boundary frame is held with the complete GT reference visible and a No trajectory coverage notice. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp."
 }

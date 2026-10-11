@@ -8,14 +8,14 @@
   <meta name="description" content="Project page for the MILD paper, providing supplementary real-world task videos, sensor views, scene variants, and qualitative trajectory materials.">
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
-  <link rel="stylesheet" href="assets/css/comparison.css?v=20261011-sticky-header-v1">
+  <link rel="stylesheet" href="assets/css/comparison.css?v=20261011-coverage-hold-v4">
   <link rel="stylesheet" href="assets/css/localization.css?v=20260924-pilot-v1">
   <link rel="stylesheet" href="assets/css/hero-video.css?v=20260923-v8-2">
   <script defer src="assets/js/hero-video.js?v=20260923-v8-1"></script>
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
   <script defer src="assets/js/handeye-mini.js?v=20260917-handeye-mini-v1"></script>
   <script defer src="assets/js/video-gallery.js?v=20260918-download-bubble-v2"></script>
-  <script defer src="assets/js/replay-row-sync.js?v=20261011-coverage-window-v3"></script>
+  <script defer src="assets/js/replay-row-sync.js?v=20261011-coverage-hold-v4"></script>
   <script defer src="assets/js/replay-sticky-header.js?v=20261011-sticky-header-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
@@ -170,8 +170,10 @@
           Each row shares one playback timeline, with a scene recording in the
           task column. Separate scene and sensor recordings are synchronized
           by normalized reference-trajectory progress, not by absolute time.
-          Trajectories are shown only within their recorded time range;
-          outside that range, missing coverage is labelled below the window.
+          Outside an estimate's recorded time range, its video holds the
+          boundary frame with the complete GT reference still visible.
+          <span class="inline-code">No trajectory coverage</span> below the
+          window indicates that no new estimated poses are available.
         </p>
         <p class="comparison-recording-note">
           For Box 02, <span class="inline-code">Recording interrupted</span>

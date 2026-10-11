@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261011-coverage-window-v3";
+  const VERSION = "20261011-coverage-hold-v4";
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   // Recover each clip's GT/estimate overlap rather than stretching a partial
@@ -19,7 +19,17 @@
     if (item.status !== "rendered") return "";
     return target?.inside ? "" : "No trajectory coverage";
   }
-  if (typeof module !== "undefined" && module.exports) module.exports = { mappedClipTime, coverageNotice };
+  function coverageDetail(item, target) {
+    if (item.status !== "rendered" || target?.inside || !target) return "";
+    return target.phase === "Not started"
+      ? "The estimate has not started. The clip is held at its first frame with the complete GT reference visible."
+      : "The estimate is held at its last recorded frame with the complete GT reference visible. No new estimated poses are supplied.";
+  }
+  function heldFramePath(item, target) {
+    if (item.status !== "rendered" || !item.poster || !target || target.inside) return "";
+    return target.phase === "Not started" ? item.poster.replace(/_poster\.png$/, "_first.jpg") : item.poster;
+  }
+  if (typeof module !== "undefined" && module.exports) module.exports = { mappedClipTime, coverageNotice, coverageDetail, heldFramePath };
   if (typeof document === "undefined") return;
   const matrix = document.getElementById("replayMatrix"), status = document.getElementById("replayMatrixStatus"), shell = document.getElementById("replayMatrixShell");
   if (!matrix || !status || !shell) return;
@@ -60,8 +70,8 @@
       window.addEventListener("pointercancel", () => { this.scrubbing = false; });
       this.header.append(toolbar, this.slider); this.updateControls();
     }
-    addVideo(video, item, badge = null, methodWindow = null) {
-      const clip = { video, item, badge, methodWindow, row: this, visible: false, error: false, playPending: false, retryAt: 0 };
+    addVideo(video, item, badge = null, methodWindow = null, heldFrame = null) {
+      const clip = { video, item, badge, methodWindow, heldFrame, row: this, visible: false, error: false, playPending: false, retryAt: 0 };
       Object.assign(video, { muted: true, defaultMuted: true, playsInline: true, controls: false, loop: false, preload: "none", poster: versioned(item.poster) });
       video.dataset.syncStart = String(item.timeline?.start_fraction ?? 0); video.dataset.syncEnd = String(item.timeline?.end_fraction ?? 1);
       video.addEventListener("click", () => this.toggle());
@@ -71,7 +81,12 @@
       clipsByVideo.set(video, clip); this.clips.push(clip); return clip;
     }
     load(clip) {
-      if (!clip.video.getAttribute("src")) { clip.video.src = versioned(clip.item.video); clip.video.load(); }
+      if (!clip.video.getAttribute("src")) {
+        // A visible paused clip must decode its synchronized covered frame
+        // without calling play(). Off-screen clips still unload below.
+        clip.video.preload = "auto";
+        clip.video.src = versioned(clip.item.video); clip.video.load();
+      }
     }
     setVisible(clip, visible) {
       clip.visible = visible;
@@ -80,7 +95,7 @@
         clip.video.pause();
         // Release off-screen decoder buffers. The row clock, not a retained
         // media player, owns progress; re-entry loads and seeks to that clock.
-        if (clip.video.getAttribute("src")) { clip.video.removeAttribute("src"); clip.video.load(); }
+        if (clip.video.getAttribute("src")) { clip.video.preload = "none"; clip.video.removeAttribute("src"); clip.video.load(); }
       }
     }
     changeScene(clip, scene) {
@@ -124,11 +139,25 @@
       if (clip.methodWindow && clip.item.status === "rendered") {
         const notice = coverageNotice(clip.item, target);
         clip.methodWindow.dataset.coverage = notice ? "missing" : "covered";
+        clip.methodWindow.dataset.coveragePhase = target.phase || "Covered";
         video.setAttribute("aria-hidden", String(Boolean(notice)));
+        const frame = heldFramePath(clip.item, target);
+        clip.heldFrame.hidden = !frame;
+        if (frame && clip.heldFrame.getAttribute("src") !== versioned(frame)) clip.heldFrame.src = versioned(frame);
         if (clip.badge) {
           clip.badge.textContent = notice || clip.item.metric_context || "Rendered";
+          clip.badge.title = coverageDetail(clip.item, target);
           clip.badge.classList.toggle("is-ended", Boolean(notice));
         }
+        if (notice) {
+          // Retain a real boundary image while releasing the decoder. This
+          // keeps GT and the observed estimate visible without inventing
+          // poses, buffering uncovered time, or hanging an end/start seek.
+          video.pause();
+          if (video.getAttribute("src")) { video.removeAttribute("src"); video.load(); }
+          return;
+        }
+        this.load(clip);
       }
       if (video.readyState < 1) { video.pause(); return; }
       const drift = Math.abs(video.currentTime - target.time);
@@ -176,8 +205,14 @@
       const initial = mappedClipTime(row.position, row.duration, item.timeline, item.timeline?.video_duration_s || row.duration);
       const notice = coverageNotice(item, initial);
       methodWindow.dataset.coverage = notice ? "missing" : "covered";
-      if (notice) { badge.textContent = notice; video.setAttribute("aria-hidden", "true"); }
-      methodWindow.appendChild(video); cell.appendChild(methodWindow); row.addVideo(video, item, badge, methodWindow);
+      methodWindow.dataset.coveragePhase = initial?.phase || "Covered";
+      if (notice) { badge.textContent = notice; badge.title = coverageDetail(item, initial); }
+      const heldFrame = element("img", "replay-held-frame");
+      heldFrame.alt = `${item.task}, ${item.method}: recorded boundary frame with complete GT reference; no new estimate at this time.`;
+      heldFrame.loading = "lazy"; heldFrame.decoding = "async";
+      const frame = heldFramePath(item, initial); heldFrame.hidden = !frame;
+      if (frame) { heldFrame.src = versioned(frame); video.setAttribute("aria-hidden", "true"); }
+      methodWindow.append(video, heldFrame); cell.appendChild(methodWindow); row.addVideo(video, item, badge, methodWindow, heldFrame);
     } else if (item.status === "recording_interrupted") {
       // No estimate overlaps this task. Keep the window empty and put the
       // recording-interruption label below it; never shift a pre-task pose

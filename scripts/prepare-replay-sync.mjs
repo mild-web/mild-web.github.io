@@ -82,8 +82,8 @@ const sensors = new Map(sensorRows.map((r) => [r.sequence_id, r]));
 const manifestFile = "assets/videos/replay_matrix_manifest.json";
 const previous = fs.readFileSync(path.join(site, manifestFile), "utf8");
 const data = JSON.parse(previous);
-data.playback_version = "20261011-coverage-window-v3";
-data.playback_policy = "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; separate recordings share normalized reference progress, not a common absolute timestamp.";
+data.playback_version = "20261011-coverage-hold-v4";
+data.playback_policy = "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; outside estimate coverage, their boundary frame is held with the complete GT reference visible and a No trajectory coverage notice. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp.";
 
 const sceneLabels = { apriltag_4: "AprilTag 4", aruco_4: "ArUco 4" };
 const rounded = (v) => Number(v.toFixed(9));

@@ -40,12 +40,20 @@ and unavailable timestamp associations are shown as distinct states; they
 are not collectively attributed to estimator failure. Auxiliary SDK/PICO
 records are marked as diagnostic. Partial estimates retain their time spans.
 
-Trajectory windows show estimates only within their recorded time range.
-Outside that range the window is empty and the footer says `No trajectory
-coverage`; this does not assume a recording or estimator failure. The
+Trajectory videos update estimates only within their recorded time range.
+Outside that range they hold the first/last recorded frame, retaining the
+complete GT reference and the already observed estimate; the footer says
+`No trajectory coverage`. This display hold never supplies a new pose and
+does not assume a recording or estimator failure. Other covered videos and
+the task-column scene recording continue on the shared row clock. The
 confirmed Box 02 SDK acquisition interruption is labelled `Recording
 interrupted` below an empty window throughout the task, since its short
 recorded pose segment ends before the task reference begins.
+
+Boundary holds use the existing final-frame posters and first-frame JPEGs
+extracted from the same MP4s. `node scripts/build-coverage-first-frames.mjs`
+checks their availability; `--build` extracts missing first frames only.
+It neither reruns localization nor alters trajectory samples or metrics.
 
 The method header follows page scrolling while the matrix is in view. Its
 visual copy stays horizontally aligned with the video columns and pinned
