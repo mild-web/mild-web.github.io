@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261011-all15-recording-status-v2";
+  const VERSION = "20261011-coverage-window-v3";
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   // Recover each clip's GT/estimate overlap rather than stretching a partial
@@ -14,7 +14,12 @@
     return { time: clamp(local, 0, 1) * lastFrame, rate: lastFrame / (rowDuration * span),
       inside: local >= 0 && local < 1, phase: local < 0 ? "Not started" : local >= 1 ? "Trajectory ended" : "" };
   }
-  if (typeof module !== "undefined" && module.exports) module.exports = { mappedClipTime };
+  function coverageNotice(item, target) {
+    if (item.status === "recording_interrupted") return "Recording interrupted";
+    if (item.status !== "rendered") return "";
+    return target?.inside ? "" : "No trajectory coverage";
+  }
+  if (typeof module !== "undefined" && module.exports) module.exports = { mappedClipTime, coverageNotice };
   if (typeof document === "undefined") return;
   const matrix = document.getElementById("replayMatrix"), status = document.getElementById("replayMatrixStatus"), shell = document.getElementById("replayMatrixShell");
   if (!matrix || !status || !shell) return;
@@ -55,8 +60,8 @@
       window.addEventListener("pointercancel", () => { this.scrubbing = false; });
       this.header.append(toolbar, this.slider); this.updateControls();
     }
-    addVideo(video, item, badge = null) {
-      const clip = { video, item, badge, row: this, visible: false, error: false, playPending: false, retryAt: 0 };
+    addVideo(video, item, badge = null, methodWindow = null) {
+      const clip = { video, item, badge, methodWindow, row: this, visible: false, error: false, playPending: false, retryAt: 0 };
       Object.assign(video, { muted: true, defaultMuted: true, playsInline: true, controls: false, loop: false, preload: "none", poster: versioned(item.poster) });
       video.dataset.syncStart = String(item.timeline?.start_fraction ?? 0); video.dataset.syncEnd = String(item.timeline?.end_fraction ?? 1);
       video.addEventListener("click", () => this.toggle());
@@ -96,8 +101,10 @@
     isWaiting() {
       return this.clips.some((clip) => {
         if (!clip.visible || clip.error || clip.item.status === "fail_video_table_cross") return false;
+        const duration = clip.video.readyState >= 1 ? clip.video.duration : clip.item.timeline?.video_duration_s || this.duration;
+        const target = mappedClipTime(this.position, this.duration, clip.item.timeline, duration);
+        if (!target?.inside) return false;
         if (clip.video.readyState < 1) return true;
-        const target = mappedClipTime(this.position, this.duration, clip.item.timeline, clip.video.duration);
         return target?.inside && (clip.video.readyState < 3 || clip.video.seeking);
       });
     }
@@ -111,17 +118,25 @@
     }
     syncClip(clip, force = false, waiting = false) {
       const video = clip.video;
-      if (!clip.visible || clip.error || video.readyState < 1) { video.pause(); return; }
-      const target = mappedClipTime(this.position, this.duration, clip.item.timeline, video.duration); if (!target) return;
+      if (!clip.visible || clip.error) { video.pause(); return; }
+      const duration = video.readyState >= 1 ? video.duration : clip.item.timeline?.video_duration_s || this.duration;
+      const target = mappedClipTime(this.position, this.duration, clip.item.timeline, duration); if (!target) return;
+      if (clip.methodWindow && clip.item.status === "rendered") {
+        const notice = coverageNotice(clip.item, target);
+        clip.methodWindow.dataset.coverage = notice ? "missing" : "covered";
+        video.setAttribute("aria-hidden", String(Boolean(notice)));
+        if (clip.badge) {
+          clip.badge.textContent = notice || clip.item.metric_context || "Rendered";
+          clip.badge.classList.toggle("is-ended", Boolean(notice));
+        }
+      }
+      if (video.readyState < 1) { video.pause(); return; }
       const drift = Math.abs(video.currentTime - target.time);
       // 20 fps assets: realign at a seek/re-entry, and correct playback drift
       // above roughly one to two frames instead of seeking on every frame.
       if (!video.seeking && (force ? drift > 0.015 : drift > 0.085)) video.currentTime = target.time;
       const rate = clamp(target.rate * this.speed, 0.0625, 16);
       if (Math.abs(video.playbackRate - rate) > 1e-6) video.playbackRate = rate;
-      if (clip.badge && clip.item.status === "rendered") {
-        clip.badge.textContent = target.phase || clip.item.metric_context || "Rendered"; clip.badge.classList.toggle("is-ended", Boolean(target.phase));
-      }
       const canRun = this.visible && !this.paused && !this.scrubbing && !document.hidden && target.inside;
       // Buffering holds the shared clock and buffered peers; the waiting clip
       // may still fetch data. It never gets its own independent playback clock.
@@ -157,7 +172,20 @@
     if (item.note || item.metric_context) metric.title = [item.metric_context, item.note].filter(Boolean).join(". ");
     if (item.video) {
       const video = document.createElement("video"); video.setAttribute("aria-label", `${item.task}, ${item.method}. Controlled by the shared task timeline.`);
-      cell.appendChild(video); row.addVideo(video, item, badge);
+      const methodWindow = element("div", "replay-video-window");
+      const initial = mappedClipTime(row.position, row.duration, item.timeline, item.timeline?.video_duration_s || row.duration);
+      const notice = coverageNotice(item, initial);
+      methodWindow.dataset.coverage = notice ? "missing" : "covered";
+      if (notice) { badge.textContent = notice; video.setAttribute("aria-hidden", "true"); }
+      methodWindow.appendChild(video); cell.appendChild(methodWindow); row.addVideo(video, item, badge, methodWindow);
+    } else if (item.status === "recording_interrupted") {
+      // No estimate overlaps this task. Keep the window empty and put the
+      // recording-interruption label below it; never shift a pre-task pose
+      // segment into the task interval or present it as a successful estimate.
+      const methodWindow = element("div", "replay-video-window");
+      methodWindow.dataset.coverage = "missing"; methodWindow.setAttribute("role", "img");
+      methodWindow.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.note || item.status_title}`);
+      cell.appendChild(methodWindow);
     } else {
       // Missing/invalid evidence is a reason-labelled tile, never a synthetic
       // successful video and never an independent clock or buffering source.

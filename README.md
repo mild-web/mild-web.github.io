@@ -40,6 +40,13 @@ and unavailable timestamp associations are shown as distinct states; they
 are not collectively attributed to estimator failure. Auxiliary SDK/PICO
 records are marked as diagnostic. Partial estimates retain their time spans.
 
+Trajectory windows show estimates only within their recorded time range.
+Outside that range the window is empty and the footer says `No trajectory
+coverage`; this does not assume a recording or estimator failure. The
+confirmed Box 02 SDK acquisition interruption is labelled `Recording
+interrupted` below an empty window throughout the task, since its short
+recorded pose segment ends before the task reference begins.
+
 `scripts/render-comparison-additions.py` accepts a local input plan and an
 existing renderer path, reuses its geometry/event plotting, and generates
 visualization assets without running an estimator or recomputing metrics.

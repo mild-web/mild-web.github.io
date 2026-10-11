@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const cp = require("node:child_process");
-const { mappedClipTime } = require("../assets/js/replay-row-sync.js");
+const { mappedClipTime, coverageNotice } = require("../assets/js/replay-row-sync.js");
 const root = path.resolve(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "assets/videos/replay_matrix_manifest.json")));
 
@@ -25,6 +25,14 @@ test("partial trajectories retain their original source interval", () => {
 test("invalid time intervals cannot drive a player", () => {
   assert.equal(mappedClipTime(1, 16, { start_fraction: 1, end_fraction: 1 }, 16), null);
   assert.equal(mappedClipTime(1, 16, null, NaN), null);
+});
+test("coverage labels follow timestamps without inventing an interruption cause", () => {
+  const partial = { status: "rendered" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
+  assert.equal(coverageNotice(partial, mappedClipTime(2, 16, timeline, 16)), "No trajectory coverage");
+  assert.equal(coverageNotice(partial, mappedClipTime(8, 16, timeline, 16)), "");
+  assert.equal(coverageNotice(partial, mappedClipTime(14, 16, timeline, 16)), "No trajectory coverage");
+  assert.equal(coverageNotice({ status: "recording_interrupted" }, null), "Recording interrupted");
+  assert.equal(coverageNotice({ status: "fail_video_table_cross" }, null), "");
 });
 test("paper metrics, statuses, sequence IDs and method ordering are unchanged", () => {
   const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
