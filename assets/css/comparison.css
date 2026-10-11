@@ -1,0 +1,19 @@
+/* Scoped additions: keep the rest of the project-page layout unchanged. */
+.replay-matrix { display: block; min-width: 2300px; }
+.replay-row { display: grid; grid-template-columns: 260px repeat(6, minmax(310px, 1fr)); align-items: stretch; gap: 12px; margin-bottom: 12px; }
+.replay-row:last-child { margin-bottom: 0; }
+.replay-corner, .replay-task-header { position: sticky; left: 0; z-index: 2; box-shadow: 5px 0 12px rgba(15, 23, 42, 0.07); }
+.replay-task-header { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 8px; padding: 12px; background: #f8fbff; }
+.replay-task-name { font-size: 14px; }
+.replay-scene-selector { width: 100%; min-width: 0; border: 1px solid #d8e3f0; border-radius: 6px; padding: 5px 3px; background: #fff; color: #34445a; font: inherit; font-size: 12px; }
+.replay-scene-video { display: block; width: 100%; aspect-ratio: 2; border-radius: 8px; background: #06080f; object-fit: contain; cursor: pointer; }
+.replay-row-controls { display: flex; align-items: center; gap: 7px; margin-top: auto; }
+.replay-row-controls button, .replay-row-rate { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; padding: 2px 5px; border: 1px solid #d1deee; border-radius: 6px; background: #fff; color: #2357d9; font-size: 13px; cursor: pointer; }
+.replay-row-controls button:hover { background: #eaf0fc; }
+.replay-row-time { margin-left: auto; color: #34445a; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.replay-row-timeline { width: 100%; margin: 0; accent-color: #2357d9; cursor: pointer; }
+.replay-recording-label { padding: 0 9px 8px; color: #677489; font-size: 11px; font-weight: 400; }
+.replay-cell video { display: block; width: 100%; cursor: pointer; }
+.replay-badge.is-ended { background: #eef2f7; color: #596579; }
+.replay-row[data-buffering="true"] .replay-row-time { color: #8c6b21; }
+@media (max-width: 600px) { .replay-row { grid-template-columns: 210px repeat(6, minmax(310px, 1fr)); } .replay-task-header { padding: 9px; } .replay-row-controls { gap: 4px; } }

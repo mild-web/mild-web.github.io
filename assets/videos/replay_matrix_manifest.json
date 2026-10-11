@@ -4,47 +4,457 @@
   "task_order": [
     {
       "slug": "analemma",
-      "label": "Analemma"
+      "label": "Analemma",
+      "scenes": [
+        {
+          "sequence": "analemma_2_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/analemma__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/analemma__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.00040859,
+            "end_fraction": 0.999700714,
+            "reference_duration_s": 35.761314392,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "analemma_2_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/analemma__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/analemma__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000454485,
+            "end_fraction": 0.99946802,
+            "reference_duration_s": 35.771287203,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "analemma_2_t__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/analemma__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/analemma__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000927366,
+            "end_fraction": 0.999235391,
+            "reference_duration_s": 35.760517597,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "circular",
-      "label": "Circular"
+      "label": "Circular",
+      "scenes": [
+        {
+          "sequence": "circular_2_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/circular__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/circular__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000695856,
+            "end_fraction": 0.999893763,
+            "reference_duration_s": 32.559115172,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "circular_2_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/circular__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/circular__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000480723,
+            "end_fraction": 0.999408872,
+            "reference_duration_s": 32.534872532,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "circular_2_t__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/circular__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/circular__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000589795,
+            "end_fraction": 0.999480538,
+            "reference_duration_s": 32.536065817,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "zigzag",
-      "label": "Zigzag"
+      "label": "Zigzag",
+      "scenes": [
+        {
+          "sequence": "zigzag_2_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/zigzag__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/zigzag__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000102652,
+            "end_fraction": 0.999697496,
+            "reference_duration_s": 97.604545116,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "zigzag_2_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/zigzag__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/zigzag__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000170361,
+            "end_fraction": 0.999942674,
+            "reference_duration_s": 97.620227098,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "zigzag_2_t__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/zigzag__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/zigzag__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000014029,
+            "end_fraction": 0.998812556,
+            "reference_duration_s": 97.617289782,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "bookshelf01",
-      "label": "Bookshelf 01"
+      "label": "Bookshelf 01",
+      "scenes": [
+        {
+          "sequence": "bookshelf01_2__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/bookshelf01__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf01__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000187525,
+            "end_fraction": 0.999985332,
+            "reference_duration_s": 75.925351619,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "bookshelf01_2__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/bookshelf01__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf01__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000382767,
+            "end_fraction": 0.999614102,
+            "reference_duration_s": 76.20157361,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "bookshelf01_2__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/bookshelf01__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf01__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000106621,
+            "end_fraction": 0.999914694,
+            "reference_duration_s": 76.464673519,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "bookshelf02",
-      "label": "Bookshelf 02"
+      "label": "Bookshelf 02",
+      "scenes": [
+        {
+          "sequence": "bookshelf02_2__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/bookshelf02__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf02__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.00001573,
+            "end_fraction": 0.999920239,
+            "reference_duration_s": 167.284974336,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "bookshelf02_2__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/bookshelf02__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf02__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000017869,
+            "end_fraction": 0.999946008,
+            "reference_duration_s": 167.614044667,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "bookshelf02_2__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/bookshelf02__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/bookshelf02__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.005065899,
+            "end_fraction": 0.997619151,
+            "reference_duration_s": 170.26791811,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "box01",
-      "label": "Box 01"
+      "label": "Box 01",
+      "scenes": [
+        {
+          "sequence": "box01__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/box01__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/box01__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.00029082,
+            "end_fraction": 0.999934756,
+            "reference_duration_s": 89.054708957,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "box01__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/box01__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/box01__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000022369,
+            "end_fraction": 0.999630737,
+            "reference_duration_s": 90.159309387,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "box01__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/box01__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/box01__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000124185,
+            "end_fraction": 0.999778858,
+            "reference_duration_s": 88.730667591,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "pick_and_place04",
-      "label": "Pick-and-place 04"
+      "label": "Pick-and-place 04",
+      "scenes": [
+        {
+          "sequence": "grab_place04__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place04__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place04__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000121731,
+            "end_fraction": 0.99984496,
+            "reference_duration_s": 158.536878586,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place04__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place04__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place04__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000026331,
+            "end_fraction": 0.999950463,
+            "reference_duration_s": 159.707116604,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "pick_and_place05",
-      "label": "Pick-and-place 05"
+      "label": "Pick-and-place 05",
+      "scenes": [
+        {
+          "sequence": "grab_place05__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place05__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place05__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.00012472,
+            "end_fraction": 0.999846913,
+            "reference_duration_s": 193.348713637,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place05__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place05__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place05__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.0000424,
+            "end_fraction": 0.99995973,
+            "reference_duration_s": 190.106716156,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "pick_and_place06",
-      "label": "Pick-and-place 06"
+      "label": "Pick-and-place 06",
+      "scenes": [
+        {
+          "sequence": "grab_place06_t__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place06__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place06__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000124293,
+            "end_fraction": 0.999775531,
+            "reference_duration_s": 101.271319628,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "grab_place06_t__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/pick_and_place06__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/pick_and_place06__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000253206,
+            "end_fraction": 0.999717641,
+            "reference_duration_s": 100.35474658,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "wiping01",
-      "label": "Wiping 01"
+      "label": "Wiping 01",
+      "scenes": [
+        {
+          "sequence": "wiping01__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/wiping01__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/wiping01__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000097372,
+            "end_fraction": 0.999872237,
+            "reference_duration_s": 174.982394695,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "wiping01__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/wiping01__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/wiping01__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000037659,
+            "end_fraction": 0.999883749,
+            "reference_duration_s": 172.233508587,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     },
     {
       "slug": "wiping02",
-      "label": "Wiping 02"
+      "label": "Wiping 02",
+      "scenes": [
+        {
+          "sequence": "wiping02_1__apriltag_4__insta360_x5",
+          "label": "AprilTag 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/wiping02__apriltag_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/wiping02__apriltag_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000131639,
+            "end_fraction": 0.999990065,
+            "reference_duration_s": 135.222144127,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "wiping02_1__aruco_4__insta360_x5",
+          "label": "ArUco 4 · Insta360 X5",
+          "video": "assets/videos/comparison_scenes/wiping02__aruco_4__insta360_x5.mp4",
+          "poster": "assets/posters/comparison_scenes/wiping02__aruco_4__insta360_x5.jpg",
+          "timeline": {
+            "start_fraction": 0.000101866,
+            "end_fraction": 0.999970065,
+            "reference_duration_s": 135.087804317,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        },
+        {
+          "sequence": "wiping02_1__aruco_4__insight9",
+          "label": "ArUco 4 · Insight9",
+          "video": "assets/videos/comparison_scenes/wiping02__aruco_4__insight9.mp4",
+          "poster": "assets/posters/comparison_scenes/wiping02__aruco_4__insight9.jpg",
+          "timeline": {
+            "start_fraction": 0.000733064,
+            "end_fraction": 0.999948428,
+            "reference_duration_s": 136.407029867,
+            "video_duration_s": 16,
+            "last_frame_s": 15.95
+          }
+        }
+      ],
+      "presentation_duration_s": 16
     }
   ],
   "method_order": [
@@ -87,7 +497,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000408592,
+        "end_fraction": 0.999700722,
+        "reference_duration_s": 35.761314392,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -102,7 +520,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000695854,
+        "end_fraction": 0.99989377,
+        "reference_duration_s": 32.559115172,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Zigzag",
@@ -117,7 +543,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000102652,
+        "end_fraction": 0.999697495,
+        "reference_duration_s": 97.604545116,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -132,7 +566,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000187526,
+        "end_fraction": 0.999985332,
+        "reference_duration_s": 75.925351619,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 02",
@@ -147,7 +589,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:YZ;Place 2:XZ;Pick 2:XZ",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000015731,
+        "end_fraction": 0.99992024,
+        "reference_duration_s": 167.284974336,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -162,7 +612,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000290819,
+        "end_fraction": 0.999934757,
+        "reference_duration_s": 89.054708957,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -177,7 +635,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:XY;Pick 2:YZ;Place 2:XZ",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000121733,
+        "end_fraction": 0.999844961,
+        "reference_duration_s": 158.536878586,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -192,7 +658,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:YZ;Place 1:YZ;Pick 2:YZ;Place 2:XZ",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.00012472,
+        "end_fraction": 0.999846913,
+        "reference_duration_s": 193.348713637,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -207,7 +681,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:YZ;Place 1:YZ;Pick 2:YZ;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000124293,
+        "end_fraction": 0.99977553,
+        "reference_duration_s": 101.271319628,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 01",
@@ -222,7 +704,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000097372,
+        "end_fraction": 0.999872237,
+        "reference_duration_s": 174.982394695,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -237,7 +727,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.000131639,
+        "end_fraction": 0.999990063,
+        "reference_duration_s": 135.222144127,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Analemma",
@@ -252,7 +750,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.038697447,
+        "end_fraction": 0.960274571,
+        "reference_duration_s": 35.771287203,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -267,7 +773,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.038439996,
+        "end_fraction": 0.999408875,
+        "reference_duration_s": 32.534872532,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Zigzag",
@@ -282,7 +796,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.015894562,
+        "end_fraction": 0.449646882,
+        "reference_duration_s": 97.620227098,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -297,7 +819,8 @@
       "event_count": "",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "Table V marks this run as tested without evaluable metric."
+      "note": "Table V marks this run as tested without evaluable metric.",
+      "recording_label": "ArUco 4 · Insta360 X5"
     },
     {
       "task": "Bookshelf 02",
@@ -312,7 +835,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.008776084,
+        "end_fraction": 0.182765084,
+        "reference_duration_s": 167.614044667,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -327,7 +858,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.015561531,
+        "end_fraction": 0.999630737,
+        "reference_duration_s": 90.159309387,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -342,7 +881,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.011729002,
+        "end_fraction": 0.999950462,
+        "reference_duration_s": 159.707116604,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -357,7 +904,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.031635182,
+        "end_fraction": 0.672796117,
+        "reference_duration_s": 190.106716156,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -372,7 +927,8 @@
       "event_count": "",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "Table V marks this run as tested without evaluable metric."
+      "note": "Table V marks this run as tested without evaluable metric.",
+      "recording_label": "ArUco 4 · Insta360 X5"
     },
     {
       "task": "Wiping 01",
@@ -387,7 +943,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.008560971,
+        "end_fraction": 0.999883748,
+        "reference_duration_s": 172.233508587,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -402,7 +966,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": ""
+      "note": "",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.281933376,
+        "end_fraction": 0.999970067,
+        "reference_duration_s": 135.087804317,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Analemma",
@@ -417,7 +989,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_internal_candidate"
+      "note": "trajectory_generated_internal_candidate",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.215686785,
+        "end_fraction": 0.999220233,
+        "reference_duration_s": 35.771287203,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -432,7 +1012,8 @@
       "event_count": "",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "no_trajectory"
+      "note": "no_trajectory",
+      "recording_label": "ArUco 4 · Insta360 X5"
     },
     {
       "task": "Zigzag",
@@ -447,7 +1028,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_divergent_diagnostic"
+      "note": "trajectory_generated_divergent_diagnostic",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.117657622,
+        "end_fraction": 0.999175752,
+        "reference_duration_s": 97.620227098,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -462,7 +1051,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_internal_candidate"
+      "note": "trajectory_generated_internal_candidate",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.094398319,
+        "end_fraction": 0.999064676,
+        "reference_duration_s": 76.20157361,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 02",
@@ -477,7 +1074,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_internal_candidate"
+      "note": "trajectory_generated_internal_candidate",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.076205562,
+        "end_fraction": 0.999499313,
+        "reference_duration_s": 167.614044667,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -492,7 +1097,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_internal_candidate"
+      "note": "trajectory_generated_internal_candidate",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.077275937,
+        "end_fraction": 0.999166317,
+        "reference_duration_s": 90.159309387,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -507,7 +1120,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_divergent_diagnostic"
+      "note": "trajectory_generated_divergent_diagnostic",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.057632623,
+        "end_fraction": 0.66477526,
+        "reference_duration_s": 159.707116604,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -522,7 +1143,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_divergent_diagnostic"
+      "note": "trajectory_generated_divergent_diagnostic",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.044575979,
+        "end_fraction": 0.999565911,
+        "reference_duration_s": 190.106716156,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -537,7 +1166,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_divergent_diagnostic"
+      "note": "trajectory_generated_divergent_diagnostic",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.063669573,
+        "end_fraction": 0.999629288,
+        "reference_duration_s": 100.35474658,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 01",
@@ -552,7 +1189,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_internal_candidate"
+      "note": "trajectory_generated_internal_candidate",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.057907509,
+        "end_fraction": 0.389381915,
+        "reference_duration_s": 172.233508587,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -567,7 +1212,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "trajectory_generated_divergent_diagnostic"
+      "note": "trajectory_generated_divergent_diagnostic",
+      "recording_label": "ArUco 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0.053386718,
+        "end_fraction": 0.999652746,
+        "reference_duration_s": 135.087804317,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Analemma",
@@ -582,7 +1235,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 35.760517597,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -597,7 +1258,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 32.536065817,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Zigzag",
@@ -612,7 +1281,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 97.617289782,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -627,7 +1304,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 76.464673519,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 02",
@@ -642,7 +1327,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:XY;Place 2:XZ;Pick 2:XZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 170.26791811,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -657,7 +1350,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 88.730667591,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -672,7 +1373,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:XY;Pick 2:XY;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 158.21722126,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -687,7 +1396,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XY;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 193.471037626,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -702,7 +1419,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XY;Place 2:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 99.910046101,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 01",
@@ -717,7 +1442,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 172.922351599,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -732,7 +1465,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "ArUco 4 · Insight9",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 136.407029867,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Analemma",
@@ -747,7 +1488,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 35.770910025,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -762,7 +1511,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 32.55085969,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Zigzag",
@@ -777,7 +1534,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 97.620635748,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -792,7 +1557,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XY;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 76.486639023,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 02",
@@ -807,7 +1580,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:XZ;Place 2:XZ;Pick 2:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 170.121908903,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -822,7 +1603,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 88.362549543,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -837,7 +1626,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:YZ;Pick 2:XZ;Place 2:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 160.258793831,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -852,7 +1649,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:YZ;Pick 2:XZ;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 191.103884697,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -867,7 +1672,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XZ;Place 1:YZ;Pick 2:XZ;Place 2:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 100.723621607,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 01",
@@ -882,7 +1695,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 170.951050282,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -897,7 +1718,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XZ",
       "event_half_window_s": "1.0",
-      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting"
+      "note": "estimate is rigidly aligned to its route-specific executed TCP reference without scale fitting",
+      "recording_label": "Controller recording",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 1,
+        "reference_duration_s": 134.663606405,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Analemma",
@@ -912,7 +1741,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.997034834,
+        "reference_duration_s": 35.761314392,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Circular",
@@ -927,7 +1764,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.996965691,
+        "reference_duration_s": 32.559115172,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Zigzag",
@@ -942,7 +1787,15 @@
       "event_count": "0",
       "event_planes": "",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998720741,
+        "reference_duration_s": 97.604545116,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 01",
@@ -957,7 +1810,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998729682,
+        "reference_duration_s": 75.925351619,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Bookshelf 02",
@@ -972,7 +1833,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:XY;Place 2:XZ;Pick 2:XZ",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.99935034,
+        "reference_duration_s": 167.284974336,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Box 01",
@@ -987,7 +1856,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:YZ;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998864229,
+        "reference_duration_s": 89.054708957,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 04",
@@ -1002,7 +1879,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:XY;Pick 2:XY;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.999243614,
+        "reference_duration_s": 158.536878586,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 05",
@@ -1017,7 +1902,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:XY;Place 2:XY",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.999353837,
+        "reference_duration_s": 193.348713637,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Pick-and-place 06",
@@ -1032,7 +1925,15 @@
       "event_count": "4",
       "event_planes": "Pick 1:XY;Place 1:YZ;Pick 2:YZ;Place 2:YZ",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.998834142,
+        "reference_duration_s": 101.271319628,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 01",
@@ -1047,7 +1948,15 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:YZ",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.999327407,
+        "reference_duration_s": 174.982394695,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     },
     {
       "task": "Wiping 02",
@@ -1062,7 +1971,17 @@
       "event_count": "2",
       "event_planes": "Pick 1:XZ;Place 1:XY",
       "event_half_window_s": "1.0",
-      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest."
+      "note": "Orion final guarded IMU all15 AprilVINS(full); GT path inherited from the practical-route source manifest.",
+      "recording_label": "AprilTag 4 · Insta360 X5",
+      "timeline": {
+        "start_fraction": 0,
+        "end_fraction": 0.999285034,
+        "reference_duration_s": 135.222144127,
+        "video_duration_s": 16,
+        "last_frame_s": 15.95
+      }
     }
-  ]
+  ],
+  "playback_version": "20261011-row-timeline-v1",
+  "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; separate recordings share normalized reference progress, not a common absolute timestamp."
 }
