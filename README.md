@@ -40,7 +40,12 @@ and unavailable timestamp associations are shown as distinct states; they
 are not collectively attributed to estimator failure. Auxiliary SDK/PICO
 records are marked as diagnostic. Partial estimates retain their time spans.
 
-Trajectory videos update estimates only within their recorded time range.
+The original eleven task videos retain their existing shared-clock native
+playback and phase badges. They do not use the added coverage-window hiding,
+`No trajectory coverage` notices or held-image overlays.
+
+For Box 02 and Pick-and-place 01–03, trajectory videos update estimates only
+within their recorded time range.
 Outside that range they hold the first/last recorded frame, retaining the
 complete GT reference and the already observed estimate; the footer says
 `No trajectory coverage`. This display hold never supplies a new pose and

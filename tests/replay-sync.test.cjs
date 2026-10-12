@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const cp = require("node:child_process");
-const { mappedClipTime, coverageNotice, coverageDetail, heldFramePath } = require("../assets/js/replay-row-sync.js");
+const { mappedClipTime, usesCoverageHold, coverageNotice, coverageDetail, heldFramePath } = require("../assets/js/replay-row-sync.js");
 const root = path.resolve(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "assets/videos/replay_matrix_manifest.json")));
 
@@ -27,7 +27,7 @@ test("invalid time intervals cannot drive a player", () => {
   assert.equal(mappedClipTime(1, 16, null, NaN), null);
 });
 test("coverage labels follow timestamps without inventing an interruption cause", () => {
-  const partial = { status: "rendered" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
+  const partial = { status: "rendered", task_slug: "box02" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
   assert.equal(coverageNotice(partial, mappedClipTime(2, 16, timeline, 16)), "No trajectory coverage");
   assert.equal(coverageNotice(partial, mappedClipTime(8, 16, timeline, 16)), "");
   assert.equal(coverageNotice(partial, mappedClipTime(14, 16, timeline, 16)), "No trajectory coverage");
@@ -35,7 +35,7 @@ test("coverage labels follow timestamps without inventing an interruption cause"
   assert.equal(coverageNotice({ status: "fail_video_table_cross" }, null), "");
 });
 test("out-of-coverage holds describe existing frames, never invented poses", () => {
-  const item = { status: "rendered" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
+  const item = { status: "rendered", task_slug: "box02" }, timeline = { start_fraction: 0.25, end_fraction: 0.75, last_frame_s: 15.95 };
   assert.match(coverageDetail(item, mappedClipTime(2, 16, timeline, 16)), /has not started/);
   assert.match(coverageDetail(item, mappedClipTime(14, 16, timeline, 16)), /last recorded frame/);
   assert.match(coverageDetail(item, mappedClipTime(14, 16, timeline, 16)), /No new estimated poses/);
@@ -47,12 +47,37 @@ test("out-of-coverage holds describe existing frames, never invented poses", () 
   assert.equal(after.inside, false);
 });
 test("boundary images come from existing videos or their final-frame posters", () => {
-  for (const item of manifest.items.filter(i=>i.status==="rendered")) {
+  for (const item of manifest.items.filter(i=>i.status==="rendered" && usesCoverageHold(i))) {
     assert.equal(heldFramePath(item,{inside:false,phase:"Trajectory ended"}),item.poster);
     assert.equal(heldFramePath(item,{inside:true,phase:""}),"");
     if(item.timeline.start_fraction>0) assert(fs.existsSync(path.join(root,heldFramePath(item,{inside:false,phase:"Not started"}))));
   }
   assert.equal(heldFramePath({status:"recording_interrupted"},{inside:false}),"");
+});
+test("the original eleven tasks never acquire new coverage notices or held images", () => {
+  const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
+  assert.equal(original.task_order.length, 11);
+  for (const item of original.items) {
+    assert.equal(usesCoverageHold(item), false, item.task_slug);
+    for (const phase of ["Not started", "Trajectory ended"]) {
+      const target = { inside: false, phase };
+      assert.equal(coverageNotice(item, target), "", `${item.task_slug}::${item.method_slug}`);
+      assert.equal(coverageDetail(item, target), "");
+      assert.equal(heldFramePath(item, target), "");
+    }
+  }
+  for (const slug of ["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]) assert.equal(usesCoverageHold({ task_slug: slug }), true);
+});
+test("all original eleven-task videos and posters remain byte-identical to the original gallery", () => {
+  const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
+  const tree = ref => new Map(cp.execFileSync("git", ["ls-tree", "-r", ref, "--", "assets/videos", "assets/images"], { cwd: root, encoding: "utf8" }).trim().split("\n").map(line => {
+    const [metadata, file] = line.split("\t"); return [file, metadata.split(" ")[2]];
+  }));
+  const before = tree("74bc2ed"), after = tree("HEAD");
+  for (const item of original.items) for (const file of [item.video, item.poster].filter(Boolean)) {
+    assert(before.has(file), file);
+    assert.equal(after.get(file), before.get(file), file);
+  }
 });
 test("paper metrics, statuses, sequence IDs and method ordering are unchanged", () => {
   const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));

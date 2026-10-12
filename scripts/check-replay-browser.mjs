@@ -101,7 +101,8 @@ try {
     const bounds=shell.getBoundingClientRect(), pinnedRight=row.querySelector('.replay-task-header').getBoundingClientRect().right;
     return [...row.querySelectorAll('video')].filter(v=>{
       const rect=v.getBoundingClientRect(), left=v.classList.contains('replay-scene-video')?bounds.left:Math.max(bounds.left,pinnedRight);
-      return v.getAttribute('src') && rect.right>left && rect.left<bounds.right;
+      const a=Number(v.dataset.syncStart), b=Number(v.dataset.syncEnd);
+      return v.getAttribute('src') && rect.right>left && rect.left<bounds.right && p>=a && p<b;
     })
       .map(v=>{const a=Number(v.dataset.syncStart), b=Number(v.dataset.syncEnd), expected=Math.max(0,Math.min(1,(p-a)/(b-a)))*15.95;return {label:v.getAttribute('aria-label'),time:v.currentTime,expected,error:Math.abs(v.currentTime-expected),paused:v.paused,ready:v.readyState};});
   })()`;
@@ -146,6 +147,16 @@ try {
   }
   report.all_row_seeks = rowReports;
   report.checks.push("All 15 task rows preserve shared source-progress position after seeking");
+  const originalTasks = ["analemma","circular","zigzag","bookshelf01","bookshelf02","box01","pick_and_place04","pick_and_place05","pick_and_place06","wiping01","wiping02"];
+  for (const task of originalTasks) {
+    await evaluate(`window.row=document.querySelector('.replay-row[data-task=${task}]');row.scrollIntoView({block:'center'});shell.scrollLeft=0;row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))`);
+    await delay(100);
+    assert(await evaluate("!row.querySelector('.replay-held-frame')"), `Original ${task} must not acquire a held-image overlay`);
+    assert(await evaluate("[...row.querySelectorAll('.replay-badge')].every(n=>n.textContent!=='No trajectory coverage')"), `Original ${task} must not acquire the new coverage notice`);
+    assert(await evaluate("[...row.querySelectorAll('.replay-cell video')].every(v=>getComputedStyle(v).visibility==='visible' && v.getAttribute('aria-hidden')!=='true')"), `Original ${task} videos must stay visible`);
+  }
+  assert(await evaluate("document.querySelector('[data-task=bookshelf02] [data-method=ucoslam] .replay-badge').textContent === 'Trajectory ended'"));
+  report.checks.push("All original eleven task rows retain native visible videos and original phase badges, without new coverage notices or image overlays, including Bookshelf 02");
   await evaluate("window.row=document.querySelector('.replay-row[data-task=box02]');row.scrollIntoView({block:'center'});shell.scrollLeft=700;row.querySelector('input').value='1.6';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
   await until("row.querySelector('[data-method=openvins_aruco] video').readyState>=3"); await delay(400);
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coverage === 'covered'"));

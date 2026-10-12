@@ -8,7 +8,7 @@ import playback from "../assets/js/replay-row-sync.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(fs.readFileSync(path.join(root, "assets/videos/replay_matrix_manifest.json")));
-const jobs = data.items.filter(i => i.status === "rendered" && i.timeline.start_fraction > 0).map(item => ({
+const jobs = data.items.filter(i => i.status === "rendered" && playback.usesCoverageHold(i) && i.timeline.start_fraction > 0).map(item => ({
   task:item.task_slug, method:item.method_slug, input:path.join(root,item.video),
   output:path.join(root,playback.heldFramePath(item,{inside:false,phase:"Not started"}))
 }));

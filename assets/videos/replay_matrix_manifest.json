@@ -2632,6 +2632,6 @@
       }
     }
   ],
-  "playback_version": "20261011-coverage-hold-v4",
-  "playback_policy": "One shared 16 s presentation clock per task. Existing trajectory clips are mapped back to their reference-relative time intervals; outside estimate coverage, their boundary frame is held with the complete GT reference visible and a No trajectory coverage notice. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp."
+  "playback_version": "20261012-coverage-hold-scoped-v5",
+  "playback_policy": "One shared 16 s presentation clock per task. The original eleven task videos retain their existing native playback and phase badges. Only Box 02 and Pick-and-place 01–03 use held boundary images and No trajectory coverage notices outside recorded estimate intervals. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp."
 }
