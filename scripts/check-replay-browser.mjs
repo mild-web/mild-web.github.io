@@ -152,11 +152,11 @@ try {
     await evaluate(`window.row=document.querySelector('.replay-row[data-task=${task}]');row.scrollIntoView({block:'center'});shell.scrollLeft=0;row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))`);
     await delay(100);
     assert(await evaluate("!row.querySelector('.replay-held-frame')"), `Original ${task} must not acquire a held-image overlay`);
-    assert(await evaluate("[...row.querySelectorAll('.replay-badge')].every(n=>n.textContent!=='No trajectory coverage')"), `Original ${task} must not acquire the new coverage notice`);
+    assert(await evaluate("[...row.querySelectorAll('[data-status=rendered] .replay-badge')].every(n=>n.textContent==='Rendered')"), `Rendered ${task} clips must retain the original Rendered label`);
     assert(await evaluate("[...row.querySelectorAll('.replay-cell video')].every(v=>getComputedStyle(v).visibility==='visible' && v.getAttribute('aria-hidden')!=='true')"), `Original ${task} videos must stay visible`);
   }
-  assert(await evaluate("document.querySelector('[data-task=bookshelf02] [data-method=ucoslam] .replay-badge').textContent === 'Trajectory ended'"));
-  report.checks.push("All original eleven task rows retain native visible videos and original phase badges, without new coverage notices or image overlays, including Bookshelf 02");
+  assert(await evaluate("document.querySelector('[data-task=bookshelf02] [data-method=ucoslam] .replay-badge').textContent === 'Rendered'"));
+  report.checks.push("All original eleven task rows retain native visible videos and Rendered badges, without image overlays, including Bookshelf 02");
   await evaluate("window.row=document.querySelector('.replay-row[data-task=box02]');row.scrollIntoView({block:'center'});shell.scrollLeft=700;row.querySelector('input').value='1.6';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
   await until("row.querySelector('[data-method=openvins_aruco] video').readyState>=3"); await delay(400);
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coverage === 'covered'"));
@@ -164,7 +164,7 @@ try {
   await evaluate("row.querySelector('input').value='8';row.querySelector('input').dispatchEvent(new Event('input',{bubbles:true}))");
   await until("(() => { const img=row.querySelector('[data-method=openvins_aruco] .replay-held-frame'); return !img.hidden && img.complete && img.naturalWidth>0; })()");
   assert(await evaluate("getComputedStyle(row.querySelector('[data-method=openvins_aruco] .replay-held-frame')).display !== 'none'"));
-  assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-badge').textContent === 'No trajectory coverage'"));
+  assert(await evaluate("[...document.querySelectorAll('[data-status=rendered] .replay-badge')].every(n=>n.textContent==='Rendered')"));
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-video-window').dataset.coveragePhase === 'Trajectory ended'"));
   assert(await evaluate("row.querySelector('[data-method=openvins_aruco] video').getAttribute('aria-hidden') === 'true'"));
   const heldImage = await evaluate("row.querySelector('[data-method=openvins_aruco] .replay-held-frame').getAttribute('src')");

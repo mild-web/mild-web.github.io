@@ -38,17 +38,18 @@ use the same sequence-specific references and the Orion final all15 output.
 Static PICO recordings, input-preparation errors, missing trajectory output,
 and unavailable timestamp associations are shown as distinct states; they
 are not collectively attributed to estimator failure. Auxiliary SDK/PICO
-records are marked as diagnostic. Partial estimates retain their time spans.
+provenance remains in the manifest. Partial estimates retain their time spans.
 
 The original eleven task videos retain their existing shared-clock native
-playback and phase badges. They do not use the added coverage-window hiding,
-`No trajectory coverage` notices or held-image overlays.
+playback. They do not use the added coverage-window hiding or held-image
+overlays. All rendered trajectory clips use the original `Rendered` badge
+throughout playback, including before or after their recorded estimate span.
 
 For Box 02 and Pick-and-place 01–03, trajectory videos update estimates only
 within their recorded time range.
 Outside that range they hold the first/last recorded frame, retaining the
-complete GT reference and the already observed estimate; the footer says
-`No trajectory coverage`. This display hold never supplies a new pose and
+complete GT reference and the already observed estimate. This display hold
+never supplies a new pose and
 does not assume a recording or estimator failure. Other covered videos and
 the task-column scene recording continue on the shared row clock. The
 confirmed Box 02 SDK acquisition interruption is labelled `Recording

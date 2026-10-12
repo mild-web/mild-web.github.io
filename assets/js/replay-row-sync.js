@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261012-coverage-hold-scoped-v5";
+  const VERSION = "20261012-rendered-label-v6";
   // The original eleven task videos retain their existing playback display.
   // Coverage-window changes apply only to the four subsequently added tasks.
   const COVERAGE_HOLD_TASKS = new Set(["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]);
@@ -148,11 +148,6 @@
         const frame = heldFramePath(clip.item, target);
         clip.heldFrame.hidden = !frame;
         if (frame && clip.heldFrame.getAttribute("src") !== versioned(frame)) clip.heldFrame.src = versioned(frame);
-        if (clip.badge) {
-          clip.badge.textContent = notice || clip.item.metric_context || "Rendered";
-          clip.badge.title = coverageDetail(clip.item, target);
-          clip.badge.classList.toggle("is-ended", Boolean(notice));
-        }
         if (notice) {
           // Retain a real boundary image while releasing the decoder. This
           // keeps GT and the observed estimate visible without inventing
@@ -162,11 +157,6 @@
           return;
         }
         this.load(clip);
-      } else if (clip.badge && clip.item.status === "rendered") {
-        // Preserve the original shared-clock controller's phase display.
-        // Never hide these videos or attach the added coverage-hold overlay.
-        clip.badge.textContent = target.phase || "Rendered";
-        clip.badge.classList.toggle("is-ended", Boolean(target.phase));
       }
       if (video.readyState < 1) { video.pause(); return; }
       const drift = Math.abs(video.currentTime - target.time);
@@ -206,8 +196,8 @@
     const cell = element("article", `replay-cell ${fail ? "is-fail" : unavailable ? "is-unavailable" : "is-rendered"}`);
     cell.setAttribute("role", "cell"); cell.dataset.task = item.task_slug; cell.dataset.method = item.method_slug; cell.dataset.status = item.status;
     const meta = element("div", "replay-cell-meta"), metric = element("span", "replay-metric", item.metric || "—");
-    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? item.status_title || "Unavailable" : item.metric_context || "Rendered");
-    if (item.note || item.metric_context) metric.title = [item.metric_context, item.note].filter(Boolean).join(". ");
+    const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? item.status_title || "Unavailable" : "Rendered");
+    if (item.note) metric.title = item.note;
     if (item.video) {
       const video = document.createElement("video"); video.setAttribute("aria-label", `${item.task}, ${item.method}. Controlled by the shared task timeline.`);
       const methodWindow = element("div", "replay-video-window");
@@ -215,7 +205,6 @@
       const notice = coverageNotice(item, initial);
       methodWindow.dataset.coverage = notice ? "missing" : "covered";
       methodWindow.dataset.coveragePhase = initial?.phase || "Covered";
-      if (notice) { badge.textContent = notice; badge.title = coverageDetail(item, initial); }
       methodWindow.appendChild(video);
       let heldFrame = null;
       if (item.status === "rendered" && usesCoverageHold(item)) {
