@@ -79,6 +79,7 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('.replay-cell').length"), 90);
   assert.equal(await evaluate("document.querySelectorAll('.replay-cell video').length"), 84);
   assert.equal(await evaluate("document.querySelectorAll('.replay-cell.is-fail').length"), 4);
+  assert(await evaluate("[...document.querySelectorAll('.replay-cell.is-fail .replay-metric')].every(n => n.textContent === '×')"), "Fail metrics must show a Unicode cross, not raw LaTeX");
   assert.equal(await evaluate("document.querySelectorAll('.replay-status-panel').length"), 5);
   assert.equal(await evaluate("document.querySelectorAll('[data-status=recording_invalid]').length"), 3);
   assert(await evaluate("document.querySelector('[data-task=box02] [data-method=insight9_sdk_vio]').dataset.status === 'recording_interrupted'"));

@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261012-rendered-label-v6";
+  const VERSION = "20261012-failure-symbol-v7";
   // The original eleven task videos retain their existing playback display.
   // Coverage-window changes apply only to the four subsequently added tasks.
   const COVERAGE_HOLD_TASKS = new Set(["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]);
@@ -195,7 +195,7 @@
     const fail = ["fail_video_table_cross", "no_trajectory"].includes(item.status), unavailable = item.status !== "rendered" && !fail;
     const cell = element("article", `replay-cell ${fail ? "is-fail" : unavailable ? "is-unavailable" : "is-rendered"}`);
     cell.setAttribute("role", "cell"); cell.dataset.task = item.task_slug; cell.dataset.method = item.method_slug; cell.dataset.status = item.status;
-    const meta = element("div", "replay-cell-meta"), metric = element("span", "replay-metric", item.metric || "—");
+    const meta = element("div", "replay-cell-meta"), metric = element("span", "replay-metric", fail ? "×" : item.metric || "—");
     const badge = element("span", "replay-badge", fail ? "Fail" : unavailable ? item.status_title || "Unavailable" : "Rendered");
     if (item.note) metric.title = item.note;
     if (item.video) {

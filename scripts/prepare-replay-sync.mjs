@@ -82,7 +82,7 @@ const sensors = new Map(sensorRows.map((r) => [r.sequence_id, r]));
 const manifestFile = "assets/videos/replay_matrix_manifest.json";
 const previous = fs.readFileSync(path.join(site, manifestFile), "utf8");
 const data = JSON.parse(previous);
-data.playback_version = "20261012-rendered-label-v6";
+data.playback_version = "20261012-failure-symbol-v7";
 data.playback_policy = "One shared 16 s presentation clock per task. Rendered trajectory clips keep a Rendered badge throughout playback. The original eleven task videos retain their existing native playback. Only Box 02 and Pick-and-place 01–03 use held boundary images outside recorded estimate intervals. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp.";
 
 const sceneLabels = { apriltag_4: "AprilTag 4", aruco_4: "ArUco 4" };
