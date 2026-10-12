@@ -68,13 +68,15 @@ test("the original eleven tasks never acquire new coverage notices or held image
   }
   for (const slug of ["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]) assert.equal(usesCoverageHold({ task_slug: slug }), true);
 });
-test("all original eleven-task videos and posters remain byte-identical to the original gallery", () => {
+test("all original rendered trajectory videos and posters remain byte-identical to the original gallery", () => {
   const original = JSON.parse(cp.execFileSync("git", ["show", "74bc2ed:assets/videos/replay_matrix_manifest.json"], { cwd: root, encoding: "utf8" }));
   const tree = ref => new Map(cp.execFileSync("git", ["ls-tree", "-r", ref, "--", "assets/videos", "assets/images"], { cwd: root, encoding: "utf8" }).trim().split("\n").map(line => {
     const [metadata, file] = line.split("\t"); return [file, metadata.split(" ")[2]];
   }));
   const before = tree("74bc2ed"), after = tree("HEAD");
-  for (const item of original.items) for (const file of [item.video, item.poster].filter(Boolean)) {
+  // The user requested removal of burned-in captions from black Fail clips;
+  // actual rendered trajectory videos must remain unchanged.
+  for (const item of original.items.filter(i => i.status === "rendered")) for (const file of [item.video, item.poster].filter(Boolean)) {
     assert(before.has(file), file);
     assert.equal(after.get(file), before.get(file), file);
   }
@@ -96,14 +98,15 @@ test("recording/pipeline/evaluation issues are distinct from no trajectory outpu
   const get = (task, method) => manifest.items.find(i => i.task_slug === task && i.method_slug === method);
   for (const n of ["01", "02", "03"]) {
     const item = get(`pick_and_place${n}`, "pico_controller");
-    assert.equal(item.status, "recording_invalid"); assert.equal(item.status_detail, "Static controller recording");
+    assert.equal(item.status, "recording_invalid"); assert.equal(item.status_detail, "Controller connection lost");
     assert.equal(item.video, undefined); assert.equal(item.metric, "—");
     assert.equal(get(`pick_and_place${n}`, "insight9_sdk_vio").status, "rendered");
   }
   const interrupted = get("box02", "insight9_sdk_vio");
   assert.equal(interrupted.status, "recording_interrupted");
-  assert.equal(interrupted.status_title, "Recording interrupted");
-  assert.equal(interrupted.status_detail, "");
+  assert.equal(interrupted.status_title, "Unavailable");
+  assert.match(interrupted.status_detail, /Device connection lost before task start/);
+  assert.match(interrupted.status_detail, /camera, IMU and SDK VIO recording stopped together/);
   assert.match(interrupted.note, /camera, IMU and SDK VIO recording stopped together/);
   assert.equal(interrupted.metric, "—");
   assert.equal(interrupted.video, undefined);
@@ -111,6 +114,15 @@ test("recording/pipeline/evaluation issues are distinct from no trajectory outpu
   assert.equal(get("pick_and_place01", "openvins_aruco").status, "no_trajectory");
   assert.equal(manifest.items.filter(i => i.video).length, 84);
   for (const item of manifest.items.filter(i => !i.video)) { assert(item.status_detail || item.note); assert.equal(item.timeline, undefined); }
+});
+test("outside-view annotations are limited to the 15 audited rendered main views", () => {
+  const flagged = manifest.items.filter(i => i.trajectory_outside_view);
+  assert.equal(flagged.length, 15);
+  assert(flagged.every(i => i.status === "rendered" && i.video));
+  assert.equal(flagged.filter(i => i.method_slug === "ucoslam").length, 4);
+  assert.equal(flagged.filter(i => i.method_slug === "openvins_aruco").length, 11);
+  assert(flagged.some(i => i.task_slug === "box01" && i.method_slug === "ucoslam"));
+  assert(!flagged.some(i => i.method_slug === "aprilvins_ours"));
 });
 test("new AprilVINS rows use the final all15 packet and preserve partial baseline spans", () => {
   for (const slug of ["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]) {

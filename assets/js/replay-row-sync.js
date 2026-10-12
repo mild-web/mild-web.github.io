@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "20261012-failure-symbol-v7";
+  const VERSION = "20261012-reason-labels-v8";
   // The original eleven task videos retain their existing playback display.
   // Coverage-window changes apply only to the four subsequently added tasks.
   const COVERAGE_HOLD_TASKS = new Set(["box02", "pick_and_place01", "pick_and_place02", "pick_and_place03"]);
@@ -216,24 +216,18 @@
         methodWindow.appendChild(heldFrame);
       }
       cell.appendChild(methodWindow); row.addVideo(video, item, badge, methodWindow, heldFrame);
-    } else if (item.status === "recording_interrupted") {
-      // No estimate overlaps this task. Keep the window empty and put the
-      // recording-interruption label below it; never shift a pre-task pose
-      // segment into the task interval or present it as a successful estimate.
-      const methodWindow = element("div", "replay-video-window");
-      methodWindow.dataset.coverage = "missing"; methodWindow.setAttribute("role", "img");
-      methodWindow.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.note || item.status_title}`);
-      cell.appendChild(methodWindow);
     } else {
       // Missing/invalid evidence is a reason-labelled tile, never a synthetic
       // successful video and never an independent clock or buffering source.
       const panel = element("div", "replay-status-panel"); panel.setAttribute("role", "img");
       panel.setAttribute("aria-label", `${item.task}, ${item.method}: ${item.status_detail || item.status_title || "No clip available"}`);
       panel.append(element("strong", "replay-status-title", item.status_title || (fail ? "Fail" : "Unavailable")));
-      if (item.status_detail) panel.append(element("span", "replay-status-detail", item.status_detail));
       cell.appendChild(panel);
     }
-    meta.append(metric, badge); cell.append(meta, element("div", "replay-recording-label", item.recording_label || "")); return cell;
+    meta.append(metric, badge); cell.appendChild(meta);
+    if (unavailable && item.status_detail) cell.appendChild(element("div", "replay-cell-note replay-status-detail", item.status_detail));
+    if (item.status === "rendered" && item.trajectory_outside_view) cell.appendChild(element("div", "replay-cell-note replay-crop-note", "Trajectory outside the display window."));
+    cell.appendChild(element("div", "replay-recording-label", item.recording_label || "")); return cell;
   }
   function build(data) {
     if (data.playback_version !== VERSION) throw new Error("Playback mapping is missing or stale.");

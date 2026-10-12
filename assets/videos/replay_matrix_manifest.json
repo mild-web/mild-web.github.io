@@ -998,7 +998,8 @@
         "reference_duration_s": 90.159309387,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 04",
@@ -1021,7 +1022,8 @@
         "reference_duration_s": 159.707116604,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 05",
@@ -1044,7 +1046,8 @@
         "reference_duration_s": 190.106716156,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 06",
@@ -1106,7 +1109,8 @@
         "reference_duration_s": 135.087804317,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Analemma",
@@ -1129,7 +1133,8 @@
         "reference_duration_s": 35.771287203,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Circular",
@@ -1168,7 +1173,8 @@
         "reference_duration_s": 97.620227098,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Bookshelf 01",
@@ -1191,7 +1197,8 @@
         "reference_duration_s": 76.20157361,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Bookshelf 02",
@@ -1214,7 +1221,8 @@
         "reference_duration_s": 167.614044667,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Box 01",
@@ -1237,7 +1245,8 @@
         "reference_duration_s": 90.159309387,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 04",
@@ -1260,7 +1269,8 @@
         "reference_duration_s": 159.707116604,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 05",
@@ -1283,7 +1293,8 @@
         "reference_duration_s": 190.106716156,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 06",
@@ -1306,7 +1317,8 @@
         "reference_duration_s": 100.35474658,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Wiping 01",
@@ -1352,7 +1364,8 @@
         "reference_duration_s": 135.087804317,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Analemma",
@@ -2196,8 +2209,8 @@
       "note": "The device connection was interrupted before the task reference began; camera, IMU and SDK VIO recording stopped together. This is a recording issue, not an estimator tracking failure.",
       "recording_label": "ArUco 4 · Insight9",
       "metric_context": "Auxiliary diagnostic",
-      "status_title": "Recording interrupted",
-      "status_detail": ""
+      "status_title": "Unavailable",
+      "status_detail": "Device connection lost before task start; camera, IMU and SDK VIO recording stopped together."
     },
     {
       "task": "Box 02",
@@ -2340,7 +2353,7 @@
       "recording_label": "Controller recording",
       "metric_context": "Auxiliary diagnostic",
       "status_title": "Unavailable",
-      "status_detail": "Static controller recording"
+      "status_detail": "Controller connection lost"
     },
     {
       "task": "Pick-and-place 01",
@@ -2432,7 +2445,8 @@
         "reference_duration_s": 80.893296718,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 02",
@@ -2473,7 +2487,7 @@
       "recording_label": "Controller recording",
       "metric_context": "Auxiliary diagnostic",
       "status_title": "Unavailable",
-      "status_detail": "Static controller recording"
+      "status_detail": "Controller connection lost"
     },
     {
       "task": "Pick-and-place 02",
@@ -2565,7 +2579,8 @@
         "reference_duration_s": 62.152590274,
         "video_duration_s": 16,
         "last_frame_s": 15.95
-      }
+      },
+      "trajectory_outside_view": true
     },
     {
       "task": "Pick-and-place 03",
@@ -2606,7 +2621,7 @@
       "recording_label": "Controller recording",
       "metric_context": "Auxiliary diagnostic",
       "status_title": "Unavailable",
-      "status_detail": "Static controller recording"
+      "status_detail": "Controller connection lost"
     },
     {
       "task": "Pick-and-place 03",
@@ -2632,6 +2647,6 @@
       }
     }
   ],
-  "playback_version": "20261012-failure-symbol-v7",
+  "playback_version": "20261012-reason-labels-v8",
   "playback_policy": "One shared 16 s presentation clock per task. Rendered trajectory clips keep a Rendered badge throughout playback. The original eleven task videos retain their existing native playback. Only Box 02 and Pick-and-place 01–03 use held boundary images outside recorded estimate intervals. No poses are extrapolated. Separate recordings share normalized reference progress, not a common absolute timestamp."
 }

@@ -25,9 +25,10 @@
 .replay-video-window[data-coverage="missing"] video { visibility: hidden; }
 .replay-held-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; pointer-events: none; }
 .replay-held-frame[hidden] { display: none; }
-.replay-status-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 100%; aspect-ratio: 16 / 9; padding: 18px; background: #070a12; color: #fff; text-align: center; }
+.replay-status-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 100%; aspect-ratio: 1152 / 712; padding: 18px; background: #070a12; color: #fff; text-align: center; }
 .replay-status-title { font-size: 23px; font-weight: 650; }
-.replay-status-detail { max-width: 260px; color: #c4cfde; font-size: 13px; line-height: 1.45; }
+.replay-cell-note { padding: 0 9px 8px; color: #596579; font-size: 12px; line-height: 1.45; }
+.replay-crop-note { text-align: right; }
 .replay-badge.is-ended { background: #eef2f7; color: #596579; }
 .replay-row[data-buffering="true"] .replay-row-time { color: #8c6b21; }
 @media (max-width: 600px) { .replay-row { grid-template-columns: 210px repeat(6, minmax(310px, 1fr)); } .replay-task-header { padding: 9px; } .replay-row-controls { gap: 4px; } }
