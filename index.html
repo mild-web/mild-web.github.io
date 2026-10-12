@@ -21,7 +21,7 @@
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
   <script defer src="assets/js/service-config.js?v=20260924-pilot-v1"></script>
   <script defer src="assets/js/trajectory-viewer.js?v=20260919-simple-v1"></script>
-  <script defer src="assets/js/upload-runner.js?v=20260924-pilot-v1"></script>
+  <script defer src="assets/js/upload-runner.js?v=20261012-pilot-ui"></script>
 </head>
 <body>
   <header id="top" class="hero hero-video">
@@ -242,7 +242,6 @@
                 <input id="uploadRecording" name="recording" type="file" accept=".zip,application/zip" aria-label="Choose an X5 SDK recording ZIP">
               </label>
               <p class="recording-format">X5 SDK video + IMU + calibration · up to 120 s<br><a href="assets/docs/x5-upload-guide.html?v=20260924-pilot-v2">How to prepare a recording ↗</a></p>
-              <label class="recording-consent"><input id="uploadConsent" name="consent" type="checkbox"><span>I can share this recording and agree to its retention for MILD / AprilVINS research. <a href="assets/docs/x5-upload-guide.html?v=20260924-pilot-v2#data-use">Details</a></span></label>
               <div class="recording-checks" id="uploadChecks" aria-label="Recording checks">
                 <div data-check="files" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Package contents</strong><small></small></div></div>
                 <div data-check="calibration" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Camera calibration</strong><small></small></div></div>

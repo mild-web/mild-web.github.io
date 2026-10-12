@@ -2,7 +2,7 @@
   const byId = id => document.getElementById(id);
   const form = byId("uploadRunnerForm");
   if (!form) return;
-  const fileInput = byId("uploadRecording"), consent = byId("uploadConsent"), convert = byId("uploadSubmit");
+  const fileInput = byId("uploadRecording"), convert = byId("uploadSubmit");
   const status = byId("uploadStatus"), indicator = byId("serviceIndicator"), dropzone = byId("uploadDropzone");
   const viewport = byId("trajectoryViewport"), placeholder = byId("trajectoryPlaceholder");
   const download = byId("downloadTrajectory"), share = byId("copyResultLink");
@@ -26,10 +26,10 @@
     try { value ? localStorage.setItem(STORAGE, JSON.stringify(value)) : localStorage.removeItem(STORAGE); } catch {}
   }
   function lockInputs(busy) {
-    fileInput.disabled = busy; consent.disabled = busy;
+    fileInput.disabled = busy;
     dropzone.dataset.busy = String(busy);
   }
-  function canConvert() { return Boolean(ready && authorized && job?.can_convert && consent.checked && !starting && !uploading); }
+  function canConvert() { return Boolean(ready && authorized && job?.can_convert && !starting && !uploading); }
   function updateButton() { convert.disabled = !canConvert(); }
   function showView(state, title, detail) {
     viewport.dataset.state = state; placeholder.hidden = false;
@@ -111,7 +111,6 @@
   function renderJob(result) {
     job = result;
     renderChecks(result.validation?.checks);
-    consent.checked = true; // Every saved job was accepted with explicit retention consent.
     if (result.filename) byId("uploadFileLabel").textContent = result.filename;
     const active = ["created", "validation_queued", "validating", "queued", "running"].includes(result.status);
     lockInputs(active);
@@ -166,7 +165,6 @@
 
   async function uploadSelected() {
     if (!selectedFile || job || uploading) return;
-    if (!consent.checked) { setStatus("Review the data-use agreement to upload and check this recording."); return; }
     if (!authorized) { setStatus("Verify your pilot access key before uploading. Your file has not been sent.", "waiting"); return; }
     if (!ready) { setStatus("The service is temporarily offline. Your file has not been uploaded.", "waiting"); return; }
     uploading = true; lockInputs(true); updateButton();
@@ -212,7 +210,6 @@
   fileInput.addEventListener("change", () => chooseFile(fileInput.files[0]));
   // Selecting the same corrected filename should dispatch change again.
   fileInput.addEventListener("click", () => { fileInput.value = ""; });
-  consent.addEventListener("change", () => { updateButton(); uploadSelected(); });
   for (const type of ["dragenter", "dragover"]) dropzone.addEventListener(type, event => {
     event.preventDefault(); if (!fileInput.disabled) dropzone.classList.add("is-over");
   });
@@ -297,7 +294,7 @@
     indicator.textContent = ready ? "Service online" : "Service offline";
     indicator.dataset.state = ready ? "online" : "offline";
     updateButton();
-    if (ready && !before && selectedFile && !job && consent.checked) uploadSelected();
+    if (ready && !before && selectedFile && !job) uploadSelected();
     setTimeout(checkService, 20000);
   }
   clearResult(); checkService();
