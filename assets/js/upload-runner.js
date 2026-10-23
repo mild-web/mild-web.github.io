@@ -19,7 +19,7 @@
     try { accessKey = sessionStorage.getItem(ACCESS_STORAGE) || ""; } catch {}
   }
   let ready = false, selectedFile = null, job = null, epoch = 0, timer = null, uploading = false, starting = false;
-  let maxBytes = 2 * 1024 ** 3, loadedJob = null, previewRequest = null;
+  let maxBytes = 2 * 1024 ** 3, loadedJob = null, previewRequest = null, resumableAvailable = false, uploadPaused = false;
 
   function setStatus(text, state = "idle") { status.textContent = text; status.dataset.state = state; }
   function remember(value) {
@@ -164,7 +164,7 @@
   function watch(id) { stopPolling(); setJobLink(id); poll(id, epoch); }
 
   async function uploadSelected() {
-    if (!selectedFile || job || uploading) return;
+    if (!selectedFile || job || uploading || uploadPaused) return;
     if (!authorized) { setStatus("Verify your pilot access key before uploading. Your file has not been sent.", "waiting"); return; }
     if (!ready) { setStatus("The service is temporarily offline. Your file has not been uploaded.", "waiting"); return; }
     uploading = true; lockInputs(true); updateButton();
@@ -175,7 +175,15 @@
     data.append("tag_size_m", String((window.TAG_CUSTOM48H12?.printedWidthAtBorderMm || 108) / 1000));
     setStatus("Uploading your recording…", "uploading");
     try {
-      const body = await new Promise((resolve, reject) => {
+      let body, acknowledge;
+      if (resumableAvailable && window.MildResumableUpload) {
+        const uploaded = await window.MildResumableUpload.upload(selectedFile, {
+          api, key: accessKey, maxBytes,
+          tagSize: (window.TAG_CUSTOM48H12?.printedWidthAtBorderMm || 108) / 1000,
+          onProgress: percent => setStatus(percent === 100 ? "Upload sent. Saving your recording…" : `Uploading · ${percent}%`, "uploading"),
+        });
+        body = uploaded.job; acknowledge = uploaded.acknowledge;
+      } else body = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", api + "/api/jobs"); xhr.responseType = "json"; xhr.timeout = 1800000;
         if (restricted && accessKey) xhr.setRequestHeader("Authorization", "Bearer " + accessKey);
@@ -191,7 +199,8 @@
       });
       if (!body?.job_id) throw new Error("The service did not return a recording ID. Please try again.");
       renderJob(body); watch(body.job_id);
-    } catch (error) { setStatus(error.message, "failed"); lockInputs(false); }
+      acknowledge?.();
+    } catch (error) { uploadPaused = true; setStatus(error.message, "failed"); lockInputs(false); }
     finally { uploading = false; updateButton(); }
   }
 
@@ -205,7 +214,7 @@
     if (!file.name.toLowerCase().endsWith(".zip") || file.size > maxBytes || !file.size) {
       setStatus(`Choose a non-empty X5 SDK ZIP no larger than ${Math.round(maxBytes / 1024 ** 2)} MiB.`, "invalid"); return;
     }
-    selectedFile = file; uploadSelected();
+    uploadPaused = false; selectedFile = file; uploadSelected();
   }
   fileInput.addEventListener("change", () => chooseFile(fileInput.files[0]));
   // Selecting the same corrected filename should dispatch change again.
@@ -290,6 +299,7 @@
       const health = await request("/api/health");
       ready = Boolean(health.ready && health.real_command_configured && !health.mock_without_command && health.upload_flow === "validate_then_convert_v1");
       maxBytes = health.max_upload_bytes || maxBytes;
+      resumableAvailable = health.resumable_upload === "chunks-v1";
     } catch { ready = false; }
     indicator.textContent = ready ? "Service online" : "Service offline";
     indicator.dataset.state = ready ? "online" : "offline";
