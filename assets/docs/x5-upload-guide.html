@@ -16,7 +16,7 @@
     <li>Use unstitched dual-fisheye SDK capture at 3840 × 1920, 30 fps. Keep <code>stream_0.h264</code>, <code>video_packets.csv</code> and <code>imu.csv</code>.</li>
     <li>Use the AprilTags from <a href="../../index.html#print-apriltags">Prepare AprilTags</a>. Print at 100% / actual size on A4, with no scaling. The 180 mm image has a 108 mm detection border; this size is already set in the service and packager.</li>
     <li>Include views containing multiple markers together so their relative positions can be determined. Keep usable tags visible regularly; this version rejects visual gaps longer than 3 seconds.</li>
-    <li>Use recordings up to 120 seconds (at most 3600 frames). MP4/INSV exports alone do not contain the required synchronized input.</li>
+    <li>Use recordings up to 60 seconds (at most 1800 frames). MP4/INSV exports alone do not contain the required synchronized input.</li>
   </ul>
   <h2>2. Include your calibration</h2>
   <p>Provide polynomial fisheye intrinsics for both lenses, the rigid camera-to-IMU transforms, and the calibrated camera/IMU time offset. Use calibration for your device and recording resolution. Another camera's calibration can produce an inaccurate trajectory even when processing succeeds.</p>
