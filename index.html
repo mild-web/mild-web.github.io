@@ -9,7 +9,6 @@
   <title>Towards Accurate End-Effector Localization for UMI-Style Robotic Manipulation Teaching</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260919-simple-v1">
   <link rel="stylesheet" href="assets/css/comparison.css?v=20261012-reason-labels-v8">
-  <link rel="stylesheet" href="assets/css/localization.css?v=20260924-pilot-v1">
   <link rel="stylesheet" href="assets/css/hero-video.css?v=20260923-v8-2">
   <script defer src="assets/js/hero-video.js?v=20260923-v8-1"></script>
   <script defer src="assets/js/collapsible-sections.js?v=20260917-default-collapsed-v1"></script>
@@ -19,10 +18,6 @@
   <script defer src="assets/js/replay-sticky-header.js?v=20261011-sticky-header-v1"></script>
   <script defer src="assets/js/tagCustom48h12-data.js?v=20260918-custom48h12-data-v1"></script>
   <script defer src="assets/js/apriltag-print.js?v=20260919-fixed-size-v1"></script>
-  <script defer src="assets/js/service-config.js?v=20260924-pilot-v1"></script>
-  <script defer src="assets/js/trajectory-viewer.js?v=20260919-simple-v1"></script>
-  <script defer src="assets/js/resumable-upload.js?v=20261023-chunks-v1"></script>
-  <script defer src="assets/js/upload-runner.js?v=20261023-chunks-v1"></script>
 </head>
 <body>
   <header id="top" class="hero hero-video">
@@ -67,7 +62,6 @@
       <summary>Start your own millimeter-level UMI localization</summary>
       <div class="contents-subitems">
         <a href="#print-apriltags">Prepare AprilTags</a>
-        <a href="#upload-x5-data">Upload X5 data</a>
       </div>
     </details>
   </nav>
@@ -190,9 +184,6 @@
           <span class="title-accent">Start</span><span>your own millimeter-level UMI localization</span>
           <button class="section-toggle" type="button" aria-expanded="true" aria-controls="start-localization-content" aria-label="Collapse start your own millimeter-level UMI localization"></button>
         </p>
-        <p>
-          Print the tags, upload a calibrated X5 recording, and get your trajectory.
-        </p>
       </div>
       <div class="section-content setup-steps" id="start-localization-content">
         <section id="print-apriltags">
@@ -218,56 +209,6 @@
             </div>
           </div>
           <p class="apriltag-placement-note">• After printing, mount the tags on small indicator stands or attach them within the camera field of view.</p>
-        </section>
-        <section id="upload-x5-data">
-          <div class="localization-heading">
-            <div><h3>Your recording, in motion</h3><p>Upload → check → convert → explore.</p></div>
-            <span class="service-indicator" id="serviceIndicator" data-state="connecting" role="status">Connecting…</span>
-          </div>
-          <div class="localization-workspace">
-            <form class="recording-panel" id="uploadRunnerForm">
-              <div class="workspace-panel-heading"><span class="workspace-step">01</span><h4>Upload your recording</h4></div>
-              <div class="pilot-access" id="pilotAccess" hidden>
-                <label for="pilotAccessKey">Restricted pilot access</label>
-                <div class="pilot-access-controls">
-                  <input id="pilotAccessKey" type="password" autocomplete="off" spellcheck="false" placeholder="Enter your test access key" aria-describedby="pilotAccessStatus">
-                  <button id="pilotAccessUnlock" type="button">Verify access</button>
-                </div>
-                <small id="pilotAccessStatus" role="status">An access key is required. Never include it in a shared result link.</small>
-                <button id="pilotAccessLock" type="button" hidden>Lock this session</button>
-              </div>
-              <label class="recording-dropzone" id="uploadDropzone" for="uploadRecording">
-                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 22V5m-6 6 6-6 6 6M6 20v7h20v-7"/></svg>
-                <strong id="uploadFileLabel">Drop your X5 ZIP here</strong>
-                <span id="uploadFileDetail">or click to choose a file</span>
-                <input id="uploadRecording" name="recording" type="file" accept=".zip,application/zip" aria-label="Choose an X5 SDK recording ZIP">
-              </label>
-              <p class="recording-format">X5 SDK video + IMU + calibration · up to 60 s<br><a href="assets/docs/x5-upload-guide.html?v=20261024-60s-v1">How to prepare a recording ↗</a></p>
-              <div class="recording-checks" id="uploadChecks" aria-label="Recording checks">
-                <div data-check="files" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Package contents</strong><small></small></div></div>
-                <div data-check="calibration" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Camera calibration</strong><small></small></div></div>
-                <div data-check="timing" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Video / IMU synchronization</strong><small></small></div></div>
-                <div data-check="video" data-state="pending"><span class="check-icon" aria-hidden="true"></span><div><strong>Video integrity</strong><small></small></div></div>
-              </div>
-              <p class="recording-status" id="uploadStatus" role="status" aria-live="polite">Choose a recording to begin.</p>
-              <button class="button recording-convert" id="uploadSubmit" type="submit" disabled>Convert to trajectory <span aria-hidden="true">→</span></button>
-            </form>
-            <div class="trajectory-panel">
-              <div class="workspace-panel-heading"><span class="workspace-step">02</span><h4>Explore your trajectory</h4><button type="button" class="trajectory-reset" id="trajectoryReset" hidden>Reset view</button></div>
-              <div class="trajectory-viewport" id="trajectoryViewport" data-state="empty">
-                <canvas id="trajectoryCanvas" hidden tabindex="0" role="img" aria-label="Interactive 3D trajectory. Drag to rotate; Shift-drag to pan; scroll to zoom. Arrow keys rotate, plus and minus zoom, R resets."></canvas>
-                <div class="trajectory-placeholder" id="trajectoryPlaceholder">
-                  <div class="trajectory-empty-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M12 45 32 55 53 44V21L32 10 12 21v24m0-24 20 12 21-12M32 33v22"/><path class="trajectory-icon-line" d="m18 39 8-12 10 16 10-14"/></svg></div>
-                  <span class="trajectory-spinner" aria-hidden="true"></span>
-                  <strong id="trajectoryStateTitle">Your trajectory will appear here</strong>
-                  <p id="trajectoryStateDetail">Check your recording, then click Convert.</p>
-                </div>
-              </div>
-              <div class="trajectory-caption"><span id="trajectorySummary">3D preview · IMU/body position in meters</span><span id="trajectoryControlsHint" hidden>Drag to rotate · Shift-drag to pan · Scroll to zoom</span></div>
-              <div class="trajectory-actions"><a class="button trajectory-download" id="downloadTrajectory" aria-disabled="true" tabindex="-1">Download trajectory <span>TUM ↓</span></a><button class="trajectory-share" id="copyResultLink" type="button" hidden>Copy result link</button></div>
-            </div>
-          </div>
-          <p class="localization-footnote">Use the AprilTags above, printed at 100% / actual size. Processing is offline; your download contains the trajectory only.</p>
         </section>
       </div>
     </section>

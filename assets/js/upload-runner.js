@@ -1,4 +1,5 @@
 (() => {
+  if (window.MILD_SERVICE?.enabled === false) return;
   const byId = id => document.getElementById(id);
   const form = byId("uploadRunnerForm");
   if (!form) return;
